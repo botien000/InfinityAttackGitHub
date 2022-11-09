@@ -9,10 +9,7 @@ using Newtonsoft.Json;
 
 public class CharacterManager : MonoBehaviour
 {
-    private string addressGetCharacterOwn = "http://localhost:3000/inventoryClient/post-character-own";
-    private string addressUpdateLevel = "http://localhost:3000/inventoryClient/update-character-own";
-    private string addressUpdateGold = "http://localhost:3000/api/updateGoldUser";
-    private string addressUpdateStatus = "http://localhost:3000/inventoryClient/update-status-character-own";
+    private Api instanceIP;
     [SerializeField] private Character[] charList;
     [SerializeField] private TextMeshProUGUI nameText;
     [SerializeField] private TextMeshProUGUI description;
@@ -34,8 +31,9 @@ public class CharacterManager : MonoBehaviour
     
     void Start()
     {
+        instanceIP = Api.Instance;
         LoadAvatars();
-        StartCoroutine(GetCharacterOwnData(addressGetCharacterOwn));    
+        StartCoroutine(GetCharacterOwnData(instanceIP.api + instanceIP.routerPostCharactersOwn));    
     }
 
     private void loadChar()
@@ -194,7 +192,7 @@ public class CharacterManager : MonoBehaviour
     {
         int updated = 1;
         SaveUpdated(updated);
-        StartCoroutine(updateLevelCharacter(addressUpdateLevel, selectedOption));
+        StartCoroutine(updateLevelCharacter(instanceIP.api + instanceIP.routerUpdateCharacterOwn, selectedOption));
     }
 
     IEnumerator updateGoldAfterUpdate(string address, int selectedOption)
@@ -216,7 +214,7 @@ public class CharacterManager : MonoBehaviour
         }
         else
         {
-            StartCoroutine(GetCharacterOwnData(addressGetCharacterOwn));                    
+            StartCoroutine(GetCharacterOwnData(instanceIP.api + instanceIP.routerPostCharactersOwn));                    
         }
     }
 
@@ -240,7 +238,7 @@ public class CharacterManager : MonoBehaviour
         }
         else
         {
-            StartCoroutine(updateGoldAfterUpdate(addressUpdateGold, selectedOption));
+            StartCoroutine(updateGoldAfterUpdate(instanceIP.api + instanceIP.routerGoldUser, selectedOption));
         }
     }
 
@@ -277,7 +275,7 @@ public class CharacterManager : MonoBehaviour
     }
     public void BackToHomeSceen(int screenNumber)
     {
-        StartCoroutine(updateStatusCharacter(addressUpdateStatus, selectedOption,screenNumber));
+        StartCoroutine(updateStatusCharacter(instanceIP.api + instanceIP.routerUpdateStatusCharacterOwn, selectedOption,screenNumber));
     }
 
     IEnumerator updateStatusCharacter(string address, int selectedOption,int screenNumber)

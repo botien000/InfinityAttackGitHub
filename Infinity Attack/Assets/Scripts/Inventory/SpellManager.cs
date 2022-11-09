@@ -9,8 +9,6 @@ using UnityEngine.Networking;
 using Newtonsoft.Json;
 public class SpellManager : MonoBehaviour
 {
-    private string addressGetAllSpells = "http://localhost:3000/inventoryClient/get-spells";
-    private string addressGetSpellsOwn = "http://localhost:3000/inventoryClient/post-spells-own";
     [SerializeField] private SpellID[] spellList;
     [SerializeField] private Spell[] spellOwnList;
     [SerializeField] private TextMeshProUGUI nameSpell;
@@ -18,7 +16,7 @@ public class SpellManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI cd;
     [SerializeField] private GameObject loadingPanel;
     [SerializeField] private Image avatarDetail;
-
+    private Api instanceIP;
 
     private Sprite fireSprite;
     private Sprite armorSprite;
@@ -33,9 +31,9 @@ public class SpellManager : MonoBehaviour
     private int amountFire = 0, amountArmor = 0, amountSmite = 0, amountHealing = 0, amountFrozen = 0, amountBoom = 0, amountSoloQ = 0;
     void Start()
     {
-        
+        instanceIP = Api.Instance;
         LoadAvatars();
-        StartCoroutine(GetSpellOwnData(addressGetSpellsOwn, 0, 0, 0, 0, 0, 0, 0
+        StartCoroutine(GetSpellOwnData(instanceIP.api + instanceIP.routerPostSpellsOwn, 0, 0, 0, 0, 0, 0, 0
             , 0, 0, 0, 0, 0, 0, 0));
         
     }
@@ -204,7 +202,7 @@ public class SpellManager : MonoBehaviour
     {
         clicked = 1;
         SaveClicked(clicked);
-        StartCoroutine(GetAllSpells(addressGetAllSpells, clicked));
+        StartCoroutine(GetAllSpells(instanceIP.api + instanceIP.routerGetSpells, clicked));
         Debug.Log("click id: " + spellList[itemIndex]._id);
         string name = spellList[itemIndex].name;
         // check name spell to set avt
@@ -290,7 +288,7 @@ public class SpellManager : MonoBehaviour
             SaveFlag(fire, armor, smite, healing, frozen, boom, soloQ);
             SaveAmount(amountFire, amountArmor, amountSmite, amountHealing, amountFrozen, amountBoom, amountSoloQ);
         }
-        StartCoroutine(GetAllSpells(addressGetAllSpells, 0));
+        StartCoroutine(GetAllSpells(instanceIP.api + instanceIP.routerGetSpells, 0));
     }
 
     IEnumerator GetAllSpells(string address, int clicked)

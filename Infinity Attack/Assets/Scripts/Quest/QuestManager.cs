@@ -9,10 +9,7 @@ using Newtonsoft.Json;
 public class QuestManager : MonoBehaviour
 {
     [SerializeField] private GameObject loadingPanel;
-
-    private string addressGetQuestOwn = "http://localhost:3000/inventoryClient/post-quests-own";
-    private string addressChangeStatusQuestOwn = "http://localhost:3000/inventoryClient/update-status-quest-own";
-    
+    private Api instanceIP;    
 
     private int login = 0, single3time = 0, multi1time = 0, kill50enemy = 0, kill5boss = 0, use3spell = 0;
     private int totalGift = 0;
@@ -23,8 +20,9 @@ public class QuestManager : MonoBehaviour
    
     void Start()
     {
+        instanceIP = Api.Instance;
         LoadAvatars();
-        StartCoroutine(GetQuestOwnData(addressGetQuestOwn));
+        StartCoroutine(GetQuestOwnData(instanceIP.api + instanceIP.routerPostQuestsOwn));
     }
     private void LoadAvatars()
     {
@@ -146,7 +144,7 @@ public class QuestManager : MonoBehaviour
     {   
         Quest quest = questOwnList[itemIndex];
         string id = quest._id;
-        StartCoroutine(ChangeStatusQuestOwn(addressChangeStatusQuestOwn, id));
+        StartCoroutine(ChangeStatusQuestOwn(instanceIP.api + instanceIP.routerUpdateStatusQuestOwn, id));
     }
 
     private void LoadPoint()
@@ -200,7 +198,7 @@ public class QuestManager : MonoBehaviour
                   Destroy(go);
                }
             }
-            StartCoroutine(GetQuestOwnData(addressGetQuestOwn));
+            StartCoroutine(GetQuestOwnData(instanceIP.api + instanceIP.routerPostQuestsOwn));
         }
     }
     IEnumerator GetQuestOwnData(string address)
