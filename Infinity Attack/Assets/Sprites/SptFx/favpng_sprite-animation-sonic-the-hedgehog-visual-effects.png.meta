@@ -1,0 +1,4959 @@
+fileFormatVersion: 2
+guid: f2d88344d43435b478bc72298d05ad8a
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_3
+      rect:
+        serializedVersion: 2
+        x: 235
+        y: 3363
+        width: 11
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 60f5b599feff7264db49c555ea7109e8
+      internalID: 1782336382
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_7
+      rect:
+        serializedVersion: 2
+        x: 765
+        y: 3301
+        width: 49
+        height: 67
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 103d114a7d33cbb4ebb29bc60f83be95
+      internalID: -542508596
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_9
+      rect:
+        serializedVersion: 2
+        x: 61
+        y: 3310
+        width: 6
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8df62443833e7a84999164f3da284c07
+      internalID: 1309871784
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_10
+      rect:
+        serializedVersion: 2
+        x: 122
+        y: 3296
+        width: 16
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f3adc0d6a41eb7544b5134917457d840
+      internalID: 180580506
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_11
+      rect:
+        serializedVersion: 2
+        x: 175
+        y: 3296
+        width: 8
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cacd262e687e432409433e3d92bf5378
+      internalID: -2091906349
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_12
+      rect:
+        serializedVersion: 2
+        x: 765
+        y: 3230
+        width: 49
+        height: 69
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1fefbdbe24c752f47a05c1b15d409ae4
+      internalID: 1112973841
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_13
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 3283
+        width: 13
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1f487bdf7da6ef74c8df8b6358c20366
+      internalID: 992428947
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_14
+      rect:
+        serializedVersion: 2
+        x: 155
+        y: 3287
+        width: 15
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2454a0491d6eaf0469cc74aae2aa0993
+      internalID: 879920363
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_15
+      rect:
+        serializedVersion: 2
+        x: 197
+        y: 3288
+        width: 5
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8339f84837bec804c91a001a5f862998
+      internalID: 1717279586
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_16
+      rect:
+        serializedVersion: 2
+        x: 165
+        y: 3280
+        width: 5
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8131e73b6497980498a1cb9a3bdbb353
+      internalID: 1873536272
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_17
+      rect:
+        serializedVersion: 2
+        x: 170
+        y: 3275
+        width: 12
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9dac69bae33279d4894a5c1eaf77467b
+      internalID: 2104878657
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_18
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 3252
+        width: 26
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4beee94c7d7ed4841a8dfd0e316954d1
+      internalID: 1039738605
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_19
+      rect:
+        serializedVersion: 2
+        x: 179
+        y: 3267
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 69f980f5846e206469a7101616cd77c7
+      internalID: -1223374391
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_20
+      rect:
+        serializedVersion: 2
+        x: 190
+        y: 3272
+        width: 5
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1798fc884c826c44e844ad729c09f971
+      internalID: 609422310
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_21
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 3248
+        width: 13
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4989f190128701a47be0a99b6bee2831
+      internalID: 1514288616
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_22
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 3230
+        width: 11
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: caa6160db4c7fec4c9ec1d8f44998c4f
+      internalID: 1271557743
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_23
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 3175
+        width: 18
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b4435834ffb6409448b090c7d27d4773
+      internalID: 156563657
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_24
+      rect:
+        serializedVersion: 2
+        x: 172
+        y: 3177
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 34cd335787150644a80ea3687c00ca23
+      internalID: 294491650
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_26
+      rect:
+        serializedVersion: 2
+        x: 310
+        y: 3180
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5973fa39940522b4fa6911b104c46059
+      internalID: 734534955
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_29
+      rect:
+        serializedVersion: 2
+        x: 764
+        y: 3155
+        width: 49
+        height: 68
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 66a8429d3468fc04b92a08ea25a4b20a
+      internalID: 232020280
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_30
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 3168
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cab5d26096b05674da37de77490c89dd
+      internalID: -1071918760
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_33
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 3165
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 051813c0bab8e5746ab65c94038e7b19
+      internalID: -1034063307
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_34
+      rect:
+        serializedVersion: 2
+        x: 625
+        y: 3162
+        width: 12
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9b8d11656a011304dac9ebe9c109c484
+      internalID: -725379106
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_35
+      rect:
+        serializedVersion: 2
+        x: 677
+        y: 3170
+        width: 5
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 263b1153a7fdfe84cb308a95562e4e41
+      internalID: -1259585687
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_40
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 3119
+        width: 18
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c88b3fdb3ae92264f8be9413c91703f6
+      internalID: -99585520
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_41
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 3112
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7f378b84bada32d45b0b7b3a9f760d87
+      internalID: 996910568
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_43
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 3094
+        width: 17
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dc3be9eabfcee864eb78fe9c16f1c0eb
+      internalID: -1399097051
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_44
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 3098
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 718d34fe7db1ff64b97d508c3e45401c
+      internalID: -820990840
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_48
+      rect:
+        serializedVersion: 2
+        x: 443
+        y: 3061
+        width: 24
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3e441d5abeadadd4fa5963ebfbcb8c37
+      internalID: -1098907128
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_51
+      rect:
+        serializedVersion: 2
+        x: 622
+        y: 3074
+        width: 13
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6e0badf34ab53ac43a731f93dfa1983a
+      internalID: -833958192
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_54
+      rect:
+        serializedVersion: 2
+        x: 414
+        y: 3067
+        width: 17
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e336e7768fff1f945b13c6978b7e26ec
+      internalID: 411681391
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_55
+      rect:
+        serializedVersion: 2
+        x: 474
+        y: 3061
+        width: 12
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 077390c47809ebf4c9d03e6a9230700c
+      internalID: -678846910
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_58
+      rect:
+        serializedVersion: 2
+        x: 648
+        y: 3069
+        width: 10
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a7b67d84bf988f44db85b7417d7f681b
+      internalID: -2029306945
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_59
+      rect:
+        serializedVersion: 2
+        x: 385
+        y: 3040
+        width: 14
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c67acac9932ffd74f8cb5a874a54b39d
+      internalID: 90256018
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_63
+      rect:
+        serializedVersion: 2
+        x: 653
+        y: 3004
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fcf60cd2e9ec6f84289bca25d0cc7cf5
+      internalID: 718474546
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_66
+      rect:
+        serializedVersion: 2
+        x: 188
+        y: 2982
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6350cd970ca9fe548857292be2af20cb
+      internalID: 657291064
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_69
+      rect:
+        serializedVersion: 2
+        x: 117
+        y: 2949
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 40c61ca1a49313e4ab6531e40a0ce9ef
+      internalID: 306715020
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_70
+      rect:
+        serializedVersion: 2
+        x: 258
+        y: 2933
+        width: 25
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 452f2933e51827a4ba7935105eb381ef
+      internalID: 1371270080
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_71
+      rect:
+        serializedVersion: 2
+        x: 310
+        y: 2944
+        width: 15
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6ee5dc937c433cc4d86f26472d842e8d
+      internalID: -323320150
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_72
+      rect:
+        serializedVersion: 2
+        x: 335
+        y: 2946
+        width: 10
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 162e60bbbe7c0d0448b80c0b987d3563
+      internalID: 958281803
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_73
+      rect:
+        serializedVersion: 2
+        x: 484
+        y: 2951
+        width: 15
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8015f187c0af23b4981a06132a78907b
+      internalID: -82752037
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_74
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 2923
+        width: 104
+        height: 53
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9893fe282f1554148899af4d3331e36e
+      internalID: -2002856956
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_75
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 2943
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f2a244cf41891cf41aa3bae1c736be6d
+      internalID: 1936702942
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_77
+      rect:
+        serializedVersion: 2
+        x: 383
+        y: 2939
+        width: 13
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5fbf138cda61d634ea4a9412f9280139
+      internalID: 1823054725
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_78
+      rect:
+        serializedVersion: 2
+        x: 542
+        y: 2941
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 11a3131a39bd04d4cbd763ccdd805f46
+      internalID: -1834701665
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_79
+      rect:
+        serializedVersion: 2
+        x: 155
+        y: 2926
+        width: 6
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ffc8e5d36f1ef9b4187691cb30b41dc6
+      internalID: 1376838595
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_80
+      rect:
+        serializedVersion: 2
+        x: 443
+        y: 2928
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a34bd798d8b4b914fa3106dda84f75fe
+      internalID: 864001830
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_81
+      rect:
+        serializedVersion: 2
+        x: 599
+        y: 2929
+        width: 11
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0b61fdcbab49f1f42b91138f95ed7ccf
+      internalID: 842717417
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_83
+      rect:
+        serializedVersion: 2
+        x: 440
+        y: 2914
+        width: 9
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f24530a069c064a49b3b3d42fbba23c3
+      internalID: -368791657
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_84
+      rect:
+        serializedVersion: 2
+        x: 664
+        y: 2919
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: afc7d51cb2ca7fe48b23e52702958d0d
+      internalID: 1212108665
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_85
+      rect:
+        serializedVersion: 2
+        x: 758
+        y: 2835
+        width: 95
+        height: 86
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0983b182723eddb47a4741467b30c0f8
+      internalID: 1542991755
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_87
+      rect:
+        serializedVersion: 2
+        x: 386
+        y: 2895
+        width: 18
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 689334836bbee634d98f0415c07be4b3
+      internalID: 564693069
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_88
+      rect:
+        serializedVersion: 2
+        x: 413
+        y: 2888
+        width: 18
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 25d5564d5a8517c4597b8ee041f87ad1
+      internalID: -434304950
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_89
+      rect:
+        serializedVersion: 2
+        x: 449
+        y: 2883
+        width: 18
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 58855e2777f3a7c4bb85c26938ddb66c
+      internalID: 1222179394
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_90
+      rect:
+        serializedVersion: 2
+        x: 468
+        y: 2901
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0cf701d4292bb0a48b639db92d43df04
+      internalID: -1382195784
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_91
+      rect:
+        serializedVersion: 2
+        x: 601
+        y: 2882
+        width: 19
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9e4445cc8b25e6e46a75a06a6cb30691
+      internalID: 181260837
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_93
+      rect:
+        serializedVersion: 2
+        x: 386
+        y: 2886
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d83c137fae0bc714aa3d84a2ab9e4856
+      internalID: -311333933
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_94
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 2888
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1be967ec4f26a3b4ab3ca8b9e6edadf2
+      internalID: 922885229
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_95
+      rect:
+        serializedVersion: 2
+        x: 677
+        y: 2866
+        width: 18
+        height: 27
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cb8370588cd84f649b9fce917149cf8b
+      internalID: 1148704766
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_98
+      rect:
+        serializedVersion: 2
+        x: 635
+        y: 2871
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3ecb480ef5fee834588670a9c45f6588
+      internalID: 550852117
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_99
+      rect:
+        serializedVersion: 2
+        x: 451
+        y: 2865
+        width: 11
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a1d15a248c640bc4d89cbada8c6828f5
+      internalID: 1738339739
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: step_2
+      rect:
+        serializedVersion: 2
+        x: 418
+        y: 2777
+        width: 59
+        height: 29
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 03b71d5aab4f24440aef93590a4f413e
+      internalID: 2079469274
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: step_3
+      rect:
+        serializedVersion: 2
+        x: 494
+        y: 2773
+        width: 68
+        height: 40
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9b82c42514ebb024c8d5c4806f347033
+      internalID: -409272818
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: step_4
+      rect:
+        serializedVersion: 2
+        x: 575
+        y: 2768
+        width: 63
+        height: 52
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1194e626760ec5a49a9a972514825a44
+      internalID: 1252603486
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: step_5
+      rect:
+        serializedVersion: 2
+        x: 647
+        y: 2767
+        width: 58
+        height: 53
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 22fe141f9efab8a4c97c5b6b528a9ba3
+      internalID: 37436810
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: step_1
+      rect:
+        serializedVersion: 2
+        x: 368
+        y: 2777
+        width: 31
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 755f6c4350a0f884fb106701977d55dd
+      internalID: -1024818580
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: step_6
+      rect:
+        serializedVersion: 2
+        x: 358
+        y: 2716
+        width: 61
+        height: 54
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd0a8f24f8bd6b04384821db5123d048
+      internalID: 1380738722
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: step_7
+      rect:
+        serializedVersion: 2
+        x: 434
+        y: 2714
+        width: 59
+        height: 38
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1ff54ef1ff069344ba2327467d827b8a
+      internalID: -1032156822
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: step_8
+      rect:
+        serializedVersion: 2
+        x: 501
+        y: 2713
+        width: 56
+        height: 38
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ba73dd2ded5c0345ab7e0da622754b5
+      internalID: -1544082698
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: step_9
+      rect:
+        serializedVersion: 2
+        x: 574
+        y: 2717
+        width: 51
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ad3ff34508ecf5541ac4243f3a4c5857
+      internalID: -263187604
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: step_10
+      rect:
+        serializedVersion: 2
+        x: 639
+        y: 2719
+        width: 51
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3102934e75b2fff4db4ba6f6b3907113
+      internalID: 1044308674
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: step_11
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 2677
+        width: 58
+        height: 17
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1e52fa7263736d645a3e8761ed2158e7
+      internalID: 1399162156
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: step_12
+      rect:
+        serializedVersion: 2
+        x: 434
+        y: 2680
+        width: 51
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8f579042581434e4b8841e985bc7a4d1
+      internalID: -1122989953
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: step_13
+      rect:
+        serializedVersion: 2
+        x: 496
+        y: 2676
+        width: 29
+        height: 19
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 40dcb7744c88c784abe9694720538998
+      internalID: -1807325696
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_131
+      rect:
+        serializedVersion: 2
+        x: 321
+        y: 2650
+        width: 5
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dc85a5cd90b376e418a27fd22ba81c09
+      internalID: -743911073
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_132
+      rect:
+        serializedVersion: 2
+        x: 345
+        y: 2649
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b73327e7e04a40744922b93de13c68e8
+      internalID: -357387957
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_134
+      rect:
+        serializedVersion: 2
+        x: 497
+        y: 2649
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8502094dad3af0748a1d6ea322cd887a
+      internalID: -691937976
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_135
+      rect:
+        serializedVersion: 2
+        x: 595
+        y: 2646
+        width: 9
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 16c1fa3a6d9dd5c42874ea6cd7ae29de
+      internalID: 795932324
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_138
+      rect:
+        serializedVersion: 2
+        x: 313
+        y: 2642
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 91298489ca0aeef48967d69011b67aa3
+      internalID: -1685921672
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_139
+      rect:
+        serializedVersion: 2
+        x: 328
+        y: 2639
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 442f9ffa977f24842b9f040555309618
+      internalID: 1480207882
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_140
+      rect:
+        serializedVersion: 2
+        x: 433
+        y: 2639
+        width: 11
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 84baaf4db9d9741439d30fecc9542483
+      internalID: -610673112
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_142
+      rect:
+        serializedVersion: 2
+        x: 586
+        y: 2639
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 647f63c9faea36d49a802c2c606c698d
+      internalID: 172194482
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_145
+      rect:
+        serializedVersion: 2
+        x: 474
+        y: 2624
+        width: 13
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f1a97a7dd50f2484885b1d90fab1a5c9
+      internalID: 1716868553
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_146
+      rect:
+        serializedVersion: 2
+        x: 572
+        y: 2626
+        width: 26
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 32e6d40dce2534247a637ca5d223d616
+      internalID: -1379203643
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_147
+      rect:
+        serializedVersion: 2
+        x: 308
+        y: 2612
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c7cdf3364eace774da6d1730f41aea21
+      internalID: 72264750
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_148
+      rect:
+        serializedVersion: 2
+        x: 353
+        y: 2612
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8c4a67cddaefeaf4f9af59baceb11f98
+      internalID: -1582949462
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_149
+      rect:
+        serializedVersion: 2
+        x: 390
+        y: 2614
+        width: 12
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 85b83d25125330249a70d0454366ad70
+      internalID: 877565832
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_150
+      rect:
+        serializedVersion: 2
+        x: 433
+        y: 2614
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4830fac2691decf46bce96ba8282ed43
+      internalID: 1293386932
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_151
+      rect:
+        serializedVersion: 2
+        x: 579
+        y: 2617
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f542e285084ade44982f1617b8b7cb88
+      internalID: 1564911917
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_152
+      rect:
+        serializedVersion: 2
+        x: 625
+        y: 2601
+        width: 22
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6c31d9ba2a130bd4c9807fd352b9805c
+      internalID: -318962299
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_156
+      rect:
+        serializedVersion: 2
+        x: 323
+        y: 2594
+        width: 8
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0744f84483c7921459feb84b56963b16
+      internalID: 1324039356
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_157
+      rect:
+        serializedVersion: 2
+        x: 395
+        y: 2597
+        width: 13
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e8990edfc1935e548816dffb819c7899
+      internalID: 1304229562
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_158
+      rect:
+        serializedVersion: 2
+        x: 439
+        y: 2601
+        width: 12
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 715b68269ffef744d97491f719ebf219
+      internalID: 1563082330
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_159
+      rect:
+        serializedVersion: 2
+        x: 491
+        y: 2599
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8d96db81afd9d374f9660d6a8ca6f32f
+      internalID: 419478409
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_160
+      rect:
+        serializedVersion: 2
+        x: 534
+        y: 2596
+        width: 16
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 06077835b8dbd104ebdf13e6537f136e
+      internalID: -49201240
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_161
+      rect:
+        serializedVersion: 2
+        x: 589
+        y: 2604
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 50a4eb5bec912c64a934882bdc79a87f
+      internalID: 839152456
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_163
+      rect:
+        serializedVersion: 2
+        x: 305
+        y: 2592
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b5481dcfac5bf7439788ed7029b00f3
+      internalID: -833258026
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_165
+      rect:
+        serializedVersion: 2
+        x: 333
+        y: 2577
+        width: 6
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: abc28b040300fa643ae6dc772e79ab31
+      internalID: -935372345
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_166
+      rect:
+        serializedVersion: 2
+        x: 413
+        y: 2577
+        width: 6
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5e097e7eb8b094c45a4ce8b1c10a1be7
+      internalID: -1571829305
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_167
+      rect:
+        serializedVersion: 2
+        x: 439
+        y: 2571
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8e2b164e51ee2494b8b09e96a4409576
+      internalID: -1686256704
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_170
+      rect:
+        serializedVersion: 2
+        x: 321
+        y: 2559
+        width: 9
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 59dfefc0297e84c4eb019bf9e9cce8a6
+      internalID: -1503066149
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_171
+      rect:
+        serializedVersion: 2
+        x: 396
+        y: 2553
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 17e165c03baf1f64c8c883d0a470389c
+      internalID: -1615736776
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_172
+      rect:
+        serializedVersion: 2
+        x: 404
+        y: 2563
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 89aa377b8335f3345b6cb02e17666f62
+      internalID: 288748096
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_173
+      rect:
+        serializedVersion: 2
+        x: 423
+        y: 2562
+        width: 6
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f83b2416afa01641b26bc35556d97de
+      internalID: -1322452789
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_180
+      rect:
+        serializedVersion: 2
+        x: 313
+        y: 2551
+        width: 12
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6424a95e3456e574781aaf040c99f52c
+      internalID: 1283527254
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_187
+      rect:
+        serializedVersion: 2
+        x: 303
+        y: 2533
+        width: 26
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 571dca6a99b4ce44cbd543d95997502c
+      internalID: -1934030479
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_188
+      rect:
+        serializedVersion: 2
+        x: 396
+        y: 2529
+        width: 10
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 22d1b0afda404704885bcfadc3691991
+      internalID: 476236155
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_190
+      rect:
+        serializedVersion: 2
+        x: 316
+        y: 2523
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 893335ed5a337be43b3e0ca5d8e259fa
+      internalID: 462461519
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_191
+      rect:
+        serializedVersion: 2
+        x: 418
+        y: 2513
+        width: 5
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0d829ee1efb536444a4d8c22e74ce664
+      internalID: -936165132
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_200
+      rect:
+        serializedVersion: 2
+        x: 420
+        y: 2471
+        width: 6
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1eae5c8a6f494084684cc03fc5669fcc
+      internalID: 1541319513
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_203
+      rect:
+        serializedVersion: 2
+        x: 435
+        y: 2465
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ef225b0fc764cf44ea6277441d1c90de
+      internalID: 2946205
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_206
+      rect:
+        serializedVersion: 2
+        x: 411
+        y: 2453
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9387b7bd681d3a64d8b2df6f13633389
+      internalID: -715591117
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_207
+      rect:
+        serializedVersion: 2
+        x: 408
+        y: 2440
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f189658a919f7124598861b571133ec4
+      internalID: 1883014844
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_208
+      rect:
+        serializedVersion: 2
+        x: 457
+        y: 2442
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e2c29dcb63ec24b47856ff0fc8617966
+      internalID: 1015431479
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_209
+      rect:
+        serializedVersion: 2
+        x: 355
+        y: 2403
+        width: 16
+        height: 27
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e60018359fa073842bd7866522145fc8
+      internalID: 760749311
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_210
+      rect:
+        serializedVersion: 2
+        x: 408
+        y: 2420
+        width: 16
+        height: 19
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0fdf7883db5e69e43bf346c0563f96d9
+      internalID: 1086001719
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_211
+      rect:
+        serializedVersion: 2
+        x: 425
+        y: 2403
+        width: 19
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8ac9880080e44e048bcf66106b9bd65c
+      internalID: -1914495122
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_245
+      rect:
+        serializedVersion: 2
+        x: 488
+        y: 1707
+        width: 13
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9b714685d830ceb49af3d6aa13d30af4
+      internalID: -2147043876
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_246
+      rect:
+        serializedVersion: 2
+        x: 579
+        y: 1709
+        width: 15
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d50b53da8000254aa15571d08faf6bc
+      internalID: -451622398
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_247
+      rect:
+        serializedVersion: 2
+        x: 462
+        y: 1699
+        width: 18
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0b469cc2e588d044e8aea00745e79182
+      internalID: -1068060372
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_248
+      rect:
+        serializedVersion: 2
+        x: 607
+        y: 1699
+        width: 13
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1133eac97fe16e74888bcbdf6dd915a9
+      internalID: 525006580
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_249
+      rect:
+        serializedVersion: 2
+        x: 624
+        y: 1683
+        width: 9
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9e7396eee7268374ea20565742d5d9e9
+      internalID: -1606424919
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_250
+      rect:
+        serializedVersion: 2
+        x: 451
+        y: 1689
+        width: 8
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 94ac0943f22ea3e42b9c16d2a6204e37
+      internalID: 1432417546
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_251
+      rect:
+        serializedVersion: 2
+        x: 449
+        y: 1681
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b666999bcd86f9a48907e41c6a5bceb8
+      internalID: 32355941
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_252
+      rect:
+        serializedVersion: 2
+        x: 463
+        y: 1674
+        width: 13
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 51f19362883ea5b42b104b233afce886
+      internalID: 324488232
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_253
+      rect:
+        serializedVersion: 2
+        x: 614
+        y: 1676
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 031fbd3513ad43247b147d29a8da3e86
+      internalID: -1314536264
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_254
+      rect:
+        serializedVersion: 2
+        x: 582
+        y: 1668
+        width: 13
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 68bf0b3a0320c774d91d9bd94e032b6b
+      internalID: -2064903589
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_255
+      rect:
+        serializedVersion: 2
+        x: 603
+        y: 1673
+        width: 10
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fe34d240f9d317442949a8d713f47379
+      internalID: 1945852215
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_256
+      rect:
+        serializedVersion: 2
+        x: 355
+        y: 1665
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4242ee3e365a8104585871c08154a754
+      internalID: -1408689682
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_257
+      rect:
+        serializedVersion: 2
+        x: 365
+        y: 1666
+        width: 11
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b5a7c93e72546e242aaefd1ab7e166e8
+      internalID: -332322487
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_258
+      rect:
+        serializedVersion: 2
+        x: 489
+        y: 1666
+        width: 15
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1bca3ac6b90eae84ea5ff2ee243774c0
+      internalID: -2047152062
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_268
+      rect:
+        serializedVersion: 2
+        x: 612
+        y: 1518
+        width: 43
+        height: 81
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d446d6b26c8ce6419e420a0f94d3d65
+      internalID: 1427106540
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_281
+      rect:
+        serializedVersion: 2
+        x: 338
+        y: 1396
+        width: 43
+        height: 61
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f233b24feddffe44a69d03d6833e627
+      internalID: -2017978564
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_282
+      rect:
+        serializedVersion: 2
+        x: 399
+        y: 1394
+        width: 43
+        height: 59
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9b1cfdb8057a9b3419ab000de8d0002b
+      internalID: -1123112402
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_283
+      rect:
+        serializedVersion: 2
+        x: 466
+        y: 1399
+        width: 43
+        height: 53
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6bd8784f36102cf43898ed5aae56c3e6
+      internalID: -757579112
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_284
+      rect:
+        serializedVersion: 2
+        x: 524
+        y: 1391
+        width: 44
+        height: 52
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 42beb4a4cae15bd43a840e52daf910d4
+      internalID: 389098578
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_319
+      rect:
+        serializedVersion: 2
+        x: 426
+        y: 859
+        width: 7
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c9e63adf2bc63154db9eefaec1595824
+      internalID: -1883535709
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_323
+      rect:
+        serializedVersion: 2
+        x: 703
+        y: 862
+        width: 8
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 019208a940c406d47be7c2ba22fbeae0
+      internalID: 113294965
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_324
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 862
+        width: 11
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd7ee27ddfe718247b604d6dc350db88
+      internalID: 2055386459
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_325
+      rect:
+        serializedVersion: 2
+        x: 838
+        y: 871
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fd2f0b5cf7642874c802c733eebbf7a1
+      internalID: 461169310
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_326
+      rect:
+        serializedVersion: 2
+        x: 385
+        y: 858
+        width: 7
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 50be10c54ffe6be4b898f68fb15b591a
+      internalID: -690547863
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_330
+      rect:
+        serializedVersion: 2
+        x: 391
+        y: 831
+        width: 8
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 898418eb5e9aa1443b169532de6761c2
+      internalID: 1210756079
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_331
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 833
+        width: 8
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6839e0d1379058a46a10beee9c6b629e
+      internalID: -1145041926
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_332
+      rect:
+        serializedVersion: 2
+        x: 399
+        y: 819
+        width: 19
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c1c2aa93156912d43b084fd5e4c68998
+      internalID: 59362412
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_343
+      rect:
+        serializedVersion: 2
+        x: 602
+        y: 554
+        width: 11
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 832f79ef4dfd3c94b82418a907b5ba2f
+      internalID: -1783732773
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_344
+      rect:
+        serializedVersion: 2
+        x: 626
+        y: 569
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 106456e882d72bb468018a66314cea24
+      internalID: 580870312
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_345
+      rect:
+        serializedVersion: 2
+        x: 574
+        y: 537
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 27558ff8e1bf00547b5e12478c2743e1
+      internalID: -449693793
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_346
+      rect:
+        serializedVersion: 2
+        x: 579
+        y: 529
+        width: 5
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3af8c9fa75d86364e8d81b381d86c77f
+      internalID: 351110295
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_347
+      rect:
+        serializedVersion: 2
+        x: 584
+        y: 517
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f26fd78b969810b4d8185ec217b658bf
+      internalID: 821280434
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_348
+      rect:
+        serializedVersion: 2
+        x: 580
+        y: 511
+        width: 5
+        height: 4
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e23f5ed5f5d7dac459b827ca9e1632a4
+      internalID: 1693304329
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_349
+      rect:
+        serializedVersion: 2
+        x: 541
+        y: 484
+        width: 14
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f4dcf6f380d1838458f1424d839a56e2
+      internalID: -740794182
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_350
+      rect:
+        serializedVersion: 2
+        x: 688
+        y: 504
+        width: 5
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 08183059e1432af40bb9fd2ba3497668
+      internalID: -626336508
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_351
+      rect:
+        serializedVersion: 2
+        x: 682
+        y: 497
+        width: 6
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f7d6cc1e40c95504a9f86aa2d6ee49d4
+      internalID: -370329168
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_352
+      rect:
+        serializedVersion: 2
+        x: 584
+        y: 484
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4353bddbec3012244a651fff65f6567a
+      internalID: -1867246504
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_353
+      rect:
+        serializedVersion: 2
+        x: 673
+        y: 483
+        width: 10
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6db2e556ea3ed754d8008fdb9a3da2e9
+      internalID: 581106480
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_354
+      rect:
+        serializedVersion: 2
+        x: 579
+        y: 458
+        width: 5
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 596121a0e57896a439bd35c81d90215f
+      internalID: -403172863
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_355
+      rect:
+        serializedVersion: 2
+        x: 572
+        y: 416
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 728a8bd5b82d0e14c903c737b52e364c
+      internalID: 374384359
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_356
+      rect:
+        serializedVersion: 2
+        x: 551
+        y: 409
+        width: 4
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0ec2549e068061d4dac4fc6db6b73ec3
+      internalID: 1441571874
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_357
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 379
+        width: 13
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6f494c822175a744a82cddbda4df6204
+      internalID: -1419057868
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_358
+      rect:
+        serializedVersion: 2
+        x: 219
+        y: 386
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f33b238352df37a48aa492f7debdef1b
+      internalID: -371752621
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_360
+      rect:
+        serializedVersion: 2
+        x: 61
+        y: 374
+        width: 5
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3dd1ad51baf924440a3c71cf448a3f16
+      internalID: 560068760
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_361
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 375
+        width: 5
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f512bdb00729c564f9369113aee08c35
+      internalID: 1141504786
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_362
+      rect:
+        serializedVersion: 2
+        x: 172
+        y: 330
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ad34f4e1f920dd047835e16cb68ef40b
+      internalID: -2140856003
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_371
+      rect:
+        serializedVersion: 2
+        x: 175
+        y: 316
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c8adeb29dc523344cb10ab0367752938
+      internalID: -1321095205
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_372
+      rect:
+        serializedVersion: 2
+        x: 117
+        y: 301
+        width: 5
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7645bff726647e54188eb46911692363
+      internalID: 1872108837
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_374
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 270
+        width: 5
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fcf0ff2418867bd4da7e00ad22c54a6b
+      internalID: 2143507305
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_375
+      rect:
+        serializedVersion: 2
+        x: 207
+        y: 250
+        width: 10
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1143dac32a211b744bc633086b29349e
+      internalID: -805474003
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_378
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 235
+        width: 14
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9fb076e03d5c5064685b1c76e03e5308
+      internalID: 1730316182
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_379
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 235
+        width: 4
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d25de25b66d528940af630853329d159
+      internalID: -1030997676
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_380
+      rect:
+        serializedVersion: 2
+        x: 91
+        y: 235
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9958e0916834fe40bbb3aef4bc40a11
+      internalID: -1500064676
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_386
+      rect:
+        serializedVersion: 2
+        x: 382
+        y: 131
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8ef43fbf937059b4696c1dc96602d1d8
+      internalID: -1569441079
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_388
+      rect:
+        serializedVersion: 2
+        x: 454
+        y: 125
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1911fce4c5cbbb344b7afe9fa2674a63
+      internalID: 1352376015
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_389
+      rect:
+        serializedVersion: 2
+        x: 283
+        y: 117
+        width: 11
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a0176200fb99ec34db82d2145ca1c1c8
+      internalID: 1745979409
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_390
+      rect:
+        serializedVersion: 2
+        x: 295
+        y: 111
+        width: 14
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c1ee78a63c766b24d9b34f55077d7e87
+      internalID: 2090746006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_391
+      rect:
+        serializedVersion: 2
+        x: 413
+        y: 114
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 08bed33c049bc7f4b9bf191dc9a5533c
+      internalID: -1131058813
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_392
+      rect:
+        serializedVersion: 2
+        x: 446
+        y: 114
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 93d064429cf60664f9aee04b98a8d2c2
+      internalID: -1547767090
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_393
+      rect:
+        serializedVersion: 2
+        x: 466
+        y: 119
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6c5ec05407299c4095be386eaa0cdb2
+      internalID: -1841494197
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_395
+      rect:
+        serializedVersion: 2
+        x: 276
+        y: 106
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 572768173f65d3a45a2930ff901f311e
+      internalID: -1248703302
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_396
+      rect:
+        serializedVersion: 2
+        x: 285
+        y: 101
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 720878432ad8b6649905b448b63b185e
+      internalID: -1054828793
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_397
+      rect:
+        serializedVersion: 2
+        x: 356
+        y: 105
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 741e7ff72b05fc14b88bcee40f6d0989
+      internalID: 1550510326
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_398
+      rect:
+        serializedVersion: 2
+        x: 466
+        y: 94
+        width: 20
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6042e8b54f51a6742b20a260715a9032
+      internalID: 2118274775
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_399
+      rect:
+        serializedVersion: 2
+        x: 295
+        y: 87
+        width: 23
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5fedf324a62ed114cb31a3f43117ceff
+      internalID: -589085420
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_400
+      rect:
+        serializedVersion: 2
+        x: 453
+        y: 100
+        width: 5
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f02cab68197750d448cca4941311a9cc
+      internalID: 1947601767
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_401
+      rect:
+        serializedVersion: 2
+        x: 258
+        y: 95
+        width: 6
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 82512a5366909e04097be239a13b0941
+      internalID: -96731308
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_402
+      rect:
+        serializedVersion: 2
+        x: 282
+        y: 92
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 57129fa95b38cc643be16e2a186c95e1
+      internalID: 1299893914
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_403
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 76
+        width: 10
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 640442c3ad8fd534e8c6ddc41afbe496
+      internalID: 421749987
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_404
+      rect:
+        serializedVersion: 2
+        x: 371
+        y: 87
+        width: 6
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7086ff7f65a8eb544b24bbfe7ceddd30
+      internalID: -1350786498
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_405
+      rect:
+        serializedVersion: 2
+        x: 170
+        y: 71
+        width: 25
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eb0b1bd24fea3e6489073447d33ddb28
+      internalID: -1951671241
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_408
+      rect:
+        serializedVersion: 2
+        x: 263
+        y: 66
+        width: 38
+        height: 19
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e19ec35ffb365cd46802b0f579ddda36
+      internalID: -662649456
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_409
+      rect:
+        serializedVersion: 2
+        x: 298
+        y: 72
+        width: 25
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 22f04aa0e490e0243828a69851d82125
+      internalID: -1345393362
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_410
+      rect:
+        serializedVersion: 2
+        x: 338
+        y: 76
+        width: 20
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0af014a0cabe71049b85463e216ffc2d
+      internalID: -127005965
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_412
+      rect:
+        serializedVersion: 2
+        x: 413
+        y: 71
+        width: 8
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 188d53dac55b0ac419dff40f702b0f43
+      internalID: -2036384869
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_413
+      rect:
+        serializedVersion: 2
+        x: 433
+        y: 76
+        width: 23
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fe944f5cd87bf174f9c5ea30df602148
+      internalID: -783843256
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_414
+      rect:
+        serializedVersion: 2
+        x: 469
+        y: 78
+        width: 23
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 304127875737cea4a83e6e8367eac91e
+      internalID: -1833057578
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_415
+      rect:
+        serializedVersion: 2
+        x: 284
+        y: 58
+        width: 16
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 015c83f8d225e97429ec81673baa3b43
+      internalID: -2041391748
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_416
+      rect:
+        serializedVersion: 2
+        x: 410
+        y: 56
+        width: 9
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 00828809642b7424f8680ac383311dbe
+      internalID: -176133451
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_417
+      rect:
+        serializedVersion: 2
+        x: 421
+        y: 62
+        width: 11
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ba9c8569664207945a64dd6c2edcd729
+      internalID: 1823436210
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_418
+      rect:
+        serializedVersion: 2
+        x: 461
+        y: 63
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 05d95eeebb3f3a44a911d9d3344e4287
+      internalID: -1003404558
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_420
+      rect:
+        serializedVersion: 2
+        x: 385
+        y: 51
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ec5a4e5f12919c46bc4bcde374f45ac
+      internalID: -2138045405
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_423
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 44
+        width: 8
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a6260c8d785e9ea41801e48a83756f4f
+      internalID: 2102646040
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_424
+      rect:
+        serializedVersion: 2
+        x: 199
+        y: 37
+        width: 14
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 18cca9d746fae944a859e6f0f73d2efa
+      internalID: 981414956
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_426
+      rect:
+        serializedVersion: 2
+        x: 383
+        y: 41
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 33ec03df58aab7844aedb30339bfdc8c
+      internalID: 769336805
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_427
+      rect:
+        serializedVersion: 2
+        x: 197
+        y: 13
+        width: 25
+        height: 19
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d9a45beb39f8f54096044a80c694660
+      internalID: 490700477
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_428
+      rect:
+        serializedVersion: 2
+        x: 365
+        y: 17
+        width: 14
+        height: 17
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 207f5af05c1fe2d4890f485ed31b0198
+      internalID: -2101661326
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_429
+      rect:
+        serializedVersion: 2
+        x: 380
+        y: 26
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 956f05f1336eb6742bc013c1e48b66f5
+      internalID: 1795492818
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_430
+      rect:
+        serializedVersion: 2
+        x: 439
+        y: 29
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: de93e6402f0975f4aa170c01e495adff
+      internalID: 441999071
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_431
+      rect:
+        serializedVersion: 2
+        x: 257
+        y: 3
+        width: 11
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 620fa01a9a6a4bf459034f68c5455574
+      internalID: -1557407126
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_432
+      rect:
+        serializedVersion: 2
+        x: 285
+        y: 18
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: de228b4d6a3f71644a2563d877553337
+      internalID: 2123006828
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: favpng_sprite-animation-sonic-the-hedgehog-visual-effects_433
+      rect:
+        serializedVersion: 2
+        x: 426
+        y: 6
+        width: 10
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 317d465386b40694bb47237fd8808b0b
+      internalID: 309199621
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_153: -1141840705
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_152: -318962299
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_36: -1949286808
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_373: 756325655
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_330: 1210756079
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_314: -339401981
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_249: -1606424919
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_269: 101140343
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_154: -218578933
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_402: 1299893914
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_403: 421749987
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_8: 1943078758
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_246: -451622398
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_294: -292084795
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_189: -276995178
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_235: 1717518098
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_179: -721938892
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_43: -1399097051
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_55: -678846910
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_285: 1990700137
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_317: 918126568
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_62: 784484666
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_60: 2071521802
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_396: -1054828793
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_342: -743737726
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_411: -1673037012
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_414: -1833057578
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_59: 90256018
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_390: 2090746006
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_173: -1322452789
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_268: 1427106540
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_350: -626336508
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_343: -1783732773
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_76: -638244316
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_185: -1508566326
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_170: -1503066149
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_319: -1883535709
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_407: -1913101699
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_155: 1681726971
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_389: 1745979409
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_222: 1316701599
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_161: 839152456
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_32: -1659349136
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_281: -2017978564
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_296: 1500423901
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_81: 842717417
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_279: 250017414
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_178: -397981271
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_337: 881576942
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_145: 1716868553
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_147: 72264750
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_30: -1071918760
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_57: -1018580773
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_318: -873146752
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_211: -1914495122
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_288: -1833534531
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_424: 981414956
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_258: -2047152062
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_320: 597493942
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_79: 1376838595
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_80: 864001830
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_387: 238072181
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_191: -936165132
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_44: -820990840
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_386: -1569441079
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_237: -465722702
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_418: -1003404558
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_326: -690547863
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_133: 439138158
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_78: -1834701665
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_308: -1751415215
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_264: -347773023
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_142: 172194482
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_303: 159253034
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_11: -2091906349
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_344: 580870312
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_313: 261190543
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_54: 411681391
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_14: 879920363
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_367: -1703939306
+      step_13: -1807325696
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_345: -449693793
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_393: -1841494197
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_228: 1480130297
+      step_8: -1544082698
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_352: -1867246504
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_339: -959133337
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_27: -1704416584
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_328: -1455800281
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_325: 461169310
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_163: -833258026
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_143: -214195228
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_291: 1087580103
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_332: 59362412
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_5: -1321640118
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_365: -2048416964
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_292: 1759566792
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_276: -761123152
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_64: 2067549134
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_266: 1879360467
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_250: 1432417546
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_206: -715591117
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_7: -542508596
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_412: -2036384869
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_151: 1564911917
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_172: 288748096
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_108: -884102384
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_171: -1615736776
+      step_7: -1032156822
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_306: 1399921154
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_114: -436285646
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_42: -658882253
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_188: 476236155
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_99: 1738339739
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_71: -323320150
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_52: -1979850363
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_315: 1125545358
+      step_1: -1024818580
+      step_9: -263187604
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_31: 1587552769
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_385: -1366929984
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_394: -1639677984
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_136: 1208171819
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_409: -1345393362
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_169: 1954965876
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_253: -1314536264
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_267: -1290739278
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_240: 1268184696
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_311: -754037626
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_357: -1419057868
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_61: -73207204
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_368: -310971119
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_166: -1571829305
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_236: 2027204078
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_6: 1793600387
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_22: 1271557743
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_21: 1514288616
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_144: -932683687
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_92: -1082871880
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_259: -998251661
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_122: 1691402277
+      step_3: -409272818
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_26: 734534955
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_2: -1801326472
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_215: 1156168104
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_49: 915067696
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_73: -82752037
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_395: -1248703302
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_160: -49201240
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_233: 912058336
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_404: -1350786498
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_262: 111645244
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_190: 462461519
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_223: -778655811
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_273: 109842844
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_231: -188798622
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_378: 1730316182
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_74: -2002856956
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_111: -600173534
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_40: -99585520
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_146: -1379203643
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_77: 1823054725
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_131: -743911073
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_193: -874649066
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_85: 1542991755
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_212: 151347433
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_275: 2074834061
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_38: -85083094
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_48: -1098907128
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_158: 1563082330
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_18: 1039738605
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_304: -921441045
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_348: 1693304329
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_29: 232020280
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_334: 1278961894
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_299: 202865391
+      step_10: 1044308674
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_164: -640864792
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_209: 760749311
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_302: -956112066
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_216: -20198071
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_392: -1547767090
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_98: 550852117
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_219: -656962647
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_113: 977930069
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_96: -1162310092
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_208: 1015431479
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_377: 35470443
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_335: 1541362738
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_309: 1707334275
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_35: -1259585687
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_205: 206918597
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_243: -1929817438
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_102: -1654582148
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_293: 775868072
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_67: 311942610
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_50: 1411191197
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_168: -505192450
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_125: -569352644
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_300: 1822161900
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_239: -2043154989
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_247: -1068060372
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_263: 57274764
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_63: 718474546
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_187: -1934030479
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_199: 691696886
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_413: -783843256
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_388: 1352376015
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_341: 917411752
+      step_5: 37436810
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_242: 1659856596
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_88: -434304950
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_329: 1035582186
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_255: 1945852215
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_37: 1055349661
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_139: 1480207882
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_194: -553294444
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_323: 113294965
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_70: 1371270080
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_372: 1872108837
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_25: 1365129662
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_364: 811856500
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_422: 1547856369
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_282: -1123112402
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_210: 1086001719
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_351: -370329168
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_324: 2055386459
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_384: -1778593675
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_103: 1085995979
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_307: 1551713793
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_245: -2147043876
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_175: -1943406112
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_355: 374384359
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_295: -1246225692
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_198: 966295925
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_97: -1995459896
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_354: -403172863
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_141: 655982797
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_419: -445515446
+      step_4: 1252603486
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_87: 564693069
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_200: 1541319513
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_217: 1872647802
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_340: 503479514
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_261: 957964928
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_33: -1034063307
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_257: -332322487
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_399: -589085420
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_203: 2946205
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_162: 1619816755
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_244: 567897118
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_112: -761389845
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_19: -1223374391
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_374: 2143507305
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_130: 1336809462
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_346: 351110295
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_91: 181260837
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_121: -2011204124
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_90: -1382195784
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_137: -1432938537
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_370: -1206873480
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_338: -1783424981
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_0: -1343897533
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_298: 998659488
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_84: 1212108665
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_184: 260555799
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_316: 837060699
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_4: -1621421180
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_20: 609422310
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_432: 2123006828
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_405: -1951671241
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_359: -2091426813
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_400: 1947601767
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_224: -1376318928
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_327: -1414644081
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_15: 1717279586
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_271: 657819480
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_192: -1106640894
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_362: -2140856003
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_410: -127005965
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_41: 996910568
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_398: 2118274775
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_123: 1678425333
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_94: 922885229
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_371: -1321095205
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_150: 1293386932
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_214: 194188465
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_148: -1582949462
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_254: -2064903589
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_159: 419478409
+      step_11: 1399162156
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_197: -1116290182
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_174: 1701243573
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_280: 1425378656
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_45: 952064391
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_278: 1435982743
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_227: 161865729
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_12: 1112973841
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_366: 860879144
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_232: 522834496
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_46: -1403000857
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_138: -1685921672
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_183: -462512699
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_17: 2104878657
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_423: 2102646040
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_252: 324488232
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_331: -1145041926
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_416: -176133451
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_86: -698514079
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_305: -1173255581
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_431: -1557407126
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_230: -337940411
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_196: -2066075918
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_272: 333588829
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_301: -1827942112
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_220: -516746142
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_427: 490700477
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_134: -691937976
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_426: 769336805
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_182: 1091296951
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_265: -1092659318
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_89: 1222179394
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_176: 1242245020
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_201: 41655791
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_274: -1234803126
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_290: -1524959228
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_379: -1030997676
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_286: -1028503072
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_277: -570852915
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_312: 309622545
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_16: 1873536272
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_408: -662649456
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_241: 870292392
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_3: 1782336382
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_132: -357387957
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_82: 359850950
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_433: 309199621
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_322: 166445583
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_353: 581106480
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_369: -1173259593
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_186: 466241709
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_397: 1550510326
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_428: -2101661326
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_284: 389098578
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_69: 306715020
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_218: 722106049
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_333: -122267117
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_425: -86882961
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_391: -1131058813
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_24: 294491650
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_287: -1800556596
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_289: -2049730151
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_9: 1309871784
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_127: -2079158785
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_156: 1324039356
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_310: -1023055100
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_383: 1210760700
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_380: -1500064676
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_360: 560068760
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_361: 1141504786
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_56: 554246631
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_167: -1686256704
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_110: 577740570
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_204: -1463647889
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_251: 32355941
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_358: -371752621
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_83: -368791657
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_420: -2138045405
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_149: 877565832
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_47: -370186446
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_202: 48986352
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_283: -757579112
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_381: 1149220614
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_375: -805474003
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_65: -144210571
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_363: -909257057
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_429: 1795492818
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_23: 156563657
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_349: -740794182
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_229: -2108824452
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_256: -1408689682
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_75: 1936702942
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_165: -935372345
+      step_6: 1380738722
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_93: -311333933
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_207: 1883014844
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_1: 1209941907
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_401: -96731308
+      step_2: 2079469274
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_177: -565890719
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_225: -344216239
+      step_12: -1122989953
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_347: 821280434
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_430: 441999071
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_13: 992428947
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_34: -725379106
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_421: -1555299548
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_68: 876609352
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_376: 1636375701
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_417: 1823436210
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_382: -233487202
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_115: 1336281193
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_213: -1111385764
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_95: 1148704766
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_226: -1548923114
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_336: 1957330047
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_101: -1986284801
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_51: -833958192
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_39: -1675008217
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_297: -1756406831
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_135: 795932324
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_195: -353139783
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_66: 657291064
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_104: -605479988
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_53: -513868311
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_100: -493882999
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_140: -610673112
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_356: 1441571874
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_181: 777893732
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_157: 1304229562
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_260: 1474141004
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_270: 2102948067
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_221: -1774469075
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_72: 958281803
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_234: -1543976813
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_58: -2029306945
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_406: 1155999305
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_238: -1181718784
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_248: 525006580
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_321: -430738495
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_28: 1951235373
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_180: 1283527254
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_415: -2041391748
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_129: 598061455
+      favpng_sprite-animation-sonic-the-hedgehog-visual-effects_10: 180580506
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
