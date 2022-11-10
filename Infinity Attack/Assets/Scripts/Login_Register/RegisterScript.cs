@@ -18,6 +18,8 @@ public class RegisterScript : MonoBehaviour
     [SerializeField] private GameObject LoadingPanel;
     [SerializeField] private TMP_Text AlertText;
 
+    private string registerApi = Api.Instance.api + Api.Instance.routerRegister;
+
     public void OnRegisterClick()
     {
         StartCoroutine(TryRegister());
@@ -60,7 +62,7 @@ public class RegisterScript : MonoBehaviour
             form.AddField("password", password);
             form.AddField("confirm_password", confirm_password);
 
-            using (UnityWebRequest www = UnityWebRequest.Post("http://localhost:3000/api/register", form))
+            using (UnityWebRequest www = UnityWebRequest.Post(registerApi, form))
             {
                 LoadingPanel.SetActive(true);
                 yield return www.SendWebRequest();

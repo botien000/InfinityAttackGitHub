@@ -13,15 +13,16 @@ public class HomeScript : MonoBehaviour
     private Top5Users[] top5Users;
     public Character[] charList;
 
-    private string addressGetUsingCharName = "http://localhost:3000/api/getUsingCharNameById";
-    private string addressGetUser = "http://localhost:3000/api/getUserById";
-    private string addressGetTop10Users = "http://localhost:3000/api/getTop5Users";
+    private string addressGetUsingCharName = Api.Instance.api+Api.Instance.routerGetUsingCharNameById;
+    private string addressGetUser = Api.Instance.api + Api.Instance.routerGetUserById;
+    //private string addressGetTop10Users = "http://localhost:3000/api/getTop5Users";
 
     [SerializeField] private TMP_Text GoldText;
     [SerializeField] private TMP_Text GemText;
     [SerializeField] private TMP_Text NameText;
     [SerializeField] private Image avatar;
     [SerializeField] private GameObject Character;
+    /*
     [SerializeField] private TMP_Text Top1Name;
     [SerializeField] private TMP_Text Top1Count;
     [SerializeField] private TMP_Text Top2Name;
@@ -31,7 +32,7 @@ public class HomeScript : MonoBehaviour
     [SerializeField] private TMP_Text Top4Name;
     [SerializeField] private TMP_Text Top4Count;
     [SerializeField] private TMP_Text Top5Name;
-    [SerializeField] private TMP_Text Top5Count;
+    [SerializeField] private TMP_Text Top5Count;*/
 
     [SerializeField] FindResponeFriend findResponeFriend;
 
@@ -73,8 +74,8 @@ public class HomeScript : MonoBehaviour
     {
         // tìm thông tin chi tiết user và gán 
         WWWForm form_getUser = new WWWForm();
-        string id = removeQuotes(PlayerPrefs.GetString("UID"));
-        form_getUser.AddField("id", id);
+        string uid = removeQuotes(PlayerPrefs.GetString("UID"));
+        form_getUser.AddField("id", uid);
         using (UnityWebRequest www = UnityWebRequest.Post(addressGetUser, form_getUser))
         {
             yield return www.SendWebRequest();
@@ -100,7 +101,7 @@ public class HomeScript : MonoBehaviour
 
         // lấy thông tin tướng đang sử dụng
         WWWForm form_getChar = new WWWForm();
-        form_getChar.AddField("id", id);
+        form_getChar.AddField("userID", uid);
 
         using (UnityWebRequest www = UnityWebRequest.Post(addressGetUsingCharName, form_getChar))
         {
@@ -202,12 +203,12 @@ public class HomeScript : MonoBehaviour
 
     private void LoadAvatars()
     {
-        fire_knightsprite = Resources.Load<Sprite>("Avatars/fire_knight");
-        ground_monksprite = Resources.Load<Sprite>("Avatars/ground_monk");
-        leaf_rangersprite = Resources.Load<Sprite>("Avatars/leaf_ranger");
-        water_priestesssprite = Resources.Load<Sprite>("Avatars/water_priestess");
-        metal_bladekeepersprite = Resources.Load<Sprite>("Avatars/metal_bladekeeper");
-        wind_hashashinsprite = Resources.Load<Sprite>("Avatars/wind_hashashin");
+        fire_knightsprite = Resources.Load<Sprite>("Avatars/Fire Knight");
+        ground_monksprite = Resources.Load<Sprite>("Avatars/Ground Monk");
+        leaf_rangersprite = Resources.Load<Sprite>("Avatars/Leaf Ranger");
+        water_priestesssprite = Resources.Load<Sprite>("Avatars/Water Priestess");
+        metal_bladekeepersprite = Resources.Load<Sprite>("Avatars/Metal Bladekeeper");
+        wind_hashashinsprite = Resources.Load<Sprite>("Avatars/Wind Hashashin");
     }
 
     private void LoadChar()

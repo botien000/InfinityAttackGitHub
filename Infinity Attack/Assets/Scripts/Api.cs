@@ -6,6 +6,11 @@ using UnityEngine;
 public class Api
 {
     public readonly string api = "http://localhost:3000/api/";
+
+    //login and register
+    public readonly string routerRegister = "register";
+    public readonly string routerLogin = "login";
+
     public readonly string routerGetCharacters = "get-characters";
     public readonly string routerGetUserByName = "getUserByName";
     public readonly string routerGetUserById = "getUserById";

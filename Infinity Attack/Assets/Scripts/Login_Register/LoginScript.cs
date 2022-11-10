@@ -16,6 +16,8 @@ public class LoginScript : MonoBehaviour
     [SerializeField] private GameObject LoadingPanel;
     [SerializeField] private TMP_Text AlertText;
 
+    private string loginApi = Api.Instance.api + Api.Instance.routerLogin;
+
     public void OnLoginClick()
     {
         StartCoroutine(TryLogin());
@@ -37,7 +39,7 @@ public class LoginScript : MonoBehaviour
             form.AddField("username", username);
             form.AddField("password", password);
 
-            using (UnityWebRequest www = UnityWebRequest.Post("http://localhost:3000/api/login", form))
+            using (UnityWebRequest www = UnityWebRequest.Post(loginApi, form))
             {
                 LoadingPanel.SetActive(true);
                 yield return www.SendWebRequest();
