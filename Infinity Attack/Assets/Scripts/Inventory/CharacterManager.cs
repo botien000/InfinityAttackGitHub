@@ -28,7 +28,11 @@ public class CharacterManager : MonoBehaviour
     private Sprite water_priestesssprite;
     private Sprite metal_bladekeepersprite;
     private Sprite wind_hashashinsprite;
-    
+
+    private void Awake()
+    {
+
+    }
     void Start()
     {
         instanceIP = Api.Instance;
