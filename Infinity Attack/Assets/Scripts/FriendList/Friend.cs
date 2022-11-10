@@ -28,7 +28,7 @@ public class Friend : MonoBehaviour
         else
         {
             imgAvatar.gameObject.SetActive(true);
-            imgAvatar.sprite = Resources.Load<Sprite>("Avatar/" + friendOfUser.nameCharacter);
+            imgAvatar.sprite = Resources.Load<Sprite>("Avatars/" + friendOfUser.nameCharacter);
         }
     }
 }

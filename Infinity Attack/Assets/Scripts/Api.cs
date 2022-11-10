@@ -21,7 +21,7 @@ public class Api
     public readonly string routerGetUsingCharNameById = "getUsingCharNameById";
     public readonly string routerAddNewCharacter = "addNewCharacter";
     public readonly string routerGetSpells = "getSpells";
-    public readonly string routerSpellOwn = "getSpellOwn";
+    public readonly string routerGetSpellOwn = "getSpellOwn";
 
     public readonly string routerPostAchievementsOwn = "post-achievements-own";
     public readonly string routerUpdateLevelAchievementOwn = "update-level-achievement-own";
@@ -40,11 +40,18 @@ public class Api
     public readonly string routerUpdateCharacterOwn = "update-character-own";
     public readonly string routerUpdateStatusCharacterOwn = "update-status-character-own";
 
-
-    private static Api instance;
     public readonly string routerUpdateAmount = "updateAmountSpell";
     public readonly string routerAddSpellOwn = "addNewSpellOwn";
 
+    public readonly string routerFindRespone = "findRespone";
+    public readonly string routerDeleteAFriend = "deleteAFriend";
+    public readonly string routerGetAllFriends = "getAllFriends";
+    public readonly string routerCheckExistingFriend = "checkExistingFriend";
+    public readonly string routerRequestAnUser = "requestAnUser";
+    public readonly string routerAddTrueFriend = "addTrueFriend";
+
+
+    private static Api instance;
     public static Api Instance
     {
 

@@ -14,7 +14,7 @@ public class FindResponeFriend : MonoBehaviour
 
     public void Find()
     {
-        StartCoroutine(IEFindRespone("634391edeb21d43d2a733801"));
+        StartCoroutine(IEFindRespone(User.Instance.user._id));
     }
     private IEnumerator IEFindRespone(string userResponeID)
     {
@@ -22,7 +22,7 @@ public class FindResponeFriend : MonoBehaviour
         {
             WWWForm form = new WWWForm();
             form.AddField("userRes", userResponeID);
-            UnityWebRequest unityWebRequest = UnityWebRequest.Post("http://localhost:3000/friends/findRespone", form);
+            UnityWebRequest unityWebRequest = UnityWebRequest.Post(Api.Instance.api + Api.Instance.routerFindRespone, form);
             var handler = unityWebRequest.SendWebRequest();
             while (!handler.isDone)
             {
@@ -40,8 +40,6 @@ public class FindResponeFriend : MonoBehaviour
                 else
                 {
                     Debug.Log("No any request is sent to you");
-                    unityWebRequest.Dispose();
-                    break;
                 }
             }
             else
@@ -90,7 +88,7 @@ public class FindResponeFriend : MonoBehaviour
     {
         WWWForm form = new WWWForm();
         form.AddField("id", id);
-        UnityWebRequest unityWebRequest = UnityWebRequest.Post("http://localhost:3000/friends/deleteAnFriend", form);
+        UnityWebRequest unityWebRequest = UnityWebRequest.Post(Api.Instance.api + Api.Instance.routerDeleteAFriend, form);
         var handler = unityWebRequest.SendWebRequest();
         while (!handler.isDone)
         {
@@ -123,7 +121,7 @@ public class FindResponeFriend : MonoBehaviour
     {
         WWWForm form = new WWWForm();
         form.AddField("id", id);
-        UnityWebRequest unityWebRequest = UnityWebRequest.Post("http://localhost:3000/friends/addTrueFriend", form);
+        UnityWebRequest unityWebRequest = UnityWebRequest.Post(Api.Instance.api + Api.Instance.routerAddTrueFriend, form);
         var handler = unityWebRequest.SendWebRequest();
         while (!handler.isDone)
         {

@@ -40,8 +40,8 @@ public class FriendManager : MonoBehaviour
     IEnumerator GetAllFriends()
     {
         WWWForm form = new WWWForm();
-        form.AddField("userID", "634391edeb21d43d2a733801");
-        UnityWebRequest unityWebRequest = UnityWebRequest.Post("http://localhost:3000/friends/getAllFriends", form);
+        form.AddField("userID", User.Instance.user._id);
+        UnityWebRequest unityWebRequest = UnityWebRequest.Post(Api.Instance.api + Api.Instance.routerGetAllFriends, form);
         var handler = unityWebRequest.SendWebRequest();
         while (!handler.isDone)
         {
@@ -148,7 +148,7 @@ public class FriendManager : MonoBehaviour
     {
         WWWForm form = new WWWForm();
         form.AddField("id", id);
-        UnityWebRequest unityWebRequest = UnityWebRequest.Post("http://localhost:3000/friends/deleteAnFriend", form);
+        UnityWebRequest unityWebRequest = UnityWebRequest.Post(Api.Instance.api + Api.Instance.routerDeleteAFriend, form);
         var handler = unityWebRequest.SendWebRequest();
         while (!handler.isDone)
         {
@@ -186,7 +186,7 @@ public class FriendManager : MonoBehaviour
     {
         WWWForm form = new WWWForm();
         form.AddField("userID", id);
-        UnityWebRequest unityWebRequest = UnityWebRequest.Post("http://localhost:3000/friends/checkExistingFriend", form);
+        UnityWebRequest unityWebRequest = UnityWebRequest.Post(Api.Instance.api + Api.Instance.routerCheckExistingFriend, form);
         var handler = unityWebRequest.SendWebRequest();
         while (!handler.isDone)
         {
@@ -218,9 +218,9 @@ public class FriendManager : MonoBehaviour
     private IEnumerator IEFriendRequest(string id)
     {
         WWWForm form = new WWWForm();
-        form.AddField("userReq", "634391edeb21d43d2a733801");
+        form.AddField("userReq", User.Instance.user._id);
         form.AddField("userRes", id);
-        UnityWebRequest unityWebRequest = UnityWebRequest.Post("http://localhost:3000/friends/requestAnUser", form);
+        UnityWebRequest unityWebRequest = UnityWebRequest.Post(Api.Instance.api + Api.Instance.routerRequestAnUser, form);
         var handler = unityWebRequest.SendWebRequest();
         while (!handler.isDone)
         {
@@ -268,7 +268,7 @@ public class FriendManager : MonoBehaviour
     {
         foreach (var friend in friendEntities)
         {
-            if (friend.userReq != "634391edeb21d43d2a733801")
+            if (friend.userReq != User.Instance.user._id)
             {
                 friendOfUserList.Add(new FriendOfUser { userID = friend.userReq });
             }

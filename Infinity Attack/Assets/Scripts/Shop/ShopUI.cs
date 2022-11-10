@@ -210,7 +210,7 @@ public class ShopUI : MonoBehaviour
     {
         WWWForm form = new WWWForm();
         form.AddField("userID", User.Instance.user._id);
-        UnityWebRequest unityWebRequest = UnityWebRequest.Post(instanceIP.api + instanceIP.routerSpellOwn, form);
+        UnityWebRequest unityWebRequest = UnityWebRequest.Post(instanceIP.api + instanceIP.routerGetSpellOwn, form);
         var handler = unityWebRequest.SendWebRequest();
         while (!handler.isDone)
         {
