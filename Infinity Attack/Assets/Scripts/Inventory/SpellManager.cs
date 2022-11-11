@@ -19,36 +19,41 @@ public class SpellManager : MonoBehaviour
     private Api instanceIP;
 
     private Sprite fireSprite;
-    private Sprite armorSprite;
-    private Sprite smiteSprite;
+    private Sprite chaosSprite;
+    private Sprite speedUpSprite;
     private Sprite healingSprite;
-    private Sprite frozenSprite;
-    private Sprite boomSprite;
-    private Sprite soloQSprite;
+    private Sprite utilmateRemakeSprite;
 
     private int clicked = 0;
-    private int fire = 0, armor = 0, smite = 0, healing = 0, frozen = 0, boom = 0, soloQ = 0;
-    private int amountFire = 0, amountArmor = 0, amountSmite = 0, amountHealing = 0, amountFrozen = 0, amountBoom = 0, amountSoloQ = 0;
+    private int fire = 0, chaos = 0, speedUp = 0, healing = 0, utilmateRemake = 0;
+    private int amountFire = 0, amountSpeedUp = 0, amountChaos = 0, amountHealing = 0, amountUtilmateRemake = 0;
     void Start()
     {
         instanceIP = Api.Instance;
         LoadAvatars();
-        StartCoroutine(GetSpellOwnData(instanceIP.api + instanceIP.routerPostSpellsOwn, 0, 0, 0, 0, 0, 0, 0
-            , 0, 0, 0, 0, 0, 0, 0));
+        if (PlayerPrefs.HasKey("UID"))
+        {
+            string userID = removeQuotes(PlayerPrefs.GetString("UID"));
+            StartCoroutine(GetSpellOwnData(instanceIP.api + instanceIP.routerPostSpellsOwn, 0, 0, 0, 0, 0, 0, 0
+           , 0, 0, 0, userID));
+        }
+           
         
     }
     private void LoadAvatars()
     {
-        fireSprite = Resources.Load<Sprite>("Spell/fire");
-        armorSprite = Resources.Load<Sprite>("Spell/armor");
-        smiteSprite = Resources.Load<Sprite>("Spell/smite");
-        healingSprite = Resources.Load<Sprite>("Spell/healing");
-        frozenSprite = Resources.Load<Sprite>("Spell/frozen");
-        boomSprite = Resources.Load<Sprite>("Spell/boom");
-        soloQSprite = Resources.Load<Sprite>("Spell/soloq");
+        fireSprite = Resources.Load<Sprite>("Spells/fire");
+        chaosSprite = Resources.Load<Sprite>("Spells/chaos");
+        healingSprite = Resources.Load<Sprite>("Spells/healing");
+        speedUpSprite = Resources.Load<Sprite>("Spells/speedup");
+        utilmateRemakeSprite = Resources.Load<Sprite>("Spells/utilmateRemake");
     }
 
-    
+    private void Update()
+    {
+
+    }
+
     void getAllSpells(string rawResponse)
     {
         var _spell = JsonConvert.DeserializeObject<SpellID[]>(rawResponse);
@@ -71,33 +76,22 @@ public class SpellManager : MonoBehaviour
             g = Instantiate(item, transform);
             string name = spellList[i].name;
             //check name spell to set amount 
-            if (name == "Fire" && fire == 1)
+            if (name == "Chaos" && chaos == 1)
+            {
+                g.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = amountChaos + "/10";
+            }
+            else if (name == "Chaos" && chaos == 0)
+            {
+                g.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "0/10";
+                g.transform.GetChild(1).GetComponent<TextMeshProUGUI>().color = Color.grey;
+                g.transform.GetChild(0).GetComponent<Image>().color = new Color(1f, 1f, 1f, 0.6f);
+                item.transform.GetComponent<Image>().color = new Color(1f, 1f, 1f, 0.5f);
+            }
+            else if (name == "Fire" && fire == 1)
             {
                 g.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = amountFire + "/10";
             }
             else if (name == "Fire" && fire == 0)
-            {
-                g.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "0/10";
-                g.transform.GetChild(1).GetComponent<TextMeshProUGUI>().color = Color.grey;
-                g.transform.GetChild(0).GetComponent<Image>().color = new Color(1f, 1f, 1f, 0.6f);
-                item.transform.GetComponent<Image>().color = new Color(1f, 1f, 1f, 0.5f);
-            }
-            else if (name == "Armor" && armor == 1)
-            {
-                g.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = amountArmor + "/10";
-            }
-            else if (name == "Armor" && armor == 0)
-            {
-                g.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "0/10";
-                g.transform.GetChild(1).GetComponent<TextMeshProUGUI>().color = Color.grey;
-                g.transform.GetChild(0).GetComponent<Image>().color = new Color(1f, 1f, 1f, 0.6f);
-                item.transform.GetComponent<Image>().color = new Color(1f, 1f, 1f, 0.5f);
-            }
-            else if (name == "Smite" && smite == 1)
-            {
-                g.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = amountSmite + "/10";
-            }
-            else if (name == "Smite" && smite == 0)
             {
                 g.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "0/10";
                 g.transform.GetChild(1).GetComponent<TextMeshProUGUI>().color = Color.grey;
@@ -115,34 +109,22 @@ public class SpellManager : MonoBehaviour
                 g.transform.GetChild(0).GetComponent<Image>().color = new Color(1f, 1f, 1f, 0.6f);
                 item.transform.GetComponent<Image>().color = new Color(1f, 1f, 1f, 0.5f);
             }
-            else if (name == "Frozen" && frozen == 1)
+            else if (name == "SpeedUp" && speedUp == 1)
             {
-                g.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = amountFrozen + "/10";
+                g.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = amountSpeedUp + "/10";
             }
-            else if (name == "Frozen" && frozen == 0)
-            {
-                g.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "0/10";
-                g.transform.GetChild(1).GetComponent<TextMeshProUGUI>().color = Color.grey;
-                g.transform.GetChild(0).GetComponent<Image>().color = new Color(1f, 1f, 1f, 0.6f);
-                item.transform.GetComponent<Image>().color = new Color(1f, 1f, 1f, 0.5f);
-            }
-            else if (name == "Boom" && boom == 1)
-            {
-                g.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = amountBoom + "/10";
-            }
-            else if (name == "Boom" && boom == 0)
+            else if (name == "SpeedUp" && speedUp == 0)
             {
                 g.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "0/10";
                 g.transform.GetChild(1).GetComponent<TextMeshProUGUI>().color = Color.grey;
                 g.transform.GetChild(0).GetComponent<Image>().color = new Color(1f, 1f, 1f, 0.6f);
                 item.transform.GetComponent<Image>().color = new Color(1f, 1f, 1f, 0.5f);
-
             }
-            else if (name == "SoloQ" && soloQ == 1)
+            else if (name == "UtilmateRemake" && utilmateRemake == 1)
             {
-                g.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = amountSoloQ + "/10";
+                g.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = amountUtilmateRemake + "/10";
             }
-            else if (name == "SoloQ" && soloQ == 0)
+            else if (name == "UtilmateRemake" && utilmateRemake == 0)
             {
                 g.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "0/10";
                 g.transform.GetChild(1).GetComponent<TextMeshProUGUI>().color = Color.grey;
@@ -158,33 +140,25 @@ public class SpellManager : MonoBehaviour
             }
 
             // check name spell to set avt
-            if (name == "Fire")
+            if (name == "Chaos")
+            {
+                g.transform.GetChild(0).GetComponent<Image>().sprite = chaosSprite;
+            }
+            else if (name == "Fire")
             {
                 g.transform.GetChild(0).GetComponent<Image>().sprite = fireSprite;
-            }
-            else if (name == "Armor")
-            {
-                g.transform.GetChild(0).GetComponent<Image>().sprite = armorSprite;
-            }
-            else if (name == "Smite")
-            {
-                g.transform.GetChild(0).GetComponent<Image>().sprite = smiteSprite;
             }
             else if (name == "Healing")
             {
                 g.transform.GetChild(0).GetComponent<Image>().sprite = healingSprite;
             }
-            else if (name == "Frozen")
+            else if (name == "SpeedUp")
             {
-                g.transform.GetChild(0).GetComponent<Image>().sprite = frozenSprite;
+                g.transform.GetChild(0).GetComponent<Image>().sprite = speedUpSprite;
             }
-            else if (name == "Boom")
+            else if (name == "UtilmateRemake")
             {
-                g.transform.GetChild(0).GetComponent<Image>().sprite = boomSprite;
-            }
-            else if (name == "SoloQ")
-            {
-                g.transform.GetChild(0).GetComponent<Image>().sprite = soloQSprite;
+                g.transform.GetChild(0).GetComponent<Image>().sprite = utilmateRemakeSprite;
             }
             g.GetComponent<Button>().AddEventListener(i, ItemClicked);
 
@@ -206,94 +180,87 @@ public class SpellManager : MonoBehaviour
         Debug.Log("click id: " + spellList[itemIndex]._id);
         string name = spellList[itemIndex].name;
         // check name spell to set avt
-        if (name == "Fire")
+        if (name == "Chaos")
+        {
+            avatarDetail.sprite = chaosSprite;
+        }
+        else if (name == "Fire")
         {
             avatarDetail.sprite = fireSprite;
-        }
-        else if (name == "Armor")
-        {
-            avatarDetail.sprite = armorSprite;
-        }
-        else if (name == "Smite")
-        {
-            avatarDetail.sprite = smiteSprite;
         }
         else if (name == "Healing")
         {
             avatarDetail.sprite = healingSprite;
         }
-        else if (name == "Frozen")
+        else if (name == "SpeedUp")
         {
-            avatarDetail.sprite = frozenSprite;
+            avatarDetail.sprite = speedUpSprite;
         }
-        else if (name == "Boom")
+        else if (name == "UtilmateRemake")
         {
-            avatarDetail.sprite = boomSprite;
-        }
-        else if (name == "SoloQ")
-        {
-            avatarDetail.sprite = soloQSprite;
+            avatarDetail.sprite = utilmateRemakeSprite;
         }
         nameSpell.text = name;
         description.text = spellList[itemIndex].description;
         cd.text = "Cooldown: " + spellList[itemIndex].cooldown;
     }
 
-    void getSpellOwn(string rawResponse, int fire, int armor, int smite, int healing, int frozen, int boom, int soloQ,
-        int amountFire, int amountArmor, int amountSmite, int amountHealing, int amountFrozen, int amountBoom, int amountSoloQ)
+    void getSpellOwn(string rawResponse, int chaos, int fire, int healing, int speedUp, int utilmateRemake,
+        int amountChaos, int amountFire, int amountHealing, int amountSpeedUp, int amountUtilmateRemake)
     {
         var _spellOwn = JsonConvert.DeserializeObject<Spell[]>(rawResponse);
         Debug.Log("SpellOwn" + _spellOwn);
         spellOwnList = _spellOwn;
-        
-        for(int i = 0; i < spellOwnList.Length; i++)
+
+        if(spellOwnList.Length == 0)
         {
-            string name = spellOwnList[i].spellID.name;
-            int amount = spellOwnList[i].amount;
-            //Debug.Log("Spell Own List -- Name: " + name + " amount: " + amount);
-            if (name == "Fire")
-            {
-                fire = 1;
-                amountFire = amount;
-            }
-            else if(name == "Armor"){
-                armor = 1;
-                amountArmor = amount;
-            }
-            else if (name == "Smite")
-            {
-                smite = 1;
-                amountSmite = amount;
-            }
-            else if (name == "Healing")
-            {
-                healing = 1;
-                amountHealing = amount;
-            }
-            else if (name == "Frozen")
-            {
-                frozen = 1;
-                amountFrozen = amount;
-            }
-            else if (name == "Boom")
-            {
-                boom = 1;
-                amountBoom = amount;
-            }
-            else if (name == "SoloQ")
-            {
-                soloQ = 1;
-                amountSoloQ = amount;
-            }
-            SaveFlag(fire, armor, smite, healing, frozen, boom, soloQ);
-            SaveAmount(amountFire, amountArmor, amountSmite, amountHealing, amountFrozen, amountBoom, amountSoloQ);
+            SaveFlag(chaos, fire, healing, speedUp, utilmateRemake);
+            SaveAmount(amountChaos, amountFire, amountHealing, amountSpeedUp, amountUtilmateRemake);
         }
+        else
+        {
+            for (int i = 0; i < spellOwnList.Length; i++)
+            {
+                string name = spellOwnList[i].spellID.name;
+                int amount = spellOwnList[i].amount;
+                //Debug.Log("Spell Own List -- Name: " + name + " amount: " + amount);
+                if (name == "Chaos")
+                {
+                    chaos = 1;
+                    amountChaos = amount;
+                }
+                else if (name == "Fire")
+                {
+                    fire = 1;
+                    amountFire = amount;
+                }
+                else if (name == "Healing")
+                {
+                    healing = 1;
+                    amountHealing = amount;
+                }
+                else if (name == "SpeedUp")
+                {
+                    speedUp = 1;
+                    amountSpeedUp = amount;
+                }
+                else if (name == "UtilmateRemake")
+                {
+                    utilmateRemake = 1;
+                    amountUtilmateRemake = amount;
+                }
+                SaveFlag(chaos, fire, healing, speedUp, utilmateRemake);
+                SaveAmount(amountChaos, amountFire, amountHealing, amountSpeedUp, amountUtilmateRemake);
+            }
+        }
+        
         StartCoroutine(GetAllSpells(instanceIP.api + instanceIP.routerGetSpells, 0));
     }
 
     IEnumerator GetAllSpells(string address, int clicked)
     {
-        UnityWebRequest www = UnityWebRequest.Get(address);
+        WWWForm form = new WWWForm();
+        UnityWebRequest www = UnityWebRequest.Post(address, form);
         loadingPanel.SetActive(true);
         yield return www.SendWebRequest();
         loadingPanel.SetActive(false);
@@ -332,56 +299,42 @@ public class SpellManager : MonoBehaviour
 
     private void LoadFlag()
     {
+        chaos = PlayerPrefs.GetInt("chaos");
         fire = PlayerPrefs.GetInt("fire");
-        armor = PlayerPrefs.GetInt("armor");
-        smite = PlayerPrefs.GetInt("smite");
         healing = PlayerPrefs.GetInt("healing");
-        frozen = PlayerPrefs.GetInt("frozen");
-        boom = PlayerPrefs.GetInt("boom");
-        soloQ = PlayerPrefs.GetInt("soloQ");
+        speedUp = PlayerPrefs.GetInt("speedUp");
+        utilmateRemake = PlayerPrefs.GetInt("utilmateRemake");
     }
 
-    private void SaveFlag(int fire, int armor, int smite, int healing, int frozen, int boom, int soloQ)
+    private void SaveFlag(int chaos, int fire, int healing, int speedUp, int utilmateRemake)
     {
+        PlayerPrefs.SetInt("chaos", chaos);
         PlayerPrefs.SetInt("fire", fire);
-        PlayerPrefs.SetInt("armor", armor);
-        PlayerPrefs.SetInt("smite", smite);
         PlayerPrefs.SetInt("healing", healing);
-        PlayerPrefs.SetInt("frozen", frozen);
-        PlayerPrefs.SetInt("boom", boom);
-        PlayerPrefs.SetInt("soloQ", soloQ);
+        PlayerPrefs.SetInt("speedUp", speedUp);
+        PlayerPrefs.SetInt("utilmateRemake", utilmateRemake);
     }
 
     private void LoadAmount()
     {
+        amountChaos = PlayerPrefs.GetInt("amountChaos");
         amountFire = PlayerPrefs.GetInt("amountFire");
-        amountArmor = PlayerPrefs.GetInt("amountArmor");
-        amountSmite = PlayerPrefs.GetInt("amountSmite");
         amountHealing = PlayerPrefs.GetInt("amountHealing");
-        amountFrozen = PlayerPrefs.GetInt("amountFrozen");
-        amountBoom = PlayerPrefs.GetInt("amountBoom");
-        amountSoloQ = PlayerPrefs.GetInt("amountSoloQ");
+        amountSpeedUp = PlayerPrefs.GetInt("amountSpeedUp");
+        amountUtilmateRemake = PlayerPrefs.GetInt("amountUtilmateRemake");
     }
 
-    private void SaveAmount(int amountFire, int amountArmor, int amountSmite, int amountHealing, int amountFrozen, int amountBoom, int amountSoloQ)
+    private void SaveAmount(int amountChaos, int amountFire, int amountHealing, int amountSpeedUp, int amountUtilmateRemake)
     {
+        PlayerPrefs.SetInt("amountChaos", amountChaos);
         PlayerPrefs.SetInt("amountFire", amountFire);
-        PlayerPrefs.SetInt("amountArmor", amountArmor);
-        PlayerPrefs.SetInt("amountSmite", amountSmite);
         PlayerPrefs.SetInt("amountHealing", amountHealing);
-        PlayerPrefs.SetInt("amountFrozen", amountFrozen);
-        PlayerPrefs.SetInt("amountBoom", amountBoom);
-        PlayerPrefs.SetInt("amountSoloQ", amountSoloQ);
+        PlayerPrefs.SetInt("amountSpeedUp", amountSpeedUp);
+        PlayerPrefs.SetInt("amountUtilmateRemake", amountUtilmateRemake);
     }
-    IEnumerator GetSpellOwnData(string address, int fire, int armor, int smite, int healing, int frozen, int boom, int soloQ,
-         int amountFire, int amountArmor, int amountSmite, int amountHealing, int amountFrozen, int amountBoom, int amountSoloQ)
+    IEnumerator GetSpellOwnData(string address, int chaos, int fire, int healing, int speedUp, int utilmateRemake,
+         int amountChaos, int amountFire, int amountHealing, int amountSpeedUp, int amountUtilmateRemake, string userID)
     {
-        //string userID = PlayerPrefs.GetString("uID");
-        //WWWForm form = new WWWForm();
-        //form.AddField("userID", userID);
-        //UnityWebRequest www = UnityWebRequest.Post(address,form);
-
-        string userID = "6345a02f1d8f5da83dc48826";
         WWWForm form = new WWWForm();
         form.AddField("userID", userID);
         UnityWebRequest www = UnityWebRequest.Post(address, form);
@@ -395,15 +348,19 @@ public class SpellManager : MonoBehaviour
         else
         {
             string res = www.downloadHandler.text;
-            getSpellOwn(res,fire, armor, smite, healing, frozen, boom, soloQ,
-                amountFire,amountArmor,amountSmite,amountHealing,amountFrozen,amountBoom,amountSoloQ);
+            getSpellOwn(res, chaos, fire, healing, speedUp, utilmateRemake,
+                amountChaos, amountFire, amountHealing, amountSpeedUp, amountUtilmateRemake);
             www.Dispose();
         }
 
 
     }
 
-
+    private string removeQuotes(string a)
+    {
+        string b = a.Substring(1, a.Length - 2);
+        return b;
+    }
 
 }
     public static class ButtonExtension
@@ -416,23 +373,6 @@ public class SpellManager : MonoBehaviour
         });
     }
 }
-public class Spell
-{
-    public int amount;
-    public SpellID spellID;
 
-    public class SpellID
-    {
-        public string _id;
-        public string name;
-    }
-}
-public class SpellID
-{
-    public string _id;
-    public string name;
-    public string description;
-    public int cooldown;
-}
 
 

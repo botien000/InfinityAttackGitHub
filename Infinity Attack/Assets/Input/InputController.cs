@@ -92,7 +92,7 @@ public partial class @InputController : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""890b20d4-8b19-49fd-9529-d9fe2370ec82"",
-                    ""path"": ""<Keyboard>/space"",
+                    ""path"": ""<Keyboard>/j"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -103,7 +103,7 @@ public partial class @InputController : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""f7cf265b-0c98-4710-9578-4d09510fdb8d"",
-                    ""path"": ""<Keyboard>/w"",
+                    ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",

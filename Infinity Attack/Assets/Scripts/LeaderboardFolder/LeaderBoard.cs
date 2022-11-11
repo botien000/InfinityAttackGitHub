@@ -162,7 +162,7 @@ public class LeaderBoard : MonoBehaviour
     }
     void SortingFriendsGem()
     {
-        userIDList.Add(User.Instance);
+        userIDList.Add(User.Instance.user);
         userIDList.Sort((a, b) => a.gem.CompareTo(b.gem));
         userIDList.Reverse();
         userIDList = SetPlayerToTop(userIDList);
@@ -170,7 +170,6 @@ public class LeaderBoard : MonoBehaviour
     }
     void SortingGlobalUsersGem()
     {
-        globalUsersList.Add(User.Instance);
         globalUsersList.Sort((a, b) => a.gem.CompareTo(b.gem));
         globalUsersList.Reverse();
         globalUsersList = SetPlayerToTop(globalUsersList);
@@ -178,7 +177,7 @@ public class LeaderBoard : MonoBehaviour
     }
     List<User> SetPlayerToTop(List<User> userIDs)
     {
-        for (int i = userIDs.FindIndex((user) => user == User.Instance); i >= 0; i--)
+        for (int i = userIDs.FindIndex((user) => user._id == User.Instance.user._id); i >= 0; i--)
         {
             if (i == 0)
                 break;
@@ -196,12 +195,12 @@ public class LeaderBoard : MonoBehaviour
         return userIDs;
     }
 
-    void ShowRank(List<User> users,Transform parent)
+    void ShowRank(List<User> users, Transform parent)
     {
         int top = 1;
         for (int i = 0; i < users.Count; i++)
         {
-            if(i != 0)
+            if (i != 0)
             {
                 if (users[i].gem != users[i - 1].gem)
                 {
@@ -209,10 +208,12 @@ public class LeaderBoard : MonoBehaviour
                 }
             }
             LeaderboardDetail detail = Instantiate(leaderBoardDetailPrefab, parent);
-            detail.Init(top, users[i].name, users[i].gem, true ? users[i] == User.Instance : false);
+            detail.Init(top, users[i].name, users[i].gem, true ? users[i]._id == User.Instance.user._id : false);
+            if (users[i]._id == User.Instance.user._id)
+                Debug.Log("dd");
             lbDetailGOList.Add(detail);
             BtnGlobal();
-            //Debug.Log("Top: " + top + "     Name: " + users[i].name + "    Gem: " + users[i].gem);
+            Debug.Log("Top: " + top + "     Name: " + users[i].name + "    Gem: " + users[i].gem);
         }
     }
     public void BtnGlobal()

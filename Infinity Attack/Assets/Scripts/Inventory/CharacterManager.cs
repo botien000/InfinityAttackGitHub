@@ -20,6 +20,8 @@ public class CharacterManager : MonoBehaviour
     [SerializeField] private Button btUpdateLv;
     [SerializeField] private TextMeshProUGUI btUpdateLvText;
     [SerializeField] private Image avatar;
+    [SerializeField] private TextMeshProUGUI goldHome;
+    [SerializeField] private TextMeshProUGUI gemHome;
     private int selectedOption = 0;
     private int updated = 0;
     private Sprite fire_knightsprite;
@@ -28,7 +30,7 @@ public class CharacterManager : MonoBehaviour
     private Sprite water_priestesssprite;
     private Sprite metal_bladekeepersprite;
     private Sprite wind_hashashinsprite;
-
+    [SerializeField] private GameObject loadingPanel;
     private void Awake()
     {
 
@@ -37,7 +39,12 @@ public class CharacterManager : MonoBehaviour
     {
         instanceIP = Api.Instance;
         LoadAvatars();
-        StartCoroutine(GetCharacterOwnData(instanceIP.api + instanceIP.routerPostCharactersOwn));    
+        if (PlayerPrefs.HasKey("UID"))
+        {
+            string userID = removeQuotes(PlayerPrefs.GetString("UID"));
+            StartCoroutine(GetCharacterOwnData(instanceIP.api + instanceIP.routerPostCharactersOwn, userID));
+        }
+        
     }
 
     private void loadChar()
@@ -57,6 +64,8 @@ public class CharacterManager : MonoBehaviour
     {
         var _char = JsonConvert.DeserializeObject<Character[]>(rawResponse);
         charList = _char;
+        goldHome.text = charList[0].userID.gold+"";
+        gemHome.text = charList[0].userID.gem+"";
         LoadUpdated();
         Debug.Log("updated: " + updated);
         if (updated == 1)
@@ -72,18 +81,14 @@ public class CharacterManager : MonoBehaviour
         }
        
     }
-    IEnumerator GetCharacterOwnData(string address)
+    IEnumerator GetCharacterOwnData(string address, string userID)
     {
-        //string userID = PlayerPrefs.GetString("uID");
-        //WWWForm form = new WWWForm();
-        //form.AddField("userID", userID);
-        //UnityWebRequest www = UnityWebRequest.Post(address,form);
-
-        string userID = "6345a02f1d8f5da83dc48826";
         WWWForm form = new WWWForm();
         form.AddField("userID", userID);
         UnityWebRequest www = UnityWebRequest.Post(address, form);
+        loadingPanel.SetActive(true);
         yield return www.SendWebRequest();
+        loadingPanel.SetActive(false);
         if (www.result != UnityWebRequest.Result.Success)
         {
             Debug.LogError("Something went wrong: " + www.error);
@@ -202,23 +207,26 @@ public class CharacterManager : MonoBehaviour
     IEnumerator updateGoldAfterUpdate(string address, int selectedOption)
     {
         Character character = charList[selectedOption];
+        string userID = character.userID._id.ToString();
         int cost = character.levelID.cost;
         int gold = character.userID.gold;
         string name = character.userID.name;
         int gold_after_update = gold - cost;
         WWWForm formUpdateGold = new WWWForm();
-        formUpdateGold.AddField("name", name);
+        formUpdateGold.AddField("_id", userID);
         formUpdateGold.AddField("gold", gold_after_update);
         
         UnityWebRequest www = UnityWebRequest.Post(address, formUpdateGold);
+        loadingPanel.SetActive(true);
         yield return www.SendWebRequest();
+        loadingPanel.SetActive(false);
         if (www.result != UnityWebRequest.Result.Success)
         {
             Debug.LogError("Something went wrong: " + www.error);
         }
         else
         {
-            StartCoroutine(GetCharacterOwnData(instanceIP.api + instanceIP.routerPostCharactersOwn));                    
+            StartCoroutine(GetCharacterOwnData(instanceIP.api + instanceIP.routerPostCharactersOwn, userID));                    
         }
     }
 
@@ -234,8 +242,9 @@ public class CharacterManager : MonoBehaviour
         formCharacterUpdate.AddField("characterID", characterID);
         formCharacterUpdate.AddField("characterOwnID", characterOwnID);
         UnityWebRequest www = UnityWebRequest.Post(address, formCharacterUpdate);
+        loadingPanel.SetActive(true);
         yield return www.SendWebRequest();
-
+        loadingPanel.SetActive(false);
         if (www.result != UnityWebRequest.Result.Success)
         {
             Debug.LogError("Something went wrong: " + www.error);
@@ -314,5 +323,11 @@ public class CharacterManager : MonoBehaviour
             SceneManager.LoadScene(screenNumber);
         }
         www.Dispose();
+    }
+
+    private string removeQuotes(string a)
+    {
+        string b = a.Substring(1, a.Length - 2);
+        return b;
     }
 }

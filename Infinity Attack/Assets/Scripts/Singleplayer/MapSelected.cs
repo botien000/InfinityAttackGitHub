@@ -6,10 +6,12 @@ using UnityEngine.SceneManagement;
 public class MapSelected : MonoBehaviour
 {
     [SerializeField] private GameObject loadingPanel;
+    [SerializeField] private string map1Description, map2Description, map3Description;
 
+    int mapSeleted;
     private void OnEnable()
     {
-
+        
     }
     // Start is called before the first frame update
     void Start()
@@ -24,15 +26,19 @@ public class MapSelected : MonoBehaviour
     }
     public void BtnPlay()
     {
-        StartCoroutine(IEMapLoading());
+        StartCoroutine(IEMapLoading(mapSeleted));
     }
-    IEnumerator IEMapLoading()
+    IEnumerator IEMapLoading(int map)
     {
-        AsyncOperation asyncOperation = SceneManager.LoadSceneAsync("Map1_1");
+        AsyncOperation asyncOperation = SceneManager.LoadSceneAsync($"Map{map}_1");
         while (!asyncOperation.isDone)
         {
             loadingPanel.SetActive(true);
             yield return null;
         }
+    }
+    public void BtnMapSelected(int type)
+    {
+        mapSeleted = type;
     }
 }

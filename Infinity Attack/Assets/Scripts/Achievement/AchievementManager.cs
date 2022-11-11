@@ -3,21 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using System;
 using UnityEngine.Networking;
 using Newtonsoft.Json;
+using UnityEngine.SceneManagement;
 
 public class AchievementManager : MonoBehaviour
 {
     private Api instanceIP;
     [SerializeField] private Achievement[] achievementOwnList;
     [SerializeField] private Character[] charList;
+    [SerializeField] private GameObject loadingPanel;
+    [SerializeField] private TextMeshProUGUI goldHome;
+    [SerializeField] private TextMeshProUGUI gemHome;
     private Sprite successSprite;
     private Sprite processSprite;
     private Sprite goldSprite;
     private Sprite gemSprite;
     private Sprite chest_closeSprite;
-
     private int characterown = 0, killenemy = 0, killboss = 0, singleplay = 0, multiplay = 0, addfriend = 0;
     void Start()
     {
@@ -28,14 +30,12 @@ public class AchievementManager : MonoBehaviour
         LoadChallengeAchievedSinglePlay();
         LoadChallengeAchievedMultiPlay();
         LoadChallengeAchievedAddFriend();
-        //if (PlayerPrefs.HasKey("UID"))
-        //{
-        //    string userID = PlayerPrefs.GetString("UID");
-        //    StartCoroutine(GetCharacterOwnData(addressGetCharacterOwn, userID));
+        if (PlayerPrefs.HasKey("UID"))
+        {
+            string userID = removeQuotes(PlayerPrefs.GetString("UID"));
+            StartCoroutine(GetCharacterOwnData(instanceIP.api + instanceIP.routerPostCharactersOwn, userID));
 
-        //}
-        string userID = "6345a02f1d8f5da83dc48826";
-        StartCoroutine(GetCharacterOwnData(instanceIP.api + instanceIP.routerPostCharactersOwn,userID));
+        }
     }
 
     private void Update()
@@ -59,7 +59,9 @@ public class AchievementManager : MonoBehaviour
         WWWForm form = new WWWForm();
         form.AddField("userID", userID);
         UnityWebRequest www = UnityWebRequest.Post(address, form);
+        loadingPanel.SetActive(true);
         yield return www.SendWebRequest();
+        loadingPanel.SetActive(false);
         if (www.result != UnityWebRequest.Result.Success)
         {
             Debug.LogError("Something went wrong: " + www.error);
@@ -109,7 +111,9 @@ public class AchievementManager : MonoBehaviour
         form.AddField("challengeAchievedAddFriend", addfriend);
         form.AddField("userID", userID);
         UnityWebRequest www = UnityWebRequest.Post(address, form);
+        loadingPanel.SetActive(true);
         yield return www.SendWebRequest();
+        loadingPanel.SetActive(false);
         if (www.result != UnityWebRequest.Result.Success)
         {
             Debug.LogError("Something went wrong: " + www.error);
@@ -132,6 +136,8 @@ public class AchievementManager : MonoBehaviour
     {
         var _achievement = JsonConvert.DeserializeObject<Achievement[]>(rawResponse);
         achievementOwnList = _achievement;
+        goldHome.text = achievementOwnList[0].userID.gold + "";
+        gemHome.text = achievementOwnList[0].userID.gem + "";
         GameObject g;
         GameObject item = transform.GetChild(0).gameObject;
         item.SetActive(true);
@@ -211,26 +217,30 @@ public class AchievementManager : MonoBehaviour
         form.AddField("level", next_level);
         form.AddField("achievementID", achievementID);
         UnityWebRequest www = UnityWebRequest.Post(address, form);
+        loadingPanel.SetActive(true);
         yield return www.SendWebRequest();
+        loadingPanel.SetActive(false);
         if (www.result != UnityWebRequest.Result.Success)
         {
             Debug.LogError("Something went wrong: " + www.error);
         }
         else
         {
-            StartCoroutine(updateGoldAfterUpdate(instanceIP.api + instanceIP.routerGoldUser, userID, gold, gem));
+            StartCoroutine(updateGoldAfterUpdate(instanceIP.api + instanceIP.routerGoldUser, gold, gem, userID));
             www.Dispose();
         }
     }
 
-    IEnumerator updateGoldAfterUpdate(string address, string userID, int gold, int gem)
+    IEnumerator updateGoldAfterUpdate(string address, int gold, int gem, string userID)
     {
         WWWForm form = new WWWForm();
         form.AddField("_id", userID);
         form.AddField("gold", gold);
 
         UnityWebRequest www = UnityWebRequest.Post(address, form);
+        loadingPanel.SetActive(true);
         yield return www.SendWebRequest();
+        loadingPanel.SetActive(false);
         if (www.result != UnityWebRequest.Result.Success)
         {
             Debug.LogError("Something went wrong: " + www.error);
@@ -249,7 +259,9 @@ public class AchievementManager : MonoBehaviour
         form.AddField("gem", gem);
 
         UnityWebRequest www = UnityWebRequest.Post(address, form);
+        loadingPanel.SetActive(true);
         yield return www.SendWebRequest();
+        loadingPanel.SetActive(false);
         if (www.result != UnityWebRequest.Result.Success)
         {
             Debug.LogError("Something went wrong: " + www.error);
@@ -273,7 +285,9 @@ public class AchievementManager : MonoBehaviour
         WWWForm form = new WWWForm();
         form.AddField("userID", userID);
         UnityWebRequest www = UnityWebRequest.Post(address, form);
+        loadingPanel.SetActive(true);
         yield return www.SendWebRequest();
+        loadingPanel.SetActive(false);
         if (www.result != UnityWebRequest.Result.Success)
         {
             Debug.LogError("Something went wrong: " + www.error);
@@ -286,7 +300,10 @@ public class AchievementManager : MonoBehaviour
             www.Dispose();
         }
     }
-
+    public void BackToHomeSceen(int screenNumber)
+    {
+        SceneManager.LoadScene(screenNumber);
+    }
     private void LoadChallengeAchievedKillEnemy()
     {
         killenemy = PlayerPrefs.GetInt("killenemy");
@@ -332,4 +349,11 @@ public class AchievementManager : MonoBehaviour
     {
         PlayerPrefs.SetInt("addfriend", addfriend);
     }
+
+    private string removeQuotes(string a)
+    {
+        string b = a.Substring(1, a.Length - 2);
+        return b;
+    }
 }
+

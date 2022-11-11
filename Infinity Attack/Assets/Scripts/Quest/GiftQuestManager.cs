@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using System;
 using UnityEngine.Networking;
 using Newtonsoft.Json;
 public class GiftQuestManager : MonoBehaviour
@@ -15,6 +14,9 @@ public class GiftQuestManager : MonoBehaviour
     [SerializeField] private Image avtGift;
     [SerializeField] private TextMeshProUGUI takeGiftText;
     [SerializeField] private Button takeGift;
+    [SerializeField] private GameObject loadingPanel;
+    [SerializeField] private TextMeshProUGUI goldHome;
+    [SerializeField] private TextMeshProUGUI gemHome;
     private int totalGift;
     private int moc1 = 0, moc2 = 0, moc3 = 0, moc4 = 0;
     private int clickGift;
@@ -29,7 +31,12 @@ public class GiftQuestManager : MonoBehaviour
         LoadSprite();
         missionProcess.maxValue = 100;
         missionProcess.value = totalGift;
-        StartCoroutine(GetGiftsOwnData(instanceIP.api + instanceIP.routerPostGiftsOwn));
+        if (PlayerPrefs.HasKey("UID"))
+        {
+            string userID = removeQuotes(PlayerPrefs.GetString("UID"));
+            StartCoroutine(GetGiftsOwnData(instanceIP.api + instanceIP.routerPostGiftsOwn, userID));
+
+        }
     }
     private void LoadSprite()
     {
@@ -81,8 +88,9 @@ public class GiftQuestManager : MonoBehaviour
         WWWForm form = new WWWForm();
         form.AddField("giftOwnID", id);
         UnityWebRequest www = UnityWebRequest.Post(address, form);
+        loadingPanel.SetActive(true);
         yield return www.SendWebRequest();
-
+        loadingPanel.SetActive(false);
         if (www.result != UnityWebRequest.Result.Success)
         {
             Debug.LogError("Something went wrong: " + www.error);
@@ -100,7 +108,9 @@ public class GiftQuestManager : MonoBehaviour
         form.AddField("gold", gold_after_update);
 
         UnityWebRequest www = UnityWebRequest.Post(address, form);
+        loadingPanel.SetActive(true);
         yield return www.SendWebRequest();
+        loadingPanel.SetActive(false);
         if (www.result != UnityWebRequest.Result.Success)
         {
             Debug.LogError("Something went wrong: " + www.error);
@@ -118,7 +128,9 @@ public class GiftQuestManager : MonoBehaviour
         form.AddField("gem", gem_after_update);
 
         UnityWebRequest www = UnityWebRequest.Post(address, form);
+        loadingPanel.SetActive(true);
         yield return www.SendWebRequest();
+        loadingPanel.SetActive(false);
         if (www.result != UnityWebRequest.Result.Success)
         {
             Debug.LogError("Something went wrong: " + www.error);
@@ -133,13 +145,15 @@ public class GiftQuestManager : MonoBehaviour
                     Destroy(ho);
                 }
             }
-            StartCoroutine(GetGiftsOwnData(instanceIP.api + instanceIP.routerUpdateStatusGiftOwn));
+            StartCoroutine(GetGiftsOwnData(instanceIP.api + instanceIP.routerUpdateStatusGiftOwn, userID));
         }
     }
     void GiftOwnDataRespond(string rawResponse)
     {
         var _gift = JsonConvert.DeserializeObject<Gift[]>(rawResponse);
         giftOwnList = _gift;
+        goldHome.text = giftOwnList[0].userID.gold + "";
+        gemHome.text = giftOwnList[0].userID.gem + "";
         GameObject h;
         GameObject gift = transform.GetChild(0).gameObject;
         gift.SetActive(true);
@@ -254,14 +268,14 @@ public class GiftQuestManager : MonoBehaviour
         SaveClick(moc1, moc2, moc3, moc4);
         Debug.Log("Gift name clicked: " + gift.giftID.name);
     }
-    IEnumerator GetGiftsOwnData(string address)
+    IEnumerator GetGiftsOwnData(string address, string userID)
     {
-        //string userID = PlayerPrefs.GetString("uID");
-        string userID = "6345a02f1d8f5da83dc48826";
         WWWForm form = new WWWForm();
         form.AddField("userID", userID);
         UnityWebRequest www = UnityWebRequest.Post(address, form);
+        loadingPanel.SetActive(true);
         yield return www.SendWebRequest();
+        loadingPanel.SetActive(false);
         if (www.result != UnityWebRequest.Result.Success)
         {
             Debug.LogError("Something went wrong: " + www.error);
@@ -274,6 +288,7 @@ public class GiftQuestManager : MonoBehaviour
             www.Dispose();
         }
     }
+
 
     private void LoadTotal()
     {
@@ -296,4 +311,9 @@ public class GiftQuestManager : MonoBehaviour
         PlayerPrefs.SetInt("moc4", moc4);
     }
 
+    private string removeQuotes(string a)
+    {
+        string b = a.Substring(1, a.Length - 2);
+        return b;
+    }
 }

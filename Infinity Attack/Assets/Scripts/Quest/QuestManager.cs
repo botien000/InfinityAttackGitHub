@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using System;
+using UnityEngine.SceneManagement;
 using UnityEngine.Networking;
 using Newtonsoft.Json;
 public class QuestManager : MonoBehaviour
@@ -12,17 +12,91 @@ public class QuestManager : MonoBehaviour
     private Api instanceIP;    
 
     private int login = 0, single3time = 0, multi1time = 0, kill50enemy = 0, kill5boss = 0, use3spell = 0;
+    private int challengeAchievedLogIn = 0, challengeAchievedSingle3Time = 0, challengeAchievedMulti1Time = 0,
+      challengeAchievedKill50Enemy = 0, challengeAchievedKill5Boss = 0, challengeAchievedUse3Spell = 0;
     private int totalGift = 0;
     private Sprite successSprite;
     private Sprite processSprite;
 
     [SerializeField] private Quest[] questOwnList;
-   
+
     void Start()
     {
         instanceIP = Api.Instance;
         LoadAvatars();
-        StartCoroutine(GetQuestOwnData(instanceIP.api + instanceIP.routerPostQuestsOwn));
+        LoadChallengeAchievedLogIn();
+        LoadChallengeAchievedSingle3Time();
+        LoadChallengeAchievedMulti1Time();
+        LoadChallengeAchievedKill50Enemy();
+        LoadChallengeAchievedKill5Boss();
+        LoadChallengeAchievedUse3Spell();
+        if (PlayerPrefs.HasKey("UID"))
+        {
+            string userID = removeQuotes(PlayerPrefs.GetString("UID"));
+            if (challengeAchievedLogIn == 0)
+            {
+                challengeAchievedLogIn = 1;
+                SaveChallengeAchievedLogIn(challengeAchievedLogIn);
+                StartCoroutine(UpdateAllChallengeAchievedQuest(instanceIP.api + instanceIP.routerUpdateAllChallengeAchievedQuestByName, userID));
+            }
+            else
+            {
+                StartCoroutine(UpdateAllChallengeAchievedQuest(instanceIP.api + instanceIP.routerUpdateAllChallengeAchievedQuestByName, userID));
+            }
+        }
+    }
+
+    IEnumerator UpdateAllChallengeAchievedQuest(string address, string userID)
+    {
+
+        LoadChallengeAchievedLogIn();
+        LoadChallengeAchievedSingle3Time();
+        LoadChallengeAchievedMulti1Time();
+        LoadChallengeAchievedKill50Enemy();
+        LoadChallengeAchievedKill5Boss();
+        LoadChallengeAchievedUse3Spell();
+        string loginName = "login";
+        string single3timeName = "single3time";
+        string multi1timeName = "multi1time";
+        string kill50enemyName = "kill50enemy";
+        string kill5bossName = "kill5boss";
+        string use3spellName = "use3spell";
+        WWWForm form = new WWWForm();
+        form.AddField("login", loginName);
+        form.AddField("single3time", single3timeName);
+        form.AddField("multi1time", multi1timeName);
+        form.AddField("kill50enemy", kill50enemyName);
+        form.AddField("kill5boss", kill5bossName);
+        form.AddField("use3spell", use3spellName);
+
+        form.AddField("challengeAchievedLogIn", challengeAchievedLogIn);
+        form.AddField("challengeAchievedSingle3Time", challengeAchievedSingle3Time);
+        form.AddField("challengeAchievedMulti1Time", challengeAchievedMulti1Time);
+        form.AddField("challengeAchievedKill50Enemy", challengeAchievedKill50Enemy);
+        form.AddField("challengeAchievedKill5Boss", challengeAchievedKill5Boss);
+        form.AddField("challengeAchievedUse3Spell", challengeAchievedUse3Spell);
+        form.AddField("userID", userID);
+        UnityWebRequest www = UnityWebRequest.Post(address, form);
+        loadingPanel.SetActive(true);
+        yield return www.SendWebRequest();
+        loadingPanel.SetActive(false);
+        Debug.Log("Update challenge achieved quest own");
+        if (www.result != UnityWebRequest.Result.Success)
+        {
+            Debug.LogError("Something went wrong: " + www.error);
+        }
+        else
+        {
+            GameObject[] gclone = GameObject.FindGameObjectsWithTag("Mission");
+            foreach (GameObject go in gclone)
+            {
+                if (go.name.Equals("Mission(Clone)"))
+                {
+                    Destroy(go);
+                }
+            }
+            StartCoroutine(GetQuestOwnData(instanceIP.api + instanceIP.routerPostQuestsOwn, userID));
+        }
     }
     private void LoadAvatars()
     {
@@ -144,7 +218,8 @@ public class QuestManager : MonoBehaviour
     {   
         Quest quest = questOwnList[itemIndex];
         string id = quest._id;
-        StartCoroutine(ChangeStatusQuestOwn(instanceIP.api + instanceIP.routerUpdateStatusQuestOwn, id));
+        string userID = quest.userID._id.ToString();
+        StartCoroutine(ChangeStatusQuestOwn(instanceIP.api + instanceIP.routerUpdateStatusQuestOwn, id, userID));
     }
 
     private void LoadPoint()
@@ -176,7 +251,7 @@ public class QuestManager : MonoBehaviour
     {
         PlayerPrefs.SetInt("totalGift", totalGift);
     }
-    IEnumerator ChangeStatusQuestOwn(string address, string id)
+    IEnumerator ChangeStatusQuestOwn(string address, string id, string userID)
     {
         WWWForm form = new WWWForm();
         form.AddField("questOwnID", id);
@@ -198,13 +273,11 @@ public class QuestManager : MonoBehaviour
                   Destroy(go);
                }
             }
-            StartCoroutine(GetQuestOwnData(instanceIP.api + instanceIP.routerPostQuestsOwn));
+            StartCoroutine(GetQuestOwnData(instanceIP.api + instanceIP.routerPostQuestsOwn, userID));
         }
     }
-    IEnumerator GetQuestOwnData(string address)
+    IEnumerator GetQuestOwnData(string address, string userID)
     {
-        //string userID = PlayerPrefs.GetString("uID");
-        string userID = "6345a02f1d8f5da83dc48826";
         WWWForm form = new WWWForm();
         form.AddField("userID", userID);
         UnityWebRequest www = UnityWebRequest.Post(address, form);
@@ -224,8 +297,72 @@ public class QuestManager : MonoBehaviour
         }
     }
 
+    public void BackToHomeSceen(int screenNumber)
+    {
+        SceneManager.LoadScene(screenNumber);
+    }
+    private void LoadChallengeAchievedLogIn()
+    {
+        challengeAchievedLogIn = PlayerPrefs.GetInt("challengeAchievedLogIn");
+    }
 
-    
+    private void SaveChallengeAchievedLogIn(int challengeAchievedLogIn)
+    {
+        PlayerPrefs.SetInt("challengeAchievedLogIn", challengeAchievedLogIn);
+    }
+    private void LoadChallengeAchievedSingle3Time()
+    {
+        challengeAchievedSingle3Time = PlayerPrefs.GetInt("challengeAchievedSingle3Time");
+    }
+
+    private void SaveChallengeAchievedSingle3Time(int challengeAchievedSingle3Time)
+    {
+        PlayerPrefs.SetInt("challengeAchievedSingle3Time", challengeAchievedSingle3Time);
+    }
+    private void LoadChallengeAchievedMulti1Time()
+    {
+        challengeAchievedMulti1Time = PlayerPrefs.GetInt("challengeAchievedMulti1Time");
+    }
+
+    private void SaveChallengeAchievedMulti1Time(int challengeAchievedMulti1Time)
+    {
+        PlayerPrefs.SetInt("challengeAchievedMulti1Time", challengeAchievedMulti1Time);
+    }
+    private void LoadChallengeAchievedKill50Enemy()
+    {
+        challengeAchievedKill50Enemy = PlayerPrefs.GetInt("challengeAchievedKill50Enemy");
+    }
+
+    private void SaveChallengeAchievedKill50Enemy(int challengeAchievedKill50Enemy)
+    {
+        PlayerPrefs.SetInt("challengeAchievedKill50Enemy", challengeAchievedKill50Enemy);
+    }
+    private void LoadChallengeAchievedKill5Boss()
+    {
+        challengeAchievedKill5Boss = PlayerPrefs.GetInt("challengeAchievedKill5Boss");
+    }
+
+    private void SaveChallengeAchievedKill5Boss(int challengeAchievedKill5Boss)
+    {
+        PlayerPrefs.SetInt("challengeAchievedKill5Boss", challengeAchievedKill5Boss);
+    }
+
+    private void LoadChallengeAchievedUse3Spell()
+    {
+        challengeAchievedUse3Spell = PlayerPrefs.GetInt("challengeAchievedUse3Spell");
+    }
+
+    private void SaveChallengeAchievedUse3Spell(int challengeAchievedUse3Spell)
+    {
+        PlayerPrefs.SetInt("challengeAchievedUse3Spell", challengeAchievedUse3Spell);
+    }
+
+    private string removeQuotes(string a)
+    {
+        string b = a.Substring(1, a.Length - 2);
+        return b;
+    }
+
 }
 
 

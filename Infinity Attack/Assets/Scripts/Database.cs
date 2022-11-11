@@ -10,8 +10,24 @@ public class Character
     public CharacterID characterID { get; set; }
     public LevelID levelID { get; set; }
     public int status { get; set; }
+}
 
-    public Sprite characterSprite;
+public class SpellID
+{
+    public string _id { get; set; }
+    public string name { get; set; }
+    public string description { get; set; }
+    public int cooldown { get; set; }
+    public int price { get; set; }
+    public int total { get; set; }
+}
+
+public class Spell
+{
+    public string _id { get; set; }
+    public UserID userID { get; set; }
+    public SpellID spellID { get; set; }
+    public int amount { get; set; }
 }
 
 public class CharacterID
@@ -20,7 +36,6 @@ public class CharacterID
     public string name { get; set; }
     public string description { get; set; }
 }
-
 public class LevelID
 {
     public string _id { get; set; }
