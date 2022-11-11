@@ -8,13 +8,8 @@ using UnityEngine.Networking;
 using Newtonsoft.Json;
 public class GiftQuestManager : MonoBehaviour
 {
-    private string addressGetGiftOwn = "http://localhost:3000/inventoryClient/post-gifts-own";
-    private string addressUpdateGold = "http://localhost:3000/api/updateGoldUser";
-    private string addressUpdateGem = "http://localhost:3000/api/updateGemUser";
-    private string addressUpdateStatusGiftOwn = "http://localhost:3000/inventoryClient/update-status-gift-own";
-
+    private Api instanceIP;
     [SerializeField] private Gift[] giftOwnList;
-
     [SerializeField] private Slider missionProcess;
     [SerializeField] private TextMeshProUGUI giftText;
     [SerializeField] private Image avtGift;
@@ -29,11 +24,12 @@ public class GiftQuestManager : MonoBehaviour
     private Sprite chest_openSprite;
     void Start()
     {
+        instanceIP = Api.Instance;
         LoadTotal();
         LoadSprite();
         missionProcess.maxValue = 100;
         missionProcess.value = totalGift;
-        StartCoroutine(GetGiftsOwnData(addressGetGiftOwn));
+        StartCoroutine(GetGiftsOwnData(instanceIP.api + instanceIP.routerPostGiftsOwn));
     }
     private void LoadSprite()
     {
@@ -67,7 +63,7 @@ public class GiftQuestManager : MonoBehaviour
             clickGift = 3;
         }
         Debug.Log("Click Gift: " + clickGift);
-        StartCoroutine(updateStatusGiftOwn(addressUpdateStatusGiftOwn, clickGift));
+        StartCoroutine(updateStatusGiftOwn(instanceIP.api + instanceIP.routerUpdateStatusGiftOwn, clickGift));
     }
 
     IEnumerator updateStatusGiftOwn(string address, int clickGift)
@@ -93,7 +89,7 @@ public class GiftQuestManager : MonoBehaviour
         }
         else
         {
-            StartCoroutine(updateGoldAfterUpdate(addressUpdateGold, userID, gold_after_update, gem_after_update));
+            StartCoroutine(updateGoldAfterUpdate(instanceIP.api + instanceIP.routerGoldUser, userID, gold_after_update, gem_after_update));
         }
     }
 
@@ -111,7 +107,7 @@ public class GiftQuestManager : MonoBehaviour
         }
         else
         {
-            StartCoroutine(updateGemAfterUpdate(addressUpdateGem, userID, gem_after_update));
+            StartCoroutine(updateGemAfterUpdate(instanceIP.api + instanceIP.routerGemUser, userID, gem_after_update));
         }
     }
 
@@ -137,7 +133,7 @@ public class GiftQuestManager : MonoBehaviour
                     Destroy(ho);
                 }
             }
-            StartCoroutine(GetGiftsOwnData(addressGetGiftOwn));
+            StartCoroutine(GetGiftsOwnData(instanceIP.api + instanceIP.routerUpdateStatusGiftOwn));
         }
     }
     void GiftOwnDataRespond(string rawResponse)

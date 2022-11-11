@@ -9,10 +9,7 @@ using Newtonsoft.Json;
 
 public class CharacterManager : MonoBehaviour
 {
-    private string addressGetCharacterOwn = "http://localhost:3000/inventoryClient/post-character-own";
-    private string addressUpdateLevel = "http://localhost:3000/inventoryClient/update-character-own";
-    private string addressUpdateGold = "http://localhost:3000/api/updateGoldUser";
-    private string addressUpdateStatus = "http://localhost:3000/inventoryClient/update-status-character-own";
+    private Api instanceIP;
     [SerializeField] private Character[] charList;
     [SerializeField] private TextMeshProUGUI nameText;
     [SerializeField] private TextMeshProUGUI description;
@@ -23,7 +20,6 @@ public class CharacterManager : MonoBehaviour
     [SerializeField] private Button btUpdateLv;
     [SerializeField] private TextMeshProUGUI btUpdateLvText;
     [SerializeField] private Image avatar;
-    [SerializeField] private GameObject loadingPanel;
     private int selectedOption = 0;
     private int updated = 0;
     private Sprite fire_knightsprite;
@@ -32,11 +28,16 @@ public class CharacterManager : MonoBehaviour
     private Sprite water_priestesssprite;
     private Sprite metal_bladekeepersprite;
     private Sprite wind_hashashinsprite;
-    
+
+    private void Awake()
+    {
+
+    }
     void Start()
     {
+        instanceIP = Api.Instance;
         LoadAvatars();
-        StartCoroutine(GetCharacterOwnData(addressGetCharacterOwn));    
+        StartCoroutine(GetCharacterOwnData(instanceIP.api + instanceIP.routerPostCharactersOwn));    
     }
 
     private void loadChar()
@@ -74,13 +75,15 @@ public class CharacterManager : MonoBehaviour
     IEnumerator GetCharacterOwnData(string address)
     {
         //string userID = PlayerPrefs.GetString("uID");
+        //WWWForm form = new WWWForm();
+        //form.AddField("userID", userID);
+        //UnityWebRequest www = UnityWebRequest.Post(address,form);
+
         string userID = "6345a02f1d8f5da83dc48826";
         WWWForm form = new WWWForm();
         form.AddField("userID", userID);
         UnityWebRequest www = UnityWebRequest.Post(address, form);
-        loadingPanel.SetActive(true);
         yield return www.SendWebRequest();
-        loadingPanel.SetActive(false);
         if (www.result != UnityWebRequest.Result.Success)
         {
             Debug.LogError("Something went wrong: " + www.error);
@@ -193,7 +196,7 @@ public class CharacterManager : MonoBehaviour
     {
         int updated = 1;
         SaveUpdated(updated);
-        StartCoroutine(updateLevelCharacter(addressUpdateLevel, selectedOption));
+        StartCoroutine(updateLevelCharacter(instanceIP.api + instanceIP.routerUpdateCharacterOwn, selectedOption));
     }
 
     IEnumerator updateGoldAfterUpdate(string address, int selectedOption)
@@ -201,23 +204,21 @@ public class CharacterManager : MonoBehaviour
         Character character = charList[selectedOption];
         int cost = character.levelID.cost;
         int gold = character.userID.gold;
-        string id = character.userID._id.ToString();
+        string name = character.userID.name;
         int gold_after_update = gold - cost;
-        WWWForm form = new WWWForm();
-        form.AddField("_id", id);
-        form.AddField("gold", gold_after_update);
+        WWWForm formUpdateGold = new WWWForm();
+        formUpdateGold.AddField("name", name);
+        formUpdateGold.AddField("gold", gold_after_update);
         
-        UnityWebRequest www = UnityWebRequest.Post(address, form);
-        loadingPanel.SetActive(true);
+        UnityWebRequest www = UnityWebRequest.Post(address, formUpdateGold);
         yield return www.SendWebRequest();
-        loadingPanel.SetActive(false);
         if (www.result != UnityWebRequest.Result.Success)
         {
             Debug.LogError("Something went wrong: " + www.error);
         }
         else
         {
-            StartCoroutine(GetCharacterOwnData(addressGetCharacterOwn));                    
+            StartCoroutine(GetCharacterOwnData(instanceIP.api + instanceIP.routerPostCharactersOwn));                    
         }
     }
 
@@ -228,14 +229,12 @@ public class CharacterManager : MonoBehaviour
         int lvUpdate = lv_now + 1;
         string characterID = character.characterID._id;
         string characterOwnID = character._id;
-        WWWForm form = new WWWForm();
-        form.AddField("level", lvUpdate);
-        form.AddField("characterID", characterID);
-        form.AddField("characterOwnID", characterOwnID);
-        UnityWebRequest www = UnityWebRequest.Post(address, form);
-        loadingPanel.SetActive(true);
+        WWWForm formCharacterUpdate = new WWWForm();
+        formCharacterUpdate.AddField("level", lvUpdate);
+        formCharacterUpdate.AddField("characterID", characterID);
+        formCharacterUpdate.AddField("characterOwnID", characterOwnID);
+        UnityWebRequest www = UnityWebRequest.Post(address, formCharacterUpdate);
         yield return www.SendWebRequest();
-        loadingPanel.SetActive(false);
 
         if (www.result != UnityWebRequest.Result.Success)
         {
@@ -243,7 +242,7 @@ public class CharacterManager : MonoBehaviour
         }
         else
         {
-            StartCoroutine(updateGoldAfterUpdate(addressUpdateGold, selectedOption));
+            StartCoroutine(updateGoldAfterUpdate(instanceIP.api + instanceIP.routerGoldUser, selectedOption));
         }
     }
 
@@ -280,7 +279,7 @@ public class CharacterManager : MonoBehaviour
     }
     public void BackToHomeSceen(int screenNumber)
     {
-        StartCoroutine(updateStatusCharacter(addressUpdateStatus, selectedOption,screenNumber));
+        StartCoroutine(updateStatusCharacter(instanceIP.api + instanceIP.routerUpdateStatusCharacterOwn, selectedOption,screenNumber));
     }
 
     IEnumerator updateStatusCharacter(string address, int selectedOption,int screenNumber)
@@ -296,18 +295,16 @@ public class CharacterManager : MonoBehaviour
                 break;
             }
         }
-        WWWForm form = new WWWForm();
-        form.AddField("characterOwnIDOld", characterOwnIDOld);
-        form.AddField("characterOwnIDNew", characterOwnIDNew);
+        WWWForm formUpdateStatus = new WWWForm();
+        formUpdateStatus.AddField("characterOwnIDOld", characterOwnIDOld);
+        formUpdateStatus.AddField("characterOwnIDNew", characterOwnIDNew);
        
-        UnityWebRequest www = UnityWebRequest.Post(address, form);
+        UnityWebRequest www = UnityWebRequest.Post(address, formUpdateStatus);
         var handler = www.SendWebRequest();
         while (!handler.isDone)
         {
-            loadingPanel.SetActive(true);
             yield return null;
         }
-        loadingPanel.SetActive(false);
         if (www.result != UnityWebRequest.Result.Success)
         {
             Debug.LogError("Something went wrong: " + www.error);

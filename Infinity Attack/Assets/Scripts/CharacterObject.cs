@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -19,67 +20,81 @@ public class CharacterObject : MonoBehaviour
     [SerializeField] private float speedRun;
     [SerializeField] private float forceJump;
 
+    public static CharacterObject instance;
+
     private State curState;
     private Rigidbody2D rgbody;
-    private Animator animator;
+    public Animator animator;
     private InputController playerInput;
-    private Vector2 movePlayer;
+    public Vector2 movePlayer;
+    public Vector2 preMovePlayer;
 
     private bool isGround;
-    private bool isJump;
+    public bool isJump;
     private float curY;
     private float preY;
-    private bool attacking = false;
-    private float nextAttackTime = 0f;
-    private float curChar_Attack1_duration = 1.8f;
-    private float FireKnight_Attack1_duration = 1.8f;
+    public bool attacking = false;
+    public bool jumpAttacking = false;
+    public bool nextAttack = false;
+    public bool movingPressing = false;
 
     private void Awake()
     {
+        instance = this;
         animator = GetComponent<Animator>();
         rgbody = GetComponent<Rigidbody2D>();
     }
 
     private void Update()
     {
-        if (isJump)
+        
+        SetDirection();
+        if (!attacking)
         {
-            Debug.Log("Jumping");
-            curY = transform.position.y;
-            if (curY < preY)
+            if (!isJump)
             {
-                SetAnimation(State.JumpDown);
-            }
-            else
-            {
-                preY = curY;
-            }
-        }
-
-        if (attacking = true && curState == State.Attack_1)
-        {
-            movePlayer = Vector2.zero;
-            if (Time.time >= nextAttackTime)
-            {
-                attacking = false;
-                if (!isJump)
+                if (movingPressing)
                 {
-                    if (movePlayer == Vector2.zero)
+                    SetAnimation(State.Run);
+                    movePlayer = preMovePlayer;
+                }
+                else if (!movingPressing)
+                {
+                    movePlayer = Vector2.zero;
+                    preMovePlayer = Vector2.zero;
+                    SetAnimation(State.Idle);
+                }
+            }
+            else if (isJump)
+            {
+                if (!jumpAttacking)
+                {
+                    curY = transform.position.y;
+                    if (curY < preY)
                     {
-                        SetAnimation(State.Idle);
+                        SetAnimation(State.JumpDown);
+                        preY = curY;
                     }
-                    else if (movePlayer.x > 0 || movePlayer.x < 0)
+                    else if (curY > preY)
                     {
-                        SetAnimation(State.Run);
+                        SetAnimation(State.JumpUp);
+                        preY = curY;
                     }
-
                 }
             }
         }
-        Debug.Log("attacking: " + attacking);
-        Debug.Log("curState: " + curState);
-    }
 
+        /*if (jumpAttacking)
+        {
+            SetAnimation(State.Attack_Air);
+        }*/
+        Debug.Log("Attacking: " + attacking);
+        Debug.Log("MovePlayer: " + movePlayer);
+        Debug.Log("preMovePlayer: " + preMovePlayer);
+        Debug.Log("NextAttack: " + nextAttack);
+        Debug.Log("MovingPressing: " + movingPressing);
+        Debug.Log("isJump: " + isJump);
+    }
     private void OnEnable()
     {
 
@@ -128,7 +143,6 @@ public class CharacterObject : MonoBehaviour
             {
                 if (!attacking)
                 {
-                    SetAnimation(State.JumpUp);
                     rgbody.AddForce(Vector2.up * forceJump, ForceMode2D.Force);
                     preY = transform.position.y;
                 }
@@ -139,44 +153,38 @@ public class CharacterObject : MonoBehaviour
     {
         if (obj.started)
         {
-            if (!isJump && (curState == State.Idle || curState == State.Run))
+            if (!isJump)
             {
+                movePlayer = Vector2.zero;
                 attacking = true;
-                Debug.Log("Time: " + Time.time);
-                SetAnimation(State.Attack_1);
-                nextAttackTime = Time.time + 1f / curChar_Attack1_duration;
+                nextAttack = true;
             }
             else if (isJump)
             {
-                SetAnimation(State.Attack_Air);
+                jumpAttacking = true;
             }
         }
     }
 
     private void OnMovement(InputAction.CallbackContext obj)
     {
-        if (!attacking)
+        if (obj.started)
         {
-            SetDirection();
-            if (obj.started || obj.performed)
+            if (!attacking)
             {
                 movePlayer = obj.ReadValue<Vector2>();
-                Debug.Log("Move: " + movePlayer);
-                if (!isJump)
-                {
-                    SetAnimation(State.Run);
-                }
             }
-            else
-            {
-                movePlayer = Vector2.zero;
-                if (!isJump)
-                {
-                    SetAnimation(State.Idle);
-                }
-            }
+            movingPressing = true;
+            preMovePlayer = obj.ReadValue<Vector2>();
+        }
+        if (obj.canceled)
+        {
+            movingPressing = false;
+            movePlayer = Vector2.zero;
+            preMovePlayer = Vector2.zero;
         }
     }
+
     private void Hit()
     {
 
@@ -208,6 +216,7 @@ public class CharacterObject : MonoBehaviour
         {
             isJump = false;
             isGround = true;
+            jumpAttacking = false;
             if (movePlayer == Vector2.zero)
             {
                 SetAnimation(State.Idle);
@@ -220,7 +229,6 @@ public class CharacterObject : MonoBehaviour
     }
     private void OnCollisionExit2D(Collision2D collision)
     {
-
         if (collision.collider.CompareTag("Ground") && collision.otherCollider.name == "Foot")
         {
             isGround = false;

@@ -16,12 +16,11 @@ public class LeaderBoard : MonoBehaviour
     [SerializeField] Button btnGlobal, btnFriend;
 
     FriendEntity[] friendEntities;
-    public List<UserID> userIDList = new List<UserID>();
-    public List<UserID> globalUsersList;
+    public List<User> userIDList = new List<User>();
+    public List<User> globalUsersList;
 
     List<LeaderboardDetail> lbDetailGOList = new List<LeaderboardDetail>();
     bool checkConnectServer;
-    UserID player = new UserID { _id = "634391edeb21d43d2a733801", name = "Mora Ellit", gem = 2 };
 
     private void OnEnable()
     {
@@ -43,8 +42,8 @@ public class LeaderBoard : MonoBehaviour
     IEnumerator GetAllFriends()
     {
         WWWForm form = new WWWForm();
-        form.AddField("userID", "634391edeb21d43d2a733801");
-        UnityWebRequest unityWebRequest = UnityWebRequest.Post("http://localhost:3000/friends/getAllFriends", form);
+        form.AddField("userID", User.Instance.user._id);
+        UnityWebRequest unityWebRequest = UnityWebRequest.Post(Api.Instance.api + Api.Instance.routerGetAllFriends, form);
         var handler = unityWebRequest.SendWebRequest();
         while (!handler.isDone)
         {
@@ -76,13 +75,13 @@ public class LeaderBoard : MonoBehaviour
     {
         foreach (var friend in friendEntities)
         {
-            if (friend.userReq != "634391edeb21d43d2a733801")
+            if (friend.userReq != User.Instance.user._id)
             {
-                userIDList.Add(new UserID { _id = friend.userReq });
+                userIDList.Add(new User { _id = friend.userReq });
             }
             else
             {
-                userIDList.Add(new UserID { _id = friend.userRes });
+                userIDList.Add(new User { _id = friend.userRes });
             }
         }
         StartCoroutine(IEGetUser());
@@ -108,7 +107,7 @@ public class LeaderBoard : MonoBehaviour
                 Debug.Log("IEGetUser:   " + json);
                 if (json != null)
                 {
-                    UserID user = JsonConvert.DeserializeObject<UserID>(json);
+                    User user = JsonConvert.DeserializeObject<User>(json);
                     userIDList[i] = user;
                 }
                 else
@@ -146,7 +145,7 @@ public class LeaderBoard : MonoBehaviour
             Debug.Log("IEGetUsers:   " + json);
             if (json != "[]")
             {
-                UserID[] users = JsonConvert.DeserializeObject<UserID[]>(json);
+                User[] users = JsonConvert.DeserializeObject<User[]>(json);
                 globalUsersList = users.ToList();
                 SortingGlobalUsersGem();
             }
@@ -163,7 +162,7 @@ public class LeaderBoard : MonoBehaviour
     }
     void SortingFriendsGem()
     {
-        userIDList.Add(player);
+        userIDList.Add(User.Instance);
         userIDList.Sort((a, b) => a.gem.CompareTo(b.gem));
         userIDList.Reverse();
         userIDList = SetPlayerToTop(userIDList);
@@ -171,15 +170,15 @@ public class LeaderBoard : MonoBehaviour
     }
     void SortingGlobalUsersGem()
     {
-        globalUsersList.Add(player);
+        globalUsersList.Add(User.Instance);
         globalUsersList.Sort((a, b) => a.gem.CompareTo(b.gem));
         globalUsersList.Reverse();
         globalUsersList = SetPlayerToTop(globalUsersList);
         ShowRank(globalUsersList, transfContentLBGlobal);
     }
-    List<UserID> SetPlayerToTop(List<UserID> userIDs)
+    List<User> SetPlayerToTop(List<User> userIDs)
     {
-        for (int i = userIDs.FindIndex((user) => user == player); i >= 0; i--)
+        for (int i = userIDs.FindIndex((user) => user == User.Instance); i >= 0; i--)
         {
             if (i == 0)
                 break;
@@ -189,7 +188,7 @@ public class LeaderBoard : MonoBehaviour
             }
             else if (userIDs[i].gem == userIDs[i - 1].gem)
             {
-                UserID userid = userIDs[i];
+                User userid = userIDs[i];
                 userIDs[i] = userIDs[i - 1];
                 userIDs[i - 1] = userid;
             }
@@ -197,7 +196,7 @@ public class LeaderBoard : MonoBehaviour
         return userIDs;
     }
 
-    void ShowRank(List<UserID> users,Transform parent)
+    void ShowRank(List<User> users,Transform parent)
     {
         int top = 1;
         for (int i = 0; i < users.Count; i++)
@@ -210,7 +209,7 @@ public class LeaderBoard : MonoBehaviour
                 }
             }
             LeaderboardDetail detail = Instantiate(leaderBoardDetailPrefab, parent);
-            detail.Init(top, users[i].name, users[i].gem, true ? users[i] == player : false);
+            detail.Init(top, users[i].name, users[i].gem, true ? users[i] == User.Instance : false);
             lbDetailGOList.Add(detail);
             BtnGlobal();
             //Debug.Log("Top: " + top + "     Name: " + users[i].name + "    Gem: " + users[i].gem);

@@ -103,5 +103,34 @@ public class Achievement
     public AchievementLevelID achievementLevelID { get; set; }
     public int challengeAchieved { get; set; }
 }
-
+public class SpellOwnUtility
+{
+    public string _id;
+    public string userID;
+    public string spellID;
+    public int amount;
+}
+public class SpellUtility
+{
+    public string _id;
+    public string name;
+    public int price;
+    public string description;
+    public int cooldown;
+    public int total;
+}
+public class CharacterUtility
+{
+    public string _id;
+    public string name;
+    public int price;
+}
+public class CharacterOwn
+{
+    public string _id;
+    public string userID;
+    public string characterID;
+    public string levelID;
+    public int status;
+}
 

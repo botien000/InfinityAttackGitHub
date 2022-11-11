@@ -9,15 +9,7 @@ using Newtonsoft.Json;
 
 public class AchievementManager : MonoBehaviour
 {
-    private string addressGetAchievementOwn = "http://localhost:3000/inventoryClient/post-achievements-own";
-    private string addressUpdateGold = "http://localhost:3000/api/updateGoldUser";
-    private string addressUpdateGem = "http://localhost:3000/api/updateGemUser";
-    private string addressUpdateLevelAchievementOwn = "http://localhost:3000/inventoryClient/update-level-achievement-own";
-    //private string addressUpdateChallengeAchievedByName = "http://localhost:3000/inventoryClient/update-challenge-achieved-by-name";
-    private string addressUpdateAllChallengeAchievedAchievementByName = "http://localhost:3000/inventoryClient/update-all-challenge-achieved-achievement-by-name";
-
-    private string addressGetCharacterOwn = "http://localhost:3000/inventoryClient/post-character-own";
-
+    private Api instanceIP;
     [SerializeField] private Achievement[] achievementOwnList;
     [SerializeField] private Character[] charList;
     private Sprite successSprite;
@@ -29,6 +21,7 @@ public class AchievementManager : MonoBehaviour
     private int characterown = 0, killenemy = 0, killboss = 0, singleplay = 0, multiplay = 0, addfriend = 0;
     void Start()
     {
+        instanceIP = Api.Instance;
         LoadSprite();
         LoadChallengeAchievedKillEnemy();
         LoadChallengeAchievedKillBoss();
@@ -42,7 +35,7 @@ public class AchievementManager : MonoBehaviour
 
         //}
         string userID = "6345a02f1d8f5da83dc48826";
-        StartCoroutine(GetCharacterOwnData(addressGetCharacterOwn,userID));
+        StartCoroutine(GetCharacterOwnData(instanceIP.api + instanceIP.routerPostCharactersOwn,userID));
     }
 
     private void Update()
@@ -84,7 +77,7 @@ public class AchievementManager : MonoBehaviour
         var _char = JsonConvert.DeserializeObject<Character[]>(rawResponse);
         charList = _char;
         characterown = charList.Length;
-        StartCoroutine(UpdateAllChallengeAchievedAchievement(addressUpdateAllChallengeAchievedAchievementByName, characterown, userID));
+        StartCoroutine(UpdateAllChallengeAchievedAchievement(instanceIP.api + instanceIP.routerUpdateAllChallengeAchievedAchievementByName, characterown, userID));
     }
 
     IEnumerator UpdateAllChallengeAchievedAchievement(string address, int characterown, string userID)
@@ -131,7 +124,7 @@ public class AchievementManager : MonoBehaviour
                     Destroy(ao);
                 }
             }
-            StartCoroutine(GetAchievementOwnData(addressGetAchievementOwn, userID));
+            StartCoroutine(GetAchievementOwnData(instanceIP.api + instanceIP.routerPostAchievementsOwn, userID));
         }
     }
 
@@ -208,7 +201,7 @@ public class AchievementManager : MonoBehaviour
         int gem = achievement.userID.gem;
         int gold_after_update = gold + goldAchievement;
         int gem_after_update = gem + gemAchievement;
-        StartCoroutine(UpdateLevelAchievementOwn(addressUpdateLevelAchievementOwn, userID, achievementOwnID, next_level, achievementID, gold_after_update, gem_after_update));
+        StartCoroutine(UpdateLevelAchievementOwn(instanceIP.api + instanceIP.routerUpdateLevelAchievementOwn, userID, achievementOwnID, next_level, achievementID, gold_after_update, gem_after_update));
     }
 
     IEnumerator UpdateLevelAchievementOwn(string address, string userID, string achievementOwnID, int next_level, string achievementID, int gold, int gem)
@@ -225,7 +218,8 @@ public class AchievementManager : MonoBehaviour
         }
         else
         {
-            StartCoroutine(updateGoldAfterUpdate(addressUpdateGold, userID, gold, gem));
+            StartCoroutine(updateGoldAfterUpdate(instanceIP.api + instanceIP.routerGoldUser, userID, gold, gem));
+            www.Dispose();
         }
     }
 
@@ -243,7 +237,8 @@ public class AchievementManager : MonoBehaviour
         }
         else
         {
-            StartCoroutine(updateGemAfterUpdate(addressUpdateGem, userID, gem));
+            StartCoroutine(updateGemAfterUpdate(instanceIP.api + instanceIP.routerGemUser, userID, gem));
+            www.Dispose();
         }
     }
 
@@ -269,7 +264,8 @@ public class AchievementManager : MonoBehaviour
                     Destroy(ao);
                 }
             }
-            StartCoroutine(GetAchievementOwnData(addressGetAchievementOwn, userID));
+            StartCoroutine(GetAchievementOwnData(instanceIP.api + instanceIP.routerPostAchievementsOwn, userID));
+            www.Dispose();
         }
     }
     IEnumerator GetAchievementOwnData(string address, string userID)

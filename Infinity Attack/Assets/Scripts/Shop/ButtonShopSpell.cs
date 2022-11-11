@@ -45,7 +45,7 @@ public class ButtonShopSpell : MonoBehaviour
         name = _name;
         price = _price;
         total = _total;
-        imgAvatar.sprite = Resources.Load<Sprite>("Avatar/Spells/" + name);
+        imgAvatar.sprite = Resources.Load<Sprite>("Spells/" + name);
         txtName.text = name;
         txtPrice.text = price.ToString();
         if (txtPrice.transform.position == btnBuy.transform.position)

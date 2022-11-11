@@ -22,4 +22,6 @@ public class User
             return instance;
         }
     }
+
+    public User() { }
 }
