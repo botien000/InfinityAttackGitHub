@@ -4265,6 +4265,7 @@ MonoBehaviour:
   FlagPannel: {fileID: 2083345774}
   LoadingPanel: {fileID: 2037439557}
   AlertText: {fileID: 1884213998}
+  loadingPanel: {fileID: 2037439557}
 --- !u!1 &1267223822
 GameObject:
   m_ObjectHideFlags: 0

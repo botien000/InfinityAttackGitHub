@@ -22,6 +22,7 @@ public class Api
     public readonly string routerAddNewCharacter = "addNewCharacter";
     public readonly string routerGetSpells = "getSpells";
     public readonly string routerGetSpellOwn = "getSpellOwn";
+    public readonly string routerGetLevelByCharNameAndUid = "getLevelByCharNameAndUid";
 
     public readonly string routerPostAchievementsOwn = "post-achievements-own";
     public readonly string routerUpdateLevelAchievementOwn = "update-level-achievement-own";

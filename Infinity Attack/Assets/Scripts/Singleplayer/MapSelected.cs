@@ -8,7 +8,7 @@ public class MapSelected : MonoBehaviour
     [SerializeField] private GameObject loadingPanel;
     [SerializeField] private string map1Description, map2Description, map3Description;
 
-    int mapSeleted;
+    int mapSeleted = 1;
     private void OnEnable()
     {
         
@@ -30,6 +30,7 @@ public class MapSelected : MonoBehaviour
     }
     IEnumerator IEMapLoading(int map)
     {
+        Debug.Log(map);
         AsyncOperation asyncOperation = SceneManager.LoadSceneAsync($"Map{map}_1");
         while (!asyncOperation.isDone)
         {

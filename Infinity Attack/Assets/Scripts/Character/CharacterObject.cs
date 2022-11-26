@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class CharacterObject : MonoBehaviour
 {
@@ -19,6 +20,8 @@ public class CharacterObject : MonoBehaviour
     }
     [SerializeField] private float speedRun;
     [SerializeField] private float forceJump;
+    [SerializeField] private float ultimateCooldown;
+    [SerializeField] private Button abilityCooldownButton;
 
     public static CharacterObject instance;
 
@@ -37,19 +40,35 @@ public class CharacterObject : MonoBehaviour
     public bool jumpAttacking = false;
     public bool nextAttack = false;
     public bool movingPressing = false;
+    public bool isUltimate = false;
+    public bool isCooldown;
+    public bool isAttacked = false;
 
     private void Awake()
     {
         instance = this;
         animator = GetComponent<Animator>();
         rgbody = GetComponent<Rigidbody2D>();
+        abilityCooldownButton.GetComponent<Image>().fillAmount = 0;
+    }
+    private void Start()
+    {
+        Enemy[] enemies = FindObjectsOfType<Enemy>();
+        foreach (var enemy in enemies)
+        {
+            enemy.setTransform(transform);
+            Debug.Log("edd");
+
+        }
     }
 
     private void Update()
     {
-        
-        SetDirection();
-        if (!attacking)
+        if (!isAttacked)
+        {
+            SetDirection();
+        }
+        if (!attacking && !isUltimate && !isAttacked)
         {
             if (!isJump)
             {
@@ -67,7 +86,7 @@ public class CharacterObject : MonoBehaviour
             }
             else if (isJump)
             {
-                if (!jumpAttacking)
+                if (!jumpAttacking && !isAttacked)
                 {
                     curY = transform.position.y;
                     if (curY < preY)
@@ -84,17 +103,18 @@ public class CharacterObject : MonoBehaviour
             }
         }
 
-        /*if (jumpAttacking)
+        if(isCooldown)
         {
-            SetAnimation(State.Attack_Air);
-        }*/
-        Debug.Log("Attacking: " + attacking);
-        Debug.Log("MovePlayer: " + movePlayer);
-        Debug.Log("preMovePlayer: " + preMovePlayer);
-        Debug.Log("NextAttack: " + nextAttack);
-        Debug.Log("MovingPressing: " + movingPressing);
-        Debug.Log("isJump: " + isJump);
+            abilityCooldownButton.GetComponent<Image>().fillAmount -= 1 / ultimateCooldown * Time.deltaTime;
+
+            if(abilityCooldownButton.GetComponent<Image>().fillAmount <= 0)
+            {
+                abilityCooldownButton.GetComponent<Image>().fillAmount = 0;
+                isCooldown = false;
+            }
+        }
     }
+
     private void OnEnable()
     {
 
@@ -110,6 +130,9 @@ public class CharacterObject : MonoBehaviour
             playerInput.Player.Jump.started += OnJump;
             playerInput.Player.Jump.performed += OnJump;
             playerInput.Player.Jump.canceled += OnJump;
+            playerInput.Player.Ultimate.started += Ultimate;
+            playerInput.Player.Ultimate.performed += Ultimate;
+            playerInput.Player.Ultimate.canceled += Ultimate;
         }
         playerInput.Enable();
     }
@@ -139,7 +162,7 @@ public class CharacterObject : MonoBehaviour
     {
         if (obj.started)
         {
-            if (!isJump)
+            if (!isJump && !isUltimate && !isAttacked)
             {
                 if (!attacking)
                 {
@@ -170,7 +193,7 @@ public class CharacterObject : MonoBehaviour
     {
         if (obj.started)
         {
-            if (!attacking)
+            if (!attacking && !isUltimate && !isAttacked)
             {
                 movePlayer = obj.ReadValue<Vector2>();
             }
@@ -187,11 +210,25 @@ public class CharacterObject : MonoBehaviour
 
     private void Hit()
     {
-
+        isAttacked = true;
+        InGameCharLoading.instance.Damage(30);
+        SetAnimation(State.Hit);
+        StartCoroutine(TakeHit());
     }
-    private void Utilmate()
+    public void Ultimate(InputAction.CallbackContext obj)
     {
-
+        if (obj.started)
+        {
+            if (!isJump && !isCooldown && !attacking)
+            {
+                isCooldown = true;
+                abilityCooldownButton.GetComponent<Image>().fillAmount = 1;
+                movePlayer = Vector2.zero;
+                isUltimate = true;
+                Debug.Log("dang loi ne");
+                SetAnimation(State.Utilmate);
+            }
+        }
     }
     private void Die()
     {
@@ -234,5 +271,19 @@ public class CharacterObject : MonoBehaviour
             isGround = false;
             isJump = true;
         }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemies"))
+        {
+            Hit();
+        }
+    }
+
+    private IEnumerator TakeHit()
+    {
+        yield return new WaitForSeconds(0.4f);
+        isAttacked = false;
     }
 }

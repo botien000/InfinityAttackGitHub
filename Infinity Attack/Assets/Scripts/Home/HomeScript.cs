@@ -51,6 +51,8 @@ public class HomeScript : MonoBehaviour
     private Sprite c_wind_hashashin;
 
     private int CharInt = 0;
+    public string charUsingName;
+    public static HomeScript instance;
 
     // Start is called before the first frame update
     void Start()
@@ -126,6 +128,7 @@ public class HomeScript : MonoBehaviour
                 LoadChar();
                 var name = removeQuotes(www.downloadHandler.text);
                 Debug.Log("Name: " + www.downloadHandler.text);
+                charUsingName = name;
                 if (name == "Fire Knight")
                 {
                     avatar.sprite = fire_knightsprite;
@@ -168,7 +171,7 @@ public class HomeScript : MonoBehaviour
                 anim.SetInteger("CharInt", CharInt);
 
                 //find respone friend
-                findResponeFriend.Find();
+                //findResponeFriend.Find();
             }
         }
 

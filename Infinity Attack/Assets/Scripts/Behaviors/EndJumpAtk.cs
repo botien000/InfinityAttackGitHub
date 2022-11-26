@@ -20,6 +20,10 @@ public class EndJumpAtk : StateMachineBehaviour
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         CharacterObject.instance.jumpAttacking = false;
+        if (CharacterObject.instance.isJump == true)
+        {
+            CharacterObject.instance.animator.Play("JumpDown");
+        }
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()

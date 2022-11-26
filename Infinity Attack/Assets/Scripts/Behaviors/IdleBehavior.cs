@@ -17,6 +17,7 @@ public class IdleBehavior : StateMachineBehaviour
         {
             CharacterObject.instance.animator.Play("Attack_1");
         }
+
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
