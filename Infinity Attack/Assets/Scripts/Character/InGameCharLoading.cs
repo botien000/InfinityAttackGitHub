@@ -6,16 +6,14 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Networking;
 using Cinemachine;
+using TMPro;
 
 public class InGameCharLoading : MonoBehaviour
 {
-    [SerializeField] private GameObject Fire_Knight;
-    [SerializeField] private GameObject Water_Priestess;
-    [SerializeField] private GameObject Metal_Bladekeeper;
-    [SerializeField] private GameObject Wind_Hashashin;
+    [SerializeField] private GameObject CharacterSpawnPosition;
     [SerializeField] private Image HealthBar;
-
-    [SerializeField] private CinemachineVirtualCamera camera;
+    [SerializeField] private Image Avatar;
+    [SerializeField] private TMP_Text HealthText;
 
     private string addressGetUsingCharName = Api.Instance.api + Api.Instance.routerGetUsingCharNameById;
     private string addressGetLevelByCharNameAndUid = Api.Instance.api + Api.Instance.routerGetLevelByCharNameAndUid;
@@ -25,8 +23,16 @@ public class InGameCharLoading : MonoBehaviour
     private int hp;
     public int curHp;
 
+    private Sprite fire_knightsprite;
+    private Sprite ground_monksprite;
+    private Sprite leaf_rangersprite;
+    private Sprite water_priestesssprite;
+    private Sprite metal_bladekeepersprite;
+    private Sprite wind_hashashinsprite;
 
+    [SerializeField] private Button btnCooldown;
 
+    [SerializeField] private CinemachineVirtualCamera camera;
     public static InGameCharLoading instance;
 
     // Start is called before the first frame update
@@ -43,12 +49,12 @@ public class InGameCharLoading : MonoBehaviour
         {
 
         }
+        curHp = 1;
     }
 
     // Update is called once per frame
     void Update()
     {
-       
     }
 
     public IEnumerator GetData()
@@ -76,30 +82,52 @@ public class InGameCharLoading : MonoBehaviour
                 var name = removeQuotes(www.downloadHandler.text);
                 Debug.Log("Name: " + www.downloadHandler.text);
                 charUsingName = name;
+                LoadAvatars();
                 if (name == "Fire Knight")
                 {
-                    Fire_Knight.SetActive(true);
+                    Avatar.GetComponent<Image>().sprite = fire_knightsprite;
+                    GameObject fire_knight = (GameObject)Instantiate(Resources.Load("Prefabs/Character/Fire_Knight"), CharacterSpawnPosition.transform.position, Quaternion.identity);
+                    camera.Follow = fire_knight.transform;
+                    fire_knight.GetComponent<CharacterObject>().insertBtnCooldown(btnCooldown);
                 }
                 else if (name == "Ground Monk")
                 {
-                    
+                    Avatar.GetComponent<Image>().sprite = fire_knightsprite;
+                    GameObject fire_knight = (GameObject)Instantiate(Resources.Load("Prefabs/Character/Fire_Knight"), CharacterSpawnPosition.transform.position, Quaternion.identity);
+                    camera.Follow = fire_knight.transform;
+                    fire_knight.GetComponent<CharacterObject>().insertBtnCooldown(btnCooldown);
+                    //b? dòng này sau khi thi?t k? xong 2 nhân v?t cu?i
+                    charUsingName = "Fire Knight";
                 }
                 else if (name == "Leaf Ranger")
                 {
-                    
+                    Avatar.GetComponent<Image>().sprite = fire_knightsprite;
+                    GameObject fire_knight = (GameObject)Instantiate(Resources.Load("Prefabs/Character/Fire_Knight"), CharacterSpawnPosition.transform.position, Quaternion.identity);
+                    camera.Follow = fire_knight.transform;
+                    fire_knight.GetComponent<CharacterObject>().insertBtnCooldown(btnCooldown);
+                    //b? dòng này sau khi thi?t k? xong 2 nhân v?t cu?i
+                    charUsingName = "Fire Knight";
                 }
-                else if (name == "Metal BladeKeeper")
+                else if (name == "Metal Bladekeeper")
                 {
-                    
+                    Avatar.GetComponent<Image>().sprite = metal_bladekeepersprite;
+                    GameObject metal_bladekeeper = (GameObject)Instantiate(Resources.Load("Prefabs/Character/Metal_Bladekeeper"), CharacterSpawnPosition.transform.position, Quaternion.identity);
+                    camera.Follow = metal_bladekeeper.transform;
+                    metal_bladekeeper.GetComponent<CharacterObject>().insertBtnCooldown(btnCooldown);
                 }
                 else if (name == "Water Priestess")
                 {
-                    Water_Priestess.SetActive(true);
+                    Avatar.GetComponent<Image>().sprite = water_priestesssprite;
+                    GameObject water_priestess = (GameObject)Instantiate(Resources.Load("Prefabs/Character/Water_Priestess"), CharacterSpawnPosition.transform.position, Quaternion.identity);
+                    camera.Follow = water_priestess.transform;
+                    water_priestess.GetComponent<CharacterObject>().insertBtnCooldown(btnCooldown);
                 }
                 else if (name == "Wind Hashashin")
                 {
-                    Wind_Hashashin.SetActive(true);
-                    camera.Follow = Wind_Hashashin.GetComponent<Transform>();
+                    Avatar.GetComponent<Image>().sprite = wind_hashashinsprite;
+                    GameObject wind_hashashin = (GameObject)Instantiate(Resources.Load("Prefabs/Character/Wind_Hashashin"), CharacterSpawnPosition.transform.position, Quaternion.identity);
+                    camera.Follow = wind_hashashin.transform;
+                    wind_hashashin.GetComponent<CharacterObject>().insertBtnCooldown(btnCooldown);
                 }
             }
         }
@@ -130,6 +158,7 @@ public class InGameCharLoading : MonoBehaviour
                 curHp = hp;
                 Debug.Log("hp: " + level.hp + " damage: " + level.damage);
                 HealthBar.fillAmount = 1;
+                HealthText.text = "" + curHp + "/" + hp;
             }
         }
 
@@ -147,12 +176,32 @@ public class InGameCharLoading : MonoBehaviour
         return b;
     }
 
-
     public void Damage(int damage)
     {
-        curHp -= damage;
-        Debug.Log("hp: " + curHp);
-        HealthBar.fillAmount = (float)curHp/hp;
-        Debug.Log("hp1: " + curHp / hp);
+        if(CharacterObject.instance.isUltimate == false && curHp>0)
+        {
+            if (curHp > 0)
+            {
+                curHp -= damage;
+                Debug.Log("hp: " + curHp);
+                HealthBar.fillAmount = (float)curHp / hp;
+                Debug.Log("hp1: " + curHp / hp);
+                HealthText.text = "" + curHp + "/" + hp;
+            } else if(curHp <= 0)
+            {
+                curHp = 0;
+                HealthText.text = "0" + "/" + hp;
+            }
+        }
+    }
+
+    private void LoadAvatars()
+    {
+        fire_knightsprite = Resources.Load<Sprite>("Avatars/Fire Knight");
+        ground_monksprite = Resources.Load<Sprite>("Avatars/Ground Monk");
+        leaf_rangersprite = Resources.Load<Sprite>("Avatars/Leaf Ranger");
+        water_priestesssprite = Resources.Load<Sprite>("Avatars/Water Priestess");
+        metal_bladekeepersprite = Resources.Load<Sprite>("Avatars/Metal Bladekeeper");
+        wind_hashashinsprite = Resources.Load<Sprite>("Avatars/Wind Hashashin");
     }
 }

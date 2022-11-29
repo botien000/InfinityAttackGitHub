@@ -13,8 +13,11 @@ public class EnemyWeapon : MonoBehaviour
     public Vector3 attackRangeRight;
     public Vector3 attackRangeLeft;
     public float fireballSpeed;
+
+    public static EnemyWeapon instance;
     private void Start()
     {
+        instance = this;
         enemy = GetComponent<Enemy>();
     }
 

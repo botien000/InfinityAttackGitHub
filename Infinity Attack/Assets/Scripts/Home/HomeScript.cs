@@ -147,7 +147,7 @@ public class HomeScript : MonoBehaviour
                     Character.GetComponent<Image>().sprite = c_leaf_ranger;
                     CharInt = 2;
                 }
-                else if (name == "Metal BladeKeeper")
+                else if (name == "Metal Bladekeeper")
                 {
                     avatar.sprite = metal_bladekeepersprite;
                     Character.GetComponent<Image>().sprite = c_metal_bladekeeper;
@@ -216,11 +216,11 @@ public class HomeScript : MonoBehaviour
 
     private void LoadChar()
     {
-        c_fire_knight = Resources.Load<Sprite>("CharacterIdle/Idle_Fire_Knight");
+        c_fire_knight = Resources.Load<Sprite>("CharacterOwns/fire_knight");
         c_ground_monk = Resources.Load<Sprite>("CharacterIdle/Idle_Ground_Monk");
         c_leaf_ranger = Resources.Load<Sprite>("CharacterIdle/Idle_Leaf_Ranger");
         c_water_priestess = Resources.Load<Sprite>("CharacterIdle/Idle_Water_Priestess");
-        c_metal_bladekeeper = Resources.Load<Sprite>("CharacterIdle/Idle_Metal_Bladekeeper");
+        c_metal_bladekeeper = Resources.Load<Sprite>("CharacterOwns/metal_bladekeeper");
         c_wind_hashashin = Resources.Load<Sprite>("CharacterIdle/Idle_Wind_Hashashin");
     }
 

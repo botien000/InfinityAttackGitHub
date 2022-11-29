@@ -13,6 +13,8 @@ public class Transition1Script : StateMachineBehaviour
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+
+        CharacterObject.instance.movePlayer = Vector2.zero;
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
