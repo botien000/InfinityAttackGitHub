@@ -15,24 +15,13 @@ public class HomeScript : MonoBehaviour
 
     private string addressGetUsingCharName = Api.Instance.api+Api.Instance.routerGetUsingCharNameById;
     private string addressGetUser = Api.Instance.api + Api.Instance.routerGetUserById;
-    //private string addressGetTop10Users = "http://localhost:3000/api/getTop5Users";
 
     [SerializeField] private TMP_Text GoldText;
     [SerializeField] private TMP_Text GemText;
     [SerializeField] private TMP_Text NameText;
     [SerializeField] private Image avatar;
     [SerializeField] private GameObject Character;
-    /*
-    [SerializeField] private TMP_Text Top1Name;
-    [SerializeField] private TMP_Text Top1Count;
-    [SerializeField] private TMP_Text Top2Name;
-    [SerializeField] private TMP_Text Top2Count;
-    [SerializeField] private TMP_Text Top3Name;
-    [SerializeField] private TMP_Text Top3Count;
-    [SerializeField] private TMP_Text Top4Name;
-    [SerializeField] private TMP_Text Top4Count;
-    [SerializeField] private TMP_Text Top5Name;
-    [SerializeField] private TMP_Text Top5Count;*/
+    [SerializeField] private GameObject panelLoading;
 
     [SerializeField] FindResponeFriend findResponeFriend;
 
@@ -80,11 +69,13 @@ public class HomeScript : MonoBehaviour
         form_getUser.AddField("id", uid);
         using (UnityWebRequest www = UnityWebRequest.Post(addressGetUser, form_getUser))
         {
+            panelLoading.SetActive(true);
             yield return www.SendWebRequest();
-
+            panelLoading.SetActive(false);
             if (www.result != UnityWebRequest.Result.Success)
             {
                 Debug.Log(www.error);
+                panelLoading.SetActive(true);
             }
             else
             {
@@ -113,13 +104,16 @@ public class HomeScript : MonoBehaviour
                 avatar.gameObject.SetActive(false);
                 Character.SetActive(false);
             }
+            panelLoading.SetActive(true);
             yield return handler;
+            panelLoading.SetActive(false);
 
             if (www.result != UnityWebRequest.Result.Success)
             {
                 avatar.gameObject.SetActive(false);
                 Character.SetActive(false);
                 Debug.Log(www.error);
+                panelLoading.SetActive(true);
             }
             else
             {
@@ -173,35 +167,8 @@ public class HomeScript : MonoBehaviour
                 //find respone friend
                 //findResponeFriend.Find();
             }
+            www.Dispose();
         }
-
-        //using (UnityWebRequest webRequest = UnityWebRequest.Get(addressGetTop10Users))
-        //{
-        //    // Request and wait for the desired page.
-        //    yield return webRequest.SendWebRequest();
-
-        //    if (webRequest.result != UnityWebRequest.Result.Success)
-        //    {
-        //        Debug.Log(webRequest.error);
-        //    }
-        //    else
-        //    {
-        //        Debug.Log("Form upload complete!");
-        //        Debug.Log("Json: " + webRequest.downloadHandler.text);
-        //        top5Users = JsonConvert.DeserializeObject<Top5Users[]>(webRequest.downloadHandler.text);
-
-        //        Top1Name.SetText("" + top5Users[0].name);
-        //        Top1Count.SetText("" + top5Users[0].count);
-        //        Top2Name.SetText("" + top5Users[1].name);
-        //        Top2Count.SetText("" + top5Users[1].count);
-        //        Top3Name.SetText("" + top5Users[2].name);
-        //        Top3Count.SetText("" + top5Users[2].count);
-        //        Top4Name.SetText("" + top5Users[3].name);
-        //        Top4Count.SetText("" + top5Users[3].count);
-        //        Top5Name.SetText("" + top5Users[4].name);
-        //        Top5Count.SetText("" + top5Users[4].count);
-        //    }
-        //}
     }
 
     private void LoadAvatars()
@@ -216,11 +183,11 @@ public class HomeScript : MonoBehaviour
 
     private void LoadChar()
     {
-        c_fire_knight = Resources.Load<Sprite>("CharacterOwns/fire_knight");
+        c_fire_knight = Resources.Load<Sprite>("CharacterIdle/Idle_Fire_Knight");
         c_ground_monk = Resources.Load<Sprite>("CharacterIdle/Idle_Ground_Monk");
         c_leaf_ranger = Resources.Load<Sprite>("CharacterIdle/Idle_Leaf_Ranger");
         c_water_priestess = Resources.Load<Sprite>("CharacterIdle/Idle_Water_Priestess");
-        c_metal_bladekeeper = Resources.Load<Sprite>("CharacterOwns/metal_bladekeeper");
+        c_metal_bladekeeper = Resources.Load<Sprite>("CharacterIdle/Idle_Metal_Bladekeeper");
         c_wind_hashashin = Resources.Load<Sprite>("CharacterIdle/Idle_Wind_Hashashin");
     }
 

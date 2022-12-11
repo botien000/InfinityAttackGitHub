@@ -2,6 +2,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -233,6 +234,7 @@ public class ShopUI : MonoBehaviour
     private void FindChacterNotOwn()
     {
         bool isOwned;
+        characterNotOwnList.Clear();
         if (characters == null || charactersOwn == null || characters.Length == 0)
             return;
         for (int i = 0; i < characters.Length; i++)
@@ -256,7 +258,7 @@ public class ShopUI : MonoBehaviour
     private IEnumerator IEGetUser()
     {
         WWWForm form = new WWWForm();
-        form.AddField("name", "trantien");
+        form.AddField("name", User.Instance.user.name);
         UnityWebRequest unityWebRequest = UnityWebRequest.Post(instanceIP.api + instanceIP.routerGetUserByName, form);
         var handler = unityWebRequest.SendWebRequest(); 
         while (!handler.isDone)

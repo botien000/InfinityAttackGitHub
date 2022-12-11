@@ -17,6 +17,7 @@ public class LoginScript : MonoBehaviour
     [SerializeField] private GameObject LoadingPanel;
     [SerializeField] private TMP_Text AlertText;
     [SerializeField] private GameObject loadingPanel;
+    [SerializeField] private Toggle tglLogin;
 
     [SerializeField] private Quest[] questOwnList;
     [SerializeField] private Achievement[] achievementOwnList;
@@ -28,6 +29,12 @@ public class LoginScript : MonoBehaviour
 
     private int characterown = 0, killenemy = 0, killboss = 0, singleplay = 0, multiplay = 0, addfriend = 0;
 
+
+    private void Start()
+    {
+        usernameField.text = PlayerPrefs.GetString("UsernamePP", "");
+        passwordField.text = PlayerPrefs.GetString("PasswordPP", "");
+    }
     public void OnLoginClick()
     {
         createPlayerPref();
@@ -88,9 +95,7 @@ public class LoginScript : MonoBehaviour
                     }
                     else
                     {
-                        Debug.Log("Player ID: " + respone);
-                        //SceneManager.LoadScene(1);
-                        //StartCoroutine(IELoadingScreen(1));                     
+                        Debug.Log("Player ID: " + respone);                    
                         PlayerPrefs.SetString("UID", www.downloadHandler.text);
                         string userID = removeQuotes(PlayerPrefs.GetString("UID"));
                         StartCoroutine(GetQuestOwnData(instanceIP.api + instanceIP.routerPostQuestsOwn, userID));
@@ -222,9 +227,30 @@ public class LoginScript : MonoBehaviour
                 SaveChallengeAchievedAddFriend(addfriend);
             }
         }
+        CheckSavePref();
+        ResetSpellChosen();
         StartCoroutine(IELoadingScreen(1));
     }
-
+    private void ResetSpellChosen()
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            SpellSingleton.Instance.SetSpell(i, null, null, 0, 0, 0);
+        }
+    }
+    private void CheckSavePref()
+    {
+        if (tglLogin.isOn)
+        {
+            PlayerPrefs.SetString("UsernamePP", usernameField.text);
+            PlayerPrefs.SetString("PasswordPP", passwordField.text);
+        }
+        else
+        {   
+            PlayerPrefs.SetString("UsernamePP", "");
+            PlayerPrefs.SetString("PasswordPP", "");
+        }
+    }
     IEnumerator IELoadingScreen(int buildIndex)
     {
         AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(buildIndex);

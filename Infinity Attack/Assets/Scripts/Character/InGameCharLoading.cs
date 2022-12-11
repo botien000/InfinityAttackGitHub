@@ -59,7 +59,7 @@ public class InGameCharLoading : MonoBehaviour
 
     public IEnumerator GetData()
     {
-        // l?y thông tin t??ng ?ang s? d?ng
+        // l?y thï¿½ng tin t??ng ?ang s? d?ng
         string uid = removeQuotes(PlayerPrefs.GetString("UID"));
         WWWForm form_getChar = new WWWForm();
         form_getChar.AddField("userID", uid);
@@ -96,7 +96,7 @@ public class InGameCharLoading : MonoBehaviour
                     GameObject fire_knight = (GameObject)Instantiate(Resources.Load("Prefabs/Character/Fire_Knight"), CharacterSpawnPosition.transform.position, Quaternion.identity);
                     camera.Follow = fire_knight.transform;
                     fire_knight.GetComponent<CharacterObject>().insertBtnCooldown(btnCooldown);
-                    //b? dòng này sau khi thi?t k? xong 2 nhân v?t cu?i
+                    //b? dï¿½ng nï¿½y sau khi thi?t k? xong 2 nhï¿½n v?t cu?i
                     charUsingName = "Fire Knight";
                 }
                 else if (name == "Leaf Ranger")
@@ -105,7 +105,7 @@ public class InGameCharLoading : MonoBehaviour
                     GameObject fire_knight = (GameObject)Instantiate(Resources.Load("Prefabs/Character/Fire_Knight"), CharacterSpawnPosition.transform.position, Quaternion.identity);
                     camera.Follow = fire_knight.transform;
                     fire_knight.GetComponent<CharacterObject>().insertBtnCooldown(btnCooldown);
-                    //b? dòng này sau khi thi?t k? xong 2 nhân v?t cu?i
+                    //b? dï¿½ng nï¿½y sau khi thi?t k? xong 2 nhï¿½n v?t cu?i
                     charUsingName = "Fire Knight";
                 }
                 else if (name == "Metal Bladekeeper")

@@ -454,8 +454,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u200B"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 049e8678f6d88c1409412044d35abb43, type: 2}
+  m_sharedMaterial: {fileID: -7048773698911051024, guid: 049e8678f6d88c1409412044d35abb43, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1898,8 +1898,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "X\xE1c nh\u1EADn m\u1EADt kh\u1EA9u..."
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 049e8678f6d88c1409412044d35abb43, type: 2}
+  m_sharedMaterial: {fileID: -7048773698911051024, guid: 049e8678f6d88c1409412044d35abb43, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2755,8 +2755,8 @@ MonoBehaviour:
   m_VerticalScrollbarEventHandler: {fileID: 0}
   m_LayoutGroup: {fileID: 0}
   m_ScrollSensitivity: 1
-  m_ContentType: 0
-  m_InputType: 0
+  m_ContentType: 7
+  m_InputType: 2
   m_AsteriskChar: 42
   m_KeyboardType: 0
   m_LineType: 0
@@ -3196,8 +3196,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "M\u1EADt kh\u1EA9u..."
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 049e8678f6d88c1409412044d35abb43, type: 2}
+  m_sharedMaterial: {fileID: -7048773698911051024, guid: 049e8678f6d88c1409412044d35abb43, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -4266,6 +4266,7 @@ MonoBehaviour:
   LoadingPanel: {fileID: 2037439557}
   AlertText: {fileID: 1884213998}
   loadingPanel: {fileID: 2037439557}
+  tglLogin: {fileID: 2139652840}
 --- !u!1 &1267223822
 GameObject:
   m_ObjectHideFlags: 0
@@ -4827,8 +4828,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u200B"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 049e8678f6d88c1409412044d35abb43, type: 2}
+  m_sharedMaterial: {fileID: -7048773698911051024, guid: 049e8678f6d88c1409412044d35abb43, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -5301,8 +5302,8 @@ MonoBehaviour:
   m_VerticalScrollbarEventHandler: {fileID: 0}
   m_LayoutGroup: {fileID: 0}
   m_ScrollSensitivity: 1
-  m_ContentType: 0
-  m_InputType: 0
+  m_ContentType: 7
+  m_InputType: 2
   m_AsteriskChar: 42
   m_KeyboardType: 0
   m_LineType: 0

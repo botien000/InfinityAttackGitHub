@@ -146,7 +146,7 @@ public class ButtonShopCharacter : MonoBehaviour
         nameCharacter = _name;
         name = _name;
         price = _price;
-        imgAvatar.sprite = Resources.Load<Sprite>("Avatar/" + name);
+        imgAvatar.sprite = Resources.Load<Sprite>("Avatars/" + name);
         txtName.text = name;
         txtPrice.text = price.ToString();
         if (txtPrice.transform.position == btnBuy.transform.position)

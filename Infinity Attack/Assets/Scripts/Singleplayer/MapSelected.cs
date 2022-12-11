@@ -1,17 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.Device;
 using UnityEngine.SceneManagement;
 
 public class MapSelected : MonoBehaviour
 {
     [SerializeField] private GameObject loadingPanel;
-    [SerializeField] private string map1Description, map2Description, map3Description;
+    [SerializeField] private string[] mapsDescription = new string[3];
+    [SerializeField] private TextMeshProUGUI txtDescription;
 
     int mapSeleted = 1;
     private void OnEnable()
     {
-        
+        txtDescription.text= mapsDescription[mapSeleted - 1];
     }
     // Start is called before the first frame update
     void Start()
@@ -22,7 +25,6 @@ public class MapSelected : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
     }
     public void BtnPlay()
     {
@@ -41,5 +43,6 @@ public class MapSelected : MonoBehaviour
     public void BtnMapSelected(int type)
     {
         mapSeleted = type;
+        txtDescription.text = mapsDescription[mapSeleted - 1];
     }
 }

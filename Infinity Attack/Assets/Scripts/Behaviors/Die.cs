@@ -14,7 +14,7 @@ public class Die : StateMachineBehaviour
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         CharacterObject.instance.movePlayer = Vector2.zero;
-        CharacterObject.instance.rgbody.constraints = RigidbodyConstraints2D.FreezePosition;
+        CharacterObject.instance.rgbody.constraints = RigidbodyConstraints2D.FreezeAll;
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state

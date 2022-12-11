@@ -1,7 +1,4 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -57,26 +54,21 @@ public class CharacterObject : MonoBehaviour
     private void Start()
     {
         box = GetComponent<BoxCollider2D>();
-
-        Enemy[] enemies = FindObjectsOfType<Enemy>();
-        foreach (var enemy in enemies)
-        {
-            enemy.setTransform(transform);
-            Debug.Log("edd");
-
-        }
-        abilityCooldownButton.GetComponent<Image>().fillAmount = 0;
+        SpellSpawner spellSpawner = FindObjectOfType<SpellSpawner>();
+        spellSpawner.Init(this);
+        GameManager.instance.SetPlayerDontDestroy(this);
+        FindObjects();
     }
 
     private void Update()
     {
-        if(InGameCharLoading.instance.curHp <= 0)
+        if (InGameCharLoading.instance.curHp <= 0)
         {
             Die();
             dead = true;
             box.enabled = false;
         }
-        if (!isAttacked|| !dead)
+        if (!isAttacked || !dead)
         {
             SetDirection();
         }
@@ -115,11 +107,11 @@ public class CharacterObject : MonoBehaviour
             }
         }
 
-        if(isCooldown)
+        if (isCooldown)
         {
             abilityCooldownButton.GetComponent<Image>().fillAmount -= 1 / ultimateCooldown * Time.deltaTime;
 
-            if(abilityCooldownButton.GetComponent<Image>().fillAmount <= 0)
+            if (abilityCooldownButton.GetComponent<Image>().fillAmount <= 0)
             {
                 abilityCooldownButton.GetComponent<Image>().fillAmount = 0;
                 isCooldown = false;
@@ -159,7 +151,8 @@ public class CharacterObject : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        rgbody.velocity = new Vector2(movePlayer.x * speedRun, rgbody.velocity.y);
+        if (!isAttacked)
+            rgbody.velocity = new Vector2(movePlayer.x * speedRun, rgbody.velocity.y);
     }
     private void SetDirection()
     {
@@ -227,7 +220,7 @@ public class CharacterObject : MonoBehaviour
 
     public void Hit()
     {
-        if(dead== false)
+        if (dead == false)
         {
 
             isAttacked = true;
@@ -237,9 +230,8 @@ public class CharacterObject : MonoBehaviour
     }
     public void Ultimate(InputAction.CallbackContext obj)
     {
-        if(!dead)
+        if (!dead)
         {
-
             if (obj.started)
             {
                 if (!isJump && !isCooldown && !attacking)
@@ -297,39 +289,38 @@ public class CharacterObject : MonoBehaviour
             {
                 if (EnemyHealth.instance.health > 0)
                 {
-                    Debug.Log("trigger enemy" + EnemyWeapon.instance.attackDamage);
                     Hit();
                     StartCoroutine(TakeHit());
                     Vector2 difference = (transform.position - collision.transform.position).normalized;
-                    Vector2 force = difference * 500f;
-                    if (rgbody.position.x < transform.position.x)
-                    {
-                        Debug.Log("Knockback left");
-                        rgbody.AddForce(force * Vector2.left, ForceMode2D.Impulse);
-                    }
-                    else
-                    {
-                        Debug.Log("Knockback right");
-                        rgbody.AddForce(force * Vector2.right, ForceMode2D.Impulse);
-                    }
+                    Vector2 force = difference * 5f;
+                    Debug.Log(force);
+                    rgbody.AddForce(difference * force, ForceMode2D.Impulse);
                     InGameCharLoading.instance.Damage(EnemyWeapon.instance.attackDamage);
                 }
             }
+
+            if (collision.gameObject.tag == "FlyingEnemy")
+            {
+                if (FlyingEnemy.instance.health > 0)
+                {
+                    Hit();
+                    StartCoroutine(TakeHit());
+                    Vector2 difference = (transform.position - collision.transform.position).normalized;
+                    Vector2 force = difference * 5f;
+                    Debug.Log(force);
+                    rgbody.AddForce(difference * force, ForceMode2D.Impulse);
+                    InGameCharLoading.instance.Damage(EnemyWeapon.instance.attackDamage);
+                }
+            }
+
             if (collision.gameObject.tag == "FireBall")
             {
                 Debug.Log("trigger fireball");
                 Hit();
                 Vector2 difference = (transform.position - collision.transform.position).normalized;
-                Vector2 force = difference * 500f;
-                if(rgbody.position.x < transform.position.x)
-                {
-                    Debug.Log("Knockback left");
-                    rgbody.AddForce(force * Vector2.left, ForceMode2D.Impulse);
-                } else
-                {
-                    Debug.Log("Knockback right");
-                    rgbody.AddForce(force * Vector2.right, ForceMode2D.Impulse);
-                }
+                Vector2 force = difference * 7f;
+                Debug.Log(force);
+                rgbody.AddForce(difference * force, ForceMode2D.Impulse);
                 StartCoroutine(TakeHit());
             }
         }
@@ -342,7 +333,23 @@ public class CharacterObject : MonoBehaviour
             isJump = true;
         }
     }
+    private void FindObjects()
+    {
+        Enemy[] enemies = FindObjectsOfType<Enemy>();
+        foreach (var enemy in enemies)
+        {
+            enemy.setTransform(transform);
+        }
 
+        FlyingEnemy[] flyingEs = FindObjectsOfType<FlyingEnemy>();
+        foreach (var flyingEnemy in flyingEs)
+        {
+            flyingEnemy.setTransform(transform);
+        }
+
+        Minimap minimap = FindObjectOfType<Minimap>();
+        minimap.setTransform(transform);
+    }
     private IEnumerator TakeHit()
     {
         yield return new WaitForSeconds(0.4f);
@@ -353,5 +360,22 @@ public class CharacterObject : MonoBehaviour
     public void insertBtnCooldown(Button btn)
     {
         abilityCooldownButton = btn;
+    }
+
+    public void SpeedUp(float speed)
+    {
+        speedRun += speed;
+    }
+    public void Healing(float hp)
+    {
+
+    }
+    public void IncreateDamage(int damage)
+    {
+
+    }
+    public void ResetingUtilmate()
+    {
+
     }
 }

@@ -207,7 +207,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 50
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 510a1b0de835cb348b64a5ea9c4b7f24, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -235,6 +235,7 @@ MonoBehaviour:
   forceJump: 450
   ultimateCooldown: 15
   abilityCooldownButton: {fileID: 0}
+  rgbody: {fileID: 0}
   animator: {fileID: 0}
   movePlayer: {x: 0, y: 0}
   preMovePlayer: {x: 0, y: 0}
@@ -246,6 +247,7 @@ MonoBehaviour:
   isUltimate: 0
   isCooldown: 0
   isAttacked: 0
+  dead: 0
 --- !u!61 &1781760285
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -288,7 +290,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 6200000, guid: 09e2678b11c96b5409627804a6e99095, type: 2}
+  m_Material: {fileID: 6200000, guid: 56ddd603f41c922499635aa0127ec47c, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0

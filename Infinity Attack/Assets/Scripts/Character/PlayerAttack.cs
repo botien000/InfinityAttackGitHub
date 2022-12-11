@@ -28,5 +28,14 @@ public class PlayerAttack : MonoBehaviour
                 EnemyHealth.instance.TakeDamage(InGameCharLoading.instance.damage);
             }
         }
+
+        if (collision.gameObject.tag == "FlyingEnemy")
+        {
+            if (box != null)
+            {
+                FlyingEnemy.instance.TakeDamageFlyingEnemy(InGameCharLoading.instance.damage);
+            }
+        }
+
     }
 }

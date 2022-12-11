@@ -293,8 +293,8 @@ public class QuestManager : MonoBehaviour
             string res = www.downloadHandler.text;
             ProcessServerResponse(res);
             Debug.Log("Quest res: " + res);
-            www.Dispose();
         }
+        www.Dispose();
     }
 
     public void BackToHomeSceen(int screenNumber)
