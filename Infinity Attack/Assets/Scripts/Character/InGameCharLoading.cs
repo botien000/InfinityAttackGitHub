@@ -92,12 +92,13 @@ public class InGameCharLoading : MonoBehaviour
                 }
                 else if (name == "Ground Monk")
                 {
-                    Avatar.GetComponent<Image>().sprite = fire_knightsprite;
-                    GameObject fire_knight = (GameObject)Instantiate(Resources.Load("Prefabs/Character/Fire_Knight"), CharacterSpawnPosition.transform.position, Quaternion.identity);
-                    camera.Follow = fire_knight.transform;
-                    fire_knight.GetComponent<CharacterObject>().insertBtnCooldown(btnCooldown);
+                    Debug.Log("Alo") ;
+                    Avatar.GetComponent<Image>().sprite = ground_monksprite;
+                    GameObject ground_monk = (GameObject)Instantiate(Resources.Load("Prefabs/Character/Ground_Monk"), CharacterSpawnPosition.transform.position, Quaternion.identity);
+                    camera.Follow = ground_monk.transform;
+                    ground_monk.GetComponent<CharacterObject>().insertBtnCooldown(btnCooldown);
                     //b? d�ng n�y sau khi thi?t k? xong 2 nh�n v?t cu?i
-                    charUsingName = "Fire Knight";
+                    charUsingName = "Ground Monk";
                 }
                 else if (name == "Leaf Ranger")
                 {
@@ -133,10 +134,10 @@ public class InGameCharLoading : MonoBehaviour
         }
 
         WWWForm form_getLevel = new WWWForm();
-        form_getChar.AddField("uid", uid);
-        form_getChar.AddField("charName", charUsingName);
+        form_getLevel.AddField("uid", uid);
+        form_getLevel.AddField("charName", charUsingName);
 
-        using (UnityWebRequest www = UnityWebRequest.Post(addressGetLevelByCharNameAndUid, form_getChar))
+        using (UnityWebRequest www = UnityWebRequest.Post(addressGetLevelByCharNameAndUid, form_getLevel))
         {
             var handler = www.SendWebRequest();
             if (!handler.isDone)
@@ -153,6 +154,7 @@ public class InGameCharLoading : MonoBehaviour
                 Debug.Log("Form upload complete!");
                 LevelID level = LevelJson(www.downloadHandler.text);
                 Debug.Log("level: " + level);
+                Debug.Log("id: " + level._id);
                 hp = level.hp;
                 damage = level.damage;
                 curHp = hp;

@@ -64,7 +64,7 @@ public class LoginScript : MonoBehaviour
 
         if (username.Trim() == "" || password.Trim() == "")
         {
-            AlertText.text = "Không được bỏ trống";
+            AlertText.text = "Username and password cannot be empty";
             AlertPannel.gameObject.SetActive(true);
             FlagPannel.gameObject.SetActive(true);
         }
@@ -87,7 +87,7 @@ public class LoginScript : MonoBehaviour
                 {
                     Debug.Log("Form upload complete!");
                     string respone = removeQuotes(www.downloadHandler.text);
-                    if (respone == "Sai tài khoản hoặc mật khẩu")
+                    if (respone == "Account or password error")
                     {
                         AlertText.text = respone;
                         AlertPannel.gameObject.SetActive(true);

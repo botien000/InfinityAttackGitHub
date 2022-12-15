@@ -32,25 +32,25 @@ public class RegisterScript : MonoBehaviour
         string confirm_password = confirmpasswordField.text;
         if (username.Trim() == "" || name.Trim() == "" || password.Trim() == "" || confirm_password.Trim() == "")
         {
-            AlertText.text = "Không được bỏ trống";
+            AlertText.text = "Fields cannot be empty";
             AlertPannel.gameObject.SetActive(true);
             FlagPannel.gameObject.SetActive(true);
         }
         else if (username.Length < 6 || username.Length > 24)
         {
-            AlertText.text = "Tài khoản phải có từ 6-24 kí tự";
+            AlertText.text = "Username must have 6-24 characters";
             AlertPannel.gameObject.SetActive(true);
             FlagPannel.gameObject.SetActive(true);
         }
         else if (password.Length < 6 || password.Length > 24)
         {
-            AlertText.text = "Mật khẩu phải có từ 6-24 kí tự";
+            AlertText.text = "Password must have 6-24 characters";
             AlertPannel.gameObject.SetActive(true);
             FlagPannel.gameObject.SetActive(true);
         }
         else if (password != confirm_password)
         {
-            AlertText.text = "Mật khẩu và mật khẩu xác nhận không trùng khớp";
+            AlertText.text = "Passwords do not match";
             AlertPannel.gameObject.SetActive(true);
             FlagPannel.gameObject.SetActive(true);
         }
@@ -75,13 +75,18 @@ public class RegisterScript : MonoBehaviour
                 {
                     Debug.Log("Form upload complete!");
                     string respone = removeQuotes(www.downloadHandler.text);
-                    if (respone == "Tài khoản đã tồn tại")
+                    if (respone == "Username already exists")
+                    {
+                        AlertText.text = respone;
+                        AlertPannel.gameObject.SetActive(true);
+                        FlagPannel.gameObject.SetActive(true);
+                    } else if (respone == "Name already exists")
                     {
                         AlertText.text = respone;
                         AlertPannel.gameObject.SetActive(true);
                         FlagPannel.gameObject.SetActive(true);
                     }
-                    else if (respone == "Đăng kí thành công")
+                    else if (respone == "Sign up successfully")
                     {
                         resetInputField();
                         BackToLogin();

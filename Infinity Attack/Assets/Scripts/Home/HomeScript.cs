@@ -200,6 +200,8 @@ public class HomeScript : MonoBehaviour
     public void LogOut()
     {
         PlayerPrefs.SetString("UID", "");
+        PlayerPrefs.SetString("UsernamePP", "");
+        PlayerPrefs.SetString("PasswordPP", "");
         SceneManager.LoadScene(0);
     }
 }

@@ -11,6 +11,14 @@ public class Api
     public readonly string routerRegister = "register";
     public readonly string routerLogin = "login";
 
+    public readonly string routerSendCodeForgot = "sendCodeForgotPass";
+    public readonly string routerForgotChangePass = "forgotPass";
+    public readonly string routerChangePassword = "changePassword";
+    public readonly string routerSendCodeAddEmail = "sendCodeAddEmail";
+    public readonly string routerAddEmail = "addEmail";
+    public readonly string routerSendCodeChangeEmail = "sendCodeChangeEmail";
+    public readonly string routerChangeEmail = "changeEmail";
+
     public readonly string routerGetCharacters = "get-characters";
     public readonly string routerGetUserByName = "getUserByName";
     public readonly string routerGetUserById = "getUserById";

@@ -13,10 +13,15 @@ public class IdleBehavior : StateMachineBehaviour
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if (CharacterObject.instance.attacking)
+        if (CharacterObject.instance.dead == true)
+        {
+            CharacterObject.instance.animator.Play("Die");
+        }
+         else if (CharacterObject.instance.attacking)
         {
             CharacterObject.instance.animator.Play("Attack_1");
         }
+        
 
     }
 

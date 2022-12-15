@@ -62,50 +62,48 @@ public class CharacterObject : MonoBehaviour
 
     private void Update()
     {
-        if (InGameCharLoading.instance.curHp <= 0)
+        if (!dead)
         {
-            Die();
-            dead = true;
-            box.enabled = false;
-        }
-        if (!isAttacked || !dead)
-        {
-            SetDirection();
-        }
-        if (!attacking || !isUltimate || !isAttacked || !dead)
-        {
-            if (!isJump)
+            if (!isAttacked || !dead)
             {
-                if (movingPressing)
-                {
-                    SetAnimation(State.Run);
-                    movePlayer = preMovePlayer;
-                }
-                else if (!movingPressing)
-                {
-                    movePlayer = Vector2.zero;
-                    preMovePlayer = Vector2.zero;
-                    SetAnimation(State.Idle);
-                }
+                SetDirection();
             }
-            else if (isJump)
+            if (!attacking || !isUltimate || !isAttacked || !dead)
             {
-                if (!jumpAttacking || !isAttacked)
+                if (!isJump)
                 {
-                    curY = transform.position.y;
-                    if (curY < preY)
+                    if (movingPressing)
                     {
-                        SetAnimation(State.JumpDown);
-                        preY = curY;
+                        SetAnimation(State.Run);
+                        movePlayer = preMovePlayer;
                     }
-                    else if (curY > preY)
+                    else if (!movingPressing)
                     {
-                        SetAnimation(State.JumpUp);
-                        preY = curY;
+                        movePlayer = Vector2.zero;
+                        preMovePlayer = Vector2.zero;
+                        SetAnimation(State.Idle);
+                    }
+                }
+                else if (isJump)
+                {
+                    if (!jumpAttacking || !isAttacked)
+                    {
+                        curY = transform.position.y;
+                        if (curY < preY)
+                        {
+                            SetAnimation(State.JumpDown);
+                            preY = curY;
+                        }
+                        else if (curY > preY)
+                        {
+                            SetAnimation(State.JumpUp);
+                            preY = curY;
+                        }
                     }
                 }
             }
         }
+        
 
         if (isCooldown)
         {
@@ -151,47 +149,64 @@ public class CharacterObject : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if (!isAttacked)
+        if (!isAttacked &&!dead)
             rgbody.velocity = new Vector2(movePlayer.x * speedRun, rgbody.velocity.y);
+        if (InGameCharLoading.instance.curHp <= 0)
+        {
+            Die();
+            movePlayer = Vector2.zero;
+            dead = true;
+            rgbody.bodyType = RigidbodyType2D.Static;
+        }
     }
     private void SetDirection()
     {
-        if (movePlayer.x < 0)
+        if (!dead)
         {
-            transform.rotation = Quaternion.AngleAxis(180, Vector3.up);
-        }
-        else if (movePlayer.x > 0)
-        {
-            transform.rotation = Quaternion.AngleAxis(0, Vector3.zero);
+            if (movePlayer.x < 0)
+            {
+                transform.rotation = Quaternion.AngleAxis(180, Vector3.up);
+            }
+            else if (movePlayer.x > 0)
+            {
+                transform.rotation = Quaternion.AngleAxis(0, Vector3.zero);
+            }
         }
     }
     private void OnJump(InputAction.CallbackContext obj)
     {
-        if (obj.started)
+        if (!dead)
         {
-            if (!isJump && !isUltimate && !isAttacked)
+
+            if (obj.started)
             {
-                if (!attacking)
+                if (!isJump && !isUltimate && !isAttacked)
                 {
-                    rgbody.AddForce(Vector2.up * forceJump, ForceMode2D.Force);
-                    preY = transform.position.y;
+                    if (!attacking)
+                    {
+                        rgbody.AddForce(Vector2.up * forceJump, ForceMode2D.Force);
+                        preY = transform.position.y;
+                    }
                 }
             }
         }
     }
     private void OnAttack(InputAction.CallbackContext obj)
     {
-        if (obj.started)
+        if (!dead)
         {
-            if (!isJump)
+            if (obj.started)
             {
-                movePlayer = Vector2.zero;
-                attacking = true;
-                nextAttack = true;
-            }
-            else if (isJump)
-            {
-                jumpAttacking = true;
+                if (!isJump)
+                {
+                    movePlayer = Vector2.zero;
+                    attacking = true;
+                    nextAttack = true;
+                }
+                else if (isJump)
+                {
+                    jumpAttacking = true;
+                }
             }
         }
     }
@@ -260,77 +275,86 @@ public class CharacterObject : MonoBehaviour
     /// <param name="state"></param>
     private void SetAnimation(State state)
     {
-        if (curState == state)
-            return;
-        animator.SetInteger("State", (int)state);
-        animator.SetTrigger("Change");
-        curState = state;
+        if (!dead)
+        {
+            if (curState == state)
+                return;
+            animator.SetInteger("State", (int)state);
+            animator.SetTrigger("Change");
+            curState = state;
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.CompareTag("Ground") && collision.otherCollider.name == "Foot")
+        if (!dead)
         {
-            isJump = false;
-            isGround = true;
-            jumpAttacking = false;
-            if (movePlayer == Vector2.zero)
+            if (collision.collider.CompareTag("Ground") && collision.otherCollider.name == "Foot")
             {
-                SetAnimation(State.Idle);
-            }
-            else
-            {
-                SetAnimation(State.Run);
-            }
-        }
-        if (!isUltimate)
-        {
-            if (collision.gameObject.tag == "Enemy")
-            {
-                if (EnemyHealth.instance.health > 0)
+                isJump = false;
+                isGround = true;
+                jumpAttacking = false;
+                if (movePlayer == Vector2.zero)
                 {
-                    Hit();
-                    StartCoroutine(TakeHit());
-                    Vector2 difference = (transform.position - collision.transform.position).normalized;
-                    Vector2 force = difference * 5f;
-                    Debug.Log(force);
-                    rgbody.AddForce(difference * force, ForceMode2D.Impulse);
-                    InGameCharLoading.instance.Damage(EnemyWeapon.instance.attackDamage);
+                    SetAnimation(State.Idle);
+                }
+                else
+                {
+                    SetAnimation(State.Run);
                 }
             }
-
-            if (collision.gameObject.tag == "FlyingEnemy")
+            if (!isUltimate)
             {
-                if (FlyingEnemy.instance.health > 0)
+                if (collision.gameObject.tag == "Enemy")
                 {
+                    if (EnemyHealth.instance.health > 0)
+                    {
+                        Hit();
+                        StartCoroutine(TakeHit());
+                        Vector2 difference = (transform.position - collision.transform.position).normalized;
+                        Vector2 force = difference * 5f;
+                        Debug.Log(force);
+                        rgbody.AddForce(difference * force, ForceMode2D.Impulse);
+                        InGameCharLoading.instance.Damage(EnemyWeapon.instance.attackDamage);
+                    }
+                }
+
+                if (collision.gameObject.tag == "FlyingEnemy")
+                {
+                    if (FlyingEnemy.instance.health > 0)
+                    {
+                        Hit();
+                        StartCoroutine(TakeHit());
+                        Vector2 difference = (transform.position - collision.transform.position).normalized;
+                        Vector2 force = difference * 5f;
+                        Debug.Log(force);
+                        rgbody.AddForce(difference * force, ForceMode2D.Impulse);
+                        InGameCharLoading.instance.Damage(EnemyWeapon.instance.attackDamage);
+                    }
+                }
+
+                if (collision.gameObject.tag == "FireBall")
+                {
+                    Debug.Log("trigger fireball");
                     Hit();
-                    StartCoroutine(TakeHit());
                     Vector2 difference = (transform.position - collision.transform.position).normalized;
-                    Vector2 force = difference * 5f;
+                    Vector2 force = difference * 7f;
                     Debug.Log(force);
                     rgbody.AddForce(difference * force, ForceMode2D.Impulse);
-                    InGameCharLoading.instance.Damage(EnemyWeapon.instance.attackDamage);
+                    StartCoroutine(TakeHit());
                 }
-            }
-
-            if (collision.gameObject.tag == "FireBall")
-            {
-                Debug.Log("trigger fireball");
-                Hit();
-                Vector2 difference = (transform.position - collision.transform.position).normalized;
-                Vector2 force = difference * 7f;
-                Debug.Log(force);
-                rgbody.AddForce(difference * force, ForceMode2D.Impulse);
-                StartCoroutine(TakeHit());
             }
         }
     }
     private void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.collider.CompareTag("Ground") && collision.otherCollider.name == "Foot")
+        if (!dead)
         {
-            isGround = false;
-            isJump = true;
+            if (collision.collider.CompareTag("Ground") && collision.otherCollider.name == "Foot")
+            {
+                isGround = false;
+                isJump = true;
+            }
         }
     }
     private void FindObjects()
