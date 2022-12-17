@@ -41,15 +41,22 @@ public class FireBall : MonoBehaviour
             GetComponent<BoxCollider2D>().isTrigger = true;
             Explosion = true;
             Destroy(gameObject, 1f);
-            velocity = new Vector2(0, 0);
-            InGameCharLoading.instance.Damage(atkDmg);
+            velocity = Vector2.zero;
+
+            if (CharacterObject.instance.isAttacked)
+            {
+                return;
+            }
+            else
+            {
+                InGameCharLoading.instance.Damage(atkDmg);
+            }
         }
         else
         {
-            GetComponent<BoxCollider2D>().isTrigger = true;
             Explosion = true;
             Destroy(gameObject, 1f);
-            velocity = new Vector2(0, 0);
+            velocity = Vector2.zero;
         }
 
     }

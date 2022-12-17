@@ -13,14 +13,19 @@ public class FlyingEnemy : MonoBehaviour
     Vector2 startingPoint;
 
     public int health;
+    public int maxHealth;
+    public int attackDamage;
+    public float knockback;
     public bool takeDamage = false;
     public float timeLoop, timeDead;
     public bool isInvulnerable = false;
-    private Vector2 velocityDamaged;
     private Rigidbody2D rb;
+    private BoxCollider2D bc;
     private bool die = false;
-
+    public EnemyHealthBar healthBar;
     public static FlyingEnemy instance;
+    private bool colGround = false;
+    private bool colPlayer = false;
     void Start()
     {
         if (instance == null)
@@ -30,7 +35,9 @@ public class FlyingEnemy : MonoBehaviour
         startingPoint = transform.position;
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
-        velocityDamaged = new Vector2(0, 0);
+        bc = GetComponent<BoxCollider2D>();
+        health = maxHealth;
+        healthBar.SetHealth(health, maxHealth);
     }
 
     
@@ -47,7 +54,7 @@ public class FlyingEnemy : MonoBehaviour
             {
                 if (isInvulnerable)
                 {
-                    rb.velocity = velocityDamaged;
+                    rb.velocity = Vector2.zero;
                 }
 
                 if (takeDamage)
@@ -78,10 +85,7 @@ public class FlyingEnemy : MonoBehaviour
             }
             else
             {
-                Die();
-                rb.velocity = velocityDamaged;
-                rb.bodyType = RigidbodyType2D.Dynamic;
-                rb.gravityScale = speed * 3;
+                rb.velocity = Vector2.zero;             
             }
         }
             
@@ -112,13 +116,20 @@ public class FlyingEnemy : MonoBehaviour
             {
                 animator.SetTrigger("Attack");
                 time = CDAtk;
+                if (CharacterObject.instance.isAttacked)
+                {
+                    return;
+                }
+                else
+                {
+                    InGameCharLoading.instance.Damage(attackDamage);
+                }
             }          
         }
     }
 
     public void TakeDamageFlyingEnemy(int damage)
     {
-        Debug.Log("Take damage: " + damage);
         if (isInvulnerable)
         {
             return;
@@ -127,17 +138,21 @@ public class FlyingEnemy : MonoBehaviour
         {
             takeDamage = true;
             health -= damage;
+            healthBar.SetHealth(health, maxHealth);
         }
 
         if (health <= 0)
         {
             die = true;
+            Die();
         }
     }
 
     private void Die()
     {
         animator.SetBool("Dead", true);
+        rb.bodyType = RigidbodyType2D.Dynamic;
+        rb.gravityScale = speed * 3;
     }
 
     private void Hurt()
@@ -156,10 +171,36 @@ public class FlyingEnemy : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Ground")
+        if (collision.gameObject.tag == "Ground" && die && !colPlayer)
         {
+            colGround = true;           
+            rb.bodyType = RigidbodyType2D.Static;
+            bc.isTrigger = true;
             Destroy(gameObject, timeDead);
             SystemData.instance.FlagDataEnemy();
+        }
+
+        if(collision.gameObject.tag == "Player" && die && !colGround)
+        {
+            colPlayer = true;
+            rb.bodyType = RigidbodyType2D.Static;
+            bc.isTrigger = true;
+            Destroy(gameObject, timeDead);
+            SystemData.instance.FlagDataEnemy();
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "PlayerAttack" && health > 0)
+        {
+            if (PlayerAttack.instance.box != null)
+            {
+                Vector2 difference = (transform.position - collision.transform.position).normalized;
+                Vector2 force = difference * knockback;
+                rb.AddForce(difference * force, ForceMode2D.Impulse);
+                TakeDamageFlyingEnemy(InGameCharLoading.instance.damage);
+            }
         }
     }
 }

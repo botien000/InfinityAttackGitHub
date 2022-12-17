@@ -5,37 +5,15 @@ using UnityEngine.UIElements;
 
 public class PlayerAttack : MonoBehaviour
 {
-    private BoxCollider2D box;
-
+    public BoxCollider2D box;
+    public static PlayerAttack instance;
     // Start is called before the first frame update
     void Start()
     {
+        if (instance == null)
+        {
+            instance = this;
+        }
         box = GetComponentInChildren<BoxCollider2D>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if(collision.gameObject.tag == "Enemy")
-        {
-            if (box != null)
-            {
-                EnemyHealth.instance.TakeDamage(InGameCharLoading.instance.damage);
-            }
-        }
-
-        if (collision.gameObject.tag == "FlyingEnemy")
-        {
-            if (box != null)
-            {
-                FlyingEnemy.instance.TakeDamageFlyingEnemy(InGameCharLoading.instance.damage);
-            }
-        }
-
     }
 }

@@ -13,6 +13,7 @@ public class Enemy : MonoBehaviour
     public float speed;
     public float attackRange;
     public float detectionRange;
+    public float heightRange;
     private void Awake()
     {
       
@@ -81,45 +82,5 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    public void SetPositionHealthBar(bool atk, bool hit)
-    {
-        if (!atk && !hit)
-        {
-            if (isFlipped)
-            {
-                healthBar.SetPositionHealthBarMoveToLeft();
-            }
-            else
-            {
-                healthBar.SetPositionHealthBarMoveToRight();
-            }
-        }
-        
-        if(atk && !hit)
-        {
-
-            if (isFlipped)
-            {
-                healthBar.SetPositionHealthBarAttackLeft();
-            }
-            else
-            {
-                healthBar.SetPositionHealthBarAttackRight();
-            }
-        }
-        
-        if (hit && !atk)
-        {
-
-            if (isFlipped)
-            {
-                healthBar.SetPositionHealthBarTakeDamageLeft();
-            }
-            else
-            {
-                healthBar.SetPositionHealthBarTakeDamageRight();
-            }
-        }
-
-    }
+    
 }

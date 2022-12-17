@@ -8,9 +8,13 @@ public class Enemy_Run : StateMachineBehaviour
     private float speed;
     private float attackRange;
     private float detectionRange;
+    private float heightRange;
     private float LeftBound;
     private float RightBound;
     private float distance;
+    private float height;
+    private float heightPlayer;
+    private float heightEnemy;
     private float time = 0, timeLoop;
     Rigidbody2D rb;
     Enemy enemy;
@@ -20,7 +24,7 @@ public class Enemy_Run : StateMachineBehaviour
     Vector2 newPos;
     private bool moveToRight = true;
     private bool hitBound = false;
-    private bool atk = false;
+    private bool hit = false;
 
 
 
@@ -38,6 +42,7 @@ public class Enemy_Run : StateMachineBehaviour
         speed = enemy.speed;
         attackRange = enemy.attackRange;
         detectionRange = enemy.detectionRange;
+        heightRange = enemy.heightRange;
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -46,88 +51,107 @@ public class Enemy_Run : StateMachineBehaviour
         player = enemy.player;
         if (!player)
             return;
-        distance = Vector2.Distance(player.position, rb.position);
-        atk = false;
-        time -= Time.deltaTime;
-        if (moveToRight)
+        hit = health.isInvulnerable;
+        if (!hit)
         {
-            enemy.SetPositionHealthBar(atk, health.takeDamage);
-            enemy.checkMove(moveToRight);
-            target = new Vector2(RightBound, rb.position.y);
-            newPos = Vector2.MoveTowards(rb.position, target, speed * Time.fixedDeltaTime);
-            rb.MovePosition(newPos);
-
-            if (distance < detectionRange)
+            distance = Vector2.Distance(player.position, rb.position);
+            time -= Time.deltaTime;
+            if (moveToRight)
             {
-                enemy.LookAtPlayer();
-                target = new Vector2(player.position.x, rb.position.y);
+                enemy.checkMove(moveToRight);
+                target = new Vector2(RightBound, rb.position.y);
                 newPos = Vector2.MoveTowards(rb.position, target, speed * Time.fixedDeltaTime);
                 rb.MovePosition(newPos);
 
-                if (distance <= attackRange)
+                if (rb.position.x == RightBound - 0.01)
                 {
-                    if (time < 0)
-                    {
-                        atk = true;
-                        enemy.SetPositionHealthBar(atk, health.takeDamage);
-                        animator.SetTrigger("Attack");
-                        time = timeLoop;
-                    }
+                    hitBound = true;
+                    enemy.LookAtBound(hitBound, moveToRight);
                 }
+
+                if (rb.position.x >= RightBound - 0.01)
+                {
+                    moveToRight = false;
+                    hitBound = false;
+                }
+
+                heightPlayer = player.position.y;
+                heightEnemy = rb.position.y;
+                height = Math.Abs(Math.Abs(heightPlayer) - Math.Abs(heightEnemy));
+
+                if (height < heightRange)
+                {
+                    if (distance < detectionRange)
+                    {
+                        enemy.LookAtPlayer();
+                        target = new Vector2(player.position.x, rb.position.y);
+                        newPos = Vector2.MoveTowards(rb.position, target, speed * Time.fixedDeltaTime);
+                        rb.MovePosition(newPos);
+
+                        if (distance <= attackRange)
+                        {
+                            if (time < 0)
+                            {
+                                animator.SetTrigger("Attack");
+                                time = timeLoop;
+                            }
+                        }
+                    }                
+                }
+                
+
             }
 
-            if (rb.position.x == RightBound - 0.01)
+            if (!moveToRight)
             {
-                hitBound = true;
-                enemy.LookAtBound(hitBound, moveToRight);
-            }
-
-            if (rb.position.x >= RightBound - 0.01)
-            {
-                moveToRight = false;
-                hitBound = false;
-            }
-        }
-
-        if (!moveToRight)
-        {
-            enemy.SetPositionHealthBar(atk, health.takeDamage);
-            enemy.checkMove(moveToRight);
-            target = new Vector2(LeftBound, rb.position.y);
-            newPos = Vector2.MoveTowards(rb.position, target, speed * Time.fixedDeltaTime);
-            rb.MovePosition(newPos);
-
-            if (distance < detectionRange)
-            {
-                enemy.LookAtPlayer();
-                target = new Vector2(player.position.x, rb.position.y);
+                enemy.checkMove(moveToRight);
+                target = new Vector2(LeftBound, rb.position.y);
                 newPos = Vector2.MoveTowards(rb.position, target, speed * Time.fixedDeltaTime);
                 rb.MovePosition(newPos);
 
-                if (distance <= attackRange)
+                if (rb.position.x == LeftBound + 0.01)
                 {
-                    if (time < 0)
-                    {
-                        atk = true;
-                        enemy.SetPositionHealthBar(atk, health.takeDamage);
-                        animator.SetTrigger("Attack");
-                        time = timeLoop;
-                    }
+                    hitBound = true;
+                    enemy.LookAtBound(hitBound, moveToRight);
                 }
-            }
 
-            if (rb.position.x == LeftBound + 0.01)
-            {
-                hitBound = true;
-                enemy.LookAtBound(hitBound, moveToRight);
-            }
+                if (rb.position.x <= LeftBound + 0.01)
+                {
+                    moveToRight = true;
+                    hitBound = false;
+                }
 
-            if (rb.position.x <= LeftBound + 0.01)
-            {
-                moveToRight = true;
-                hitBound = false;
+                heightPlayer = player.position.y;
+                heightEnemy = rb.position.y;
+                height = Math.Abs(Math.Abs(heightPlayer) - Math.Abs(heightEnemy));
+
+                if (height < heightRange)
+                {
+                    if (distance < detectionRange)
+                    {
+                        enemy.LookAtPlayer();
+                        target = new Vector2(player.position.x, rb.position.y);
+                        newPos = Vector2.MoveTowards(rb.position, target, speed * Time.fixedDeltaTime);
+                        rb.MovePosition(newPos);
+
+                        if (distance <= attackRange)
+                        {
+                            if (time < 0)
+                            {
+                                animator.SetTrigger("Attack");
+                                time = timeLoop;
+                            }
+                        }
+                    }               
+                }             
             }
+                    
         }
+        else
+        {         
+            rb.velocity = Vector2.zero;
+        }
+        
 
     }
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state

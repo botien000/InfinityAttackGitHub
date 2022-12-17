@@ -64,7 +64,7 @@ public class CharacterObject : MonoBehaviour
     {
         if (!dead)
         {
-            if (!isAttacked || !dead)
+            if (!isAttacked || !dead || !attacking)
             {
                 SetDirection();
             }
@@ -163,13 +163,16 @@ public class CharacterObject : MonoBehaviour
     {
         if (!dead)
         {
-            if (movePlayer.x < 0)
+            if (!attacking)
             {
-                transform.rotation = Quaternion.AngleAxis(180, Vector3.up);
-            }
-            else if (movePlayer.x > 0)
-            {
-                transform.rotation = Quaternion.AngleAxis(0, Vector3.zero);
+                if (movePlayer.x < 0)
+                {
+                    transform.rotation = Quaternion.AngleAxis(180, Vector3.up);
+                }
+                else if (movePlayer.x > 0)
+                {
+                    transform.rotation = Quaternion.AngleAxis(0, Vector3.zero);
+                }
             }
         }
     }
@@ -180,7 +183,7 @@ public class CharacterObject : MonoBehaviour
 
             if (obj.started)
             {
-                if (!isJump && !isUltimate && !isAttacked)
+                if (!isJump && !isUltimate && !isAttacked )
                 {
                     if (!attacking)
                     {
@@ -235,7 +238,7 @@ public class CharacterObject : MonoBehaviour
 
     public void Hit()
     {
-        if (dead == false)
+        if (dead == false && !isAttacked)
         {
 
             isAttacked = true;
@@ -305,44 +308,47 @@ public class CharacterObject : MonoBehaviour
             }
             if (!isUltimate)
             {
-                if (collision.gameObject.tag == "Enemy")
+                if (!isAttacked)
                 {
-                    if (EnemyHealth.instance.health > 0)
+                    if (collision.gameObject.tag == "Enemy")
                     {
-                        Hit();
-                        StartCoroutine(TakeHit());
-                        Vector2 difference = (transform.position - collision.transform.position).normalized;
-                        Vector2 force = difference * 5f;
-                        Debug.Log(force);
-                        rgbody.AddForce(difference * force, ForceMode2D.Impulse);
-                        InGameCharLoading.instance.Damage(EnemyWeapon.instance.attackDamage);
+                        if (EnemyHealth.instance.health > 0 && !EnemyHealth.instance.takeDamage)
+                        {
+                            Hit();
+                            StartCoroutine(TakeHit());
+                            Vector2 difference = (transform.position - collision.transform.position).normalized;
+                            Vector2 force = difference * 3f;
+                            Debug.Log("Force: " + force);
+                            rgbody.AddForce(difference * force, ForceMode2D.Impulse);
+                            InGameCharLoading.instance.Damage(EnemyWeapon.instance.attackDamage);
+                        }
                     }
-                }
 
-                if (collision.gameObject.tag == "FlyingEnemy")
-                {
-                    if (FlyingEnemy.instance.health > 0)
+                    if (collision.gameObject.tag == "FlyingEnemy")
                     {
-                        Hit();
-                        StartCoroutine(TakeHit());
-                        Vector2 difference = (transform.position - collision.transform.position).normalized;
-                        Vector2 force = difference * 5f;
-                        Debug.Log(force);
-                        rgbody.AddForce(difference * force, ForceMode2D.Impulse);
-                        InGameCharLoading.instance.Damage(EnemyWeapon.instance.attackDamage);
+                        if (FlyingEnemy.instance.health > 0 && !FlyingEnemy.instance.takeDamage)
+                        {
+                            Hit();
+                            StartCoroutine(TakeHit());
+                            Vector2 difference = (transform.position - collision.transform.position).normalized;
+                            Vector2 force = difference * 3f;
+                            Debug.Log("Force: " + force);
+                            rgbody.AddForce(difference * force, ForceMode2D.Impulse);
+                            InGameCharLoading.instance.Damage(EnemyWeapon.instance.attackDamage);
+                        }
                     }
-                }
 
-                if (collision.gameObject.tag == "FireBall")
-                {
-                    Debug.Log("trigger fireball");
-                    Hit();
-                    Vector2 difference = (transform.position - collision.transform.position).normalized;
-                    Vector2 force = difference * 7f;
-                    Debug.Log(force);
-                    rgbody.AddForce(difference * force, ForceMode2D.Impulse);
-                    StartCoroutine(TakeHit());
-                }
+                    if (collision.gameObject.tag == "FireBall")
+                    {
+                        Debug.Log("trigger fireball");
+                        Hit();
+                        Vector2 difference = (transform.position - collision.transform.position).normalized;
+                        Vector2 force = difference * 3f;
+                        Debug.Log("Force: " + force);
+                        rgbody.AddForce(difference * force, ForceMode2D.Impulse);
+                        StartCoroutine(TakeHit());
+                    }
+                }             
             }
         }
     }

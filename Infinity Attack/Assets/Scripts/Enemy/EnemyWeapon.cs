@@ -33,7 +33,14 @@ public class EnemyWeapon : MonoBehaviour
         Collider2D colInfo = Physics2D.OverlapCircle(pos, attackRangeDamage, attackMask);
         if (colInfo != null)
         {
-            //colInfo.GetComponent<PlayerHealth>().TakeDamage(attackDamage);
+            if (CharacterObject.instance.isAttacked)
+            {
+                return;
+            }
+            else
+            {
+                InGameCharLoading.instance.Damage(attackDamage);
+            }           
         }
     }
 

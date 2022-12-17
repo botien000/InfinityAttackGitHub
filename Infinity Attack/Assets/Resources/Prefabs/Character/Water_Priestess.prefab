@@ -71,6 +71,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7b4c68adb0f5c3459398067e28c4e56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  box: {fileID: 0}
 --- !u!1 &1676938265
 GameObject:
   m_ObjectHideFlags: 0
@@ -145,7 +146,7 @@ GameObject:
   - component: {fileID: 1781760283}
   m_Layer: 7
   m_Name: Water_Priestess
-  m_TagString: Player
+  m_TagString: PlayerAttack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

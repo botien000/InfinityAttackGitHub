@@ -108,9 +108,9 @@ TextureImporter:
       name: Attack_0
       rect:
         serializedVersion: 2
-        x: 40
-        y: 48
-        width: 80
+        x: 60
+        y: 49
+        width: 82
         height: 80
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -129,9 +129,9 @@ TextureImporter:
       name: Attack_1
       rect:
         serializedVersion: 2
-        x: 190
+        x: 210
         y: 49
-        width: 80
+        width: 82
         height: 80
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -150,9 +150,9 @@ TextureImporter:
       name: Attack_2
       rect:
         serializedVersion: 2
-        x: 333
+        x: 353
         y: 49
-        width: 80
+        width: 82
         height: 80
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -171,9 +171,9 @@ TextureImporter:
       name: Attack_3
       rect:
         serializedVersion: 2
-        x: 482
+        x: 503
         y: 49
-        width: 80
+        width: 82
         height: 80
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -192,9 +192,9 @@ TextureImporter:
       name: Attack_4
       rect:
         serializedVersion: 2
-        x: 633
+        x: 653
         y: 49
-        width: 80
+        width: 82
         height: 80
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -213,9 +213,9 @@ TextureImporter:
       name: Attack_5
       rect:
         serializedVersion: 2
-        x: 788
+        x: 808
         y: 49
-        width: 80
+        width: 82
         height: 80
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -234,9 +234,9 @@ TextureImporter:
       name: Attack_6
       rect:
         serializedVersion: 2
-        x: 933
+        x: 968
         y: 49
-        width: 120
+        width: 82
         height: 80
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -255,9 +255,9 @@ TextureImporter:
       name: Attack_7
       rect:
         serializedVersion: 2
-        x: 1088
+        x: 1118
         y: 49
-        width: 112
+        width: 82
         height: 80
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
