@@ -167,7 +167,7 @@ public class FriendManager : MonoBehaviour
                 announcement.gameObject.SetActive(true);
                 announcement.Init("Xoá thành công", 1);
                 friends.Remove(friendGO);
-                DestroyImmediate(friendGO);
+                DestroyImmediate(friendGO.gameObject);
                 Debug.Log("Delete Sucessfully");
             }
             else

@@ -1,13 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+
     public static GameManager instance;
 
+    private List<Camera> listCamera;
     private Camera oldCamera;
     private CharacterObject oldPlayer;
 
@@ -15,6 +18,11 @@ public class GameManager : MonoBehaviour
     {
         if (instance == null)
         {
+            instance = this;
+        }
+        else
+        {
+            DestroyImmediate(instance.gameObject);
             instance = this;
         }
     }
@@ -37,6 +45,11 @@ public class GameManager : MonoBehaviour
     private int amountKilledEnemy;
     private int amountKilledBoss;
 
+    private void Start()
+    {
+        if(SoundManager.instance != null)
+        SoundManager.instance.SetNormalMapMusic();
+    }
     public void SetStateGame(StateGame state)
     {
         switch (state)
@@ -65,10 +78,6 @@ public class GameManager : MonoBehaviour
         {
             Destroy(oldPlayer.gameObject);
         }
-        if (oldCamera != null)
-        {
-            Destroy(oldCamera.gameObject);
-        }
         Destroy(gameObject);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
@@ -76,8 +85,85 @@ public class GameManager : MonoBehaviour
     {
         DontDestroyOnLoad(player);
         DontDestroyOnLoad(this);
-        DontDestroyOnLoad(Camera.main);
+        listCamera = FindObjectsOfType<Camera>().ToList();
+        if(listCamera.Count > 2)
+        {
+            foreach (var camera in listCamera)
+            {
+                if(camera.gameObject.name == "Main Camera")
+                {
+                    DestroyImmediate(camera.gameObject);
+                    listCamera.Remove(camera);
+                    break;
+                }
+            }
+        }
         oldPlayer = player;
         oldCamera = Camera.main;
+        DontDestroyOnLoad(Camera.main);
     }
+
+    public void RemoveAllDontDestroyInGame()
+    {
+        Destroy(oldPlayer.gameObject);
+        Destroy(oldCamera.gameObject);
+        Destroy(gameObject);
+    }
+
+    /// <summary>
+    /// Count enemy is killed
+    /// </summary>
+    /// <param name="count"></param>
+    public void CountKilledEnemy(int count)
+    {
+        amountKilledEnemy += count;
+        curTotalGold = amountKilledEnemy * goldPerEnemy;
+    }
+
+    /// <summary>
+    /// Count boss is killed
+    /// </summary>
+    /// <param name="count"></param>
+    public void CountKilledBoss(int count)
+    {
+        amountKilledBoss += count;
+        curTotalGem = amountKilledBoss * gemKillBoss;
+    }
+
+    /// <summary>
+    /// Get total gem
+    /// </summary>
+    /// <returns></returns>
+    public int GetTotalGem()
+    {
+        return curTotalGem;
+    }
+
+    /// <summary>
+    /// Get total gold
+    /// </summary>
+    /// <returns></returns>
+    public int GetTotalGold()
+    {
+        return curTotalGold;
+    }
+
+    /// <summary>
+    /// Get amount enemy is killed
+    /// </summary>
+    /// <returns></returns>
+    public int GetKilledEnemy()
+    {
+        return amountKilledEnemy;
+    }
+
+    /// <summary>
+    /// Get amount boss is killed
+    /// </summary>
+    /// <returns></returns>
+    public int GetKilledBoss()
+    {
+        return amountKilledBoss;
+    }
+
 }

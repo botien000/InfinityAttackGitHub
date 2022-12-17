@@ -32,11 +32,13 @@ public class LoginScript : MonoBehaviour
 
     private void Start()
     {
+        SoundManager.instance.SetLg_ResMusic();
         usernameField.text = PlayerPrefs.GetString("UsernamePP", "");
         passwordField.text = PlayerPrefs.GetString("PasswordPP", "");
     }
     public void OnLoginClick()
     {
+        SoundManager.instance.SetSoundClick();
         createPlayerPref();
         instanceIP = Api.Instance;
         StartCoroutine(TryLogin());
@@ -262,6 +264,7 @@ public class LoginScript : MonoBehaviour
     }
     public void resetInputField()
     {
+        SoundManager.instance.SetSoundClick();
         usernameField.text = "";
         passwordField.text = "";
     }

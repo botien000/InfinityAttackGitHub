@@ -317,7 +317,9 @@ public class CharacterObject : MonoBehaviour
                             Hit();
                             StartCoroutine(TakeHit());
                             Vector2 difference = (transform.position - collision.transform.position).normalized;
+
                             Vector2 force = difference * 3f;
+
                             Debug.Log("Force: " + force);
                             rgbody.AddForce(difference * force, ForceMode2D.Impulse);
                             InGameCharLoading.instance.Damage(EnemyWeapon.instance.attackDamage);
@@ -378,7 +380,7 @@ public class CharacterObject : MonoBehaviour
         }
 
         Minimap minimap = FindObjectOfType<Minimap>();
-        minimap.setTransform(transform);
+        minimap.SetTransform(transform);
     }
     private IEnumerator TakeHit()
     {

@@ -165,7 +165,7 @@ public class HomeScript : MonoBehaviour
                 anim.SetInteger("CharInt", CharInt);
 
                 //find respone friend
-                //findResponeFriend.Find();
+                findResponeFriend.Find();
             }
             www.Dispose();
         }
@@ -199,9 +199,9 @@ public class HomeScript : MonoBehaviour
 
     public void LogOut()
     {
-        PlayerPrefs.SetString("UID", "");
-        PlayerPrefs.SetString("UsernamePP", "");
-        PlayerPrefs.SetString("PasswordPP", "");
+        //PlayerPrefs.SetString("UID", "");
+        //PlayerPrefs.SetString("UsernamePP", "");
+        //PlayerPrefs.SetString("PasswordPP", "");
         SceneManager.LoadScene(0);
     }
 }

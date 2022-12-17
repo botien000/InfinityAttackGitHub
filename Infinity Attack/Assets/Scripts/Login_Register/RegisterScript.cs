@@ -22,6 +22,7 @@ public class RegisterScript : MonoBehaviour
 
     public void OnRegisterClick()
     {
+        SoundManager.instance.SetSoundClick();
         StartCoroutine(TryRegister());
     }
     private IEnumerator TryRegister()
@@ -96,7 +97,7 @@ public class RegisterScript : MonoBehaviour
         }
     }
 
-    public void resetInputField()
+    public void resetInputField() 
     {
         usernameField.text = "";
         nameField.text = "";
@@ -105,6 +106,7 @@ public class RegisterScript : MonoBehaviour
     }
     public void BackToLogin()
     {
+        SoundManager.instance.SetSoundClick();
         LoginPannel.gameObject.SetActive(true);
         RegisterPannel.gameObject.SetActive(false);
     }

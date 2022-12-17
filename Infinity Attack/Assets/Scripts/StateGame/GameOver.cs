@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -21,6 +22,7 @@ public class GameOver : MonoBehaviour
     private void PressBtnHome()
     {
         SystemData.instance.updateAchieved();
+        GameManager.instance.RemoveAllDontDestroyInGame();
         SceneManager.LoadScene("Home");
     }
 
@@ -34,5 +36,27 @@ public class GameOver : MonoBehaviour
     {
         txtPlusGold.text = gold;
         txtPlusGem.text = gem;
+    }
+
+    public void SetLogKilledEnemy(int count, int total)
+    {
+        txtLogKilledEnemy.text = "Number of enemies that have been killed: " + count + "/" + total;
+    }
+
+    public void SetLogKilledBoss(int count, int total)
+    {
+        txtLogKilledBoss.text = "Number of bosses that have been killed: " + count + "/" + total;
+    }
+
+    public void OnShow(bool isWin)
+    {
+        if (isWin)
+        {
+            txtStateOver.text = "VICTORY";
+        }
+        else
+        {
+            txtStateOver.text = "DEFEAT";
+        }
     }
 }

@@ -1,6 +1,7 @@
 using Newtonsoft.Json;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Networking;
 
@@ -8,6 +9,8 @@ public class FindResponeFriend : MonoBehaviour
 {
     [SerializeField] AnnouncementFriendList announcementFriendList;
     [SerializeField] GameObject loadingPanel;
+    [SerializeField] GameObject confirmPanel;
+    [SerializeField] TextMeshProUGUI txtConfirm;
 
     bool isGetUser, statusAnnouncement;
     FriendEntity friendEntity;
@@ -103,6 +106,8 @@ public class FindResponeFriend : MonoBehaviour
             StatusDeleteFriend status = JsonConvert.DeserializeObject<StatusDeleteFriend>(json);
             if (status.acknowledged && status.deletedCount > 0)
             {
+                confirmPanel.SetActive(true);
+                txtConfirm.text = "Huỷ thành công";
                 Debug.Log("Delete Sucessfully");
             }
             else
@@ -135,7 +140,8 @@ public class FindResponeFriend : MonoBehaviour
             Debug.Log("IEAddTrueFriend:   " + json);
             if (json != null)
             {
-                Debug.Log("Make a friend");
+                confirmPanel.SetActive(true);
+                txtConfirm.text = "Kết bạn thành công";
                 friendEntity = JsonConvert.DeserializeObject<FriendEntity>(json);
 
             }
