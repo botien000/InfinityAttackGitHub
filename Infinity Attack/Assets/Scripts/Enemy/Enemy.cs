@@ -14,11 +14,23 @@ public class Enemy : MonoBehaviour
     public float attackRange;
     public float detectionRange;
     public float heightRange;
+    public static Enemy instance;
     private void Awake()
     {
-      
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+
+        }
     }
 
+    private void Update()
+    {
+        
+    }
     public void setTransform(Transform transform)
     {
         player = transform;
@@ -63,6 +75,24 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    public void HitEnemy(bool hitEnemy, bool moveToRight)
+    {
+        Vector3 flipped = transform.localScale;
+        flipped.z *= -1f;
+
+        if (hitEnemy && moveToRight && !isFlipped)
+        {
+            transform.localScale = flipped;
+            transform.Rotate(0f, 180f, 0f);
+            isFlipped = true;
+        }
+        else if (hitEnemy && !moveToRight && isFlipped)
+        {
+            transform.localScale = flipped;
+            transform.Rotate(0f, 180f, 0f);
+            isFlipped = false;
+        }
+    }
     public void checkMove(bool moveToRight)
     {
         Vector3 flipped = transform.localScale;
@@ -81,6 +111,4 @@ public class Enemy : MonoBehaviour
             isFlipped = true;
         }
     }
-
-    
 }

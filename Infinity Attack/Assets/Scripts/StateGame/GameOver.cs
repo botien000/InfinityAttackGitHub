@@ -16,8 +16,13 @@ public class GameOver : MonoBehaviour
 
     private void Start()
     {
-        btnHome.onClick.AddListener(() => PressBtnHome());
+        SetPlus();
+        SetLogKilledEnemy();
+        SetLogKilledBoss();
+        OnShow();
+        btnHome.onClick.AddListener(() => PressBtnHome());     
     }
+
 
     private void PressBtnHome()
     {
@@ -26,31 +31,26 @@ public class GameOver : MonoBehaviour
         SceneManager.LoadScene("Home");
     }
 
-    public void SetTextLog(string enemy,string boss)
+
+    public void SetPlus()
     {
-        txtLogKilledEnemy.text = enemy;
-        txtLogKilledBoss.text = boss;
+        txtPlusGold.text = SystemData.instance.curTotalGold+"";
+        txtPlusGem.text = SystemData.instance.curTotalGem+"";
     }
 
-    public void SetPlus(string gold,string gem)
+    public void SetLogKilledEnemy()
     {
-        txtPlusGold.text = gold;
-        txtPlusGem.text = gem;
+        txtLogKilledEnemy.text = "Number of enemies was killed: " + SystemData.instance.flagEnemy + "/" + SystemData.instance.totalEnemy;
     }
 
-    public void SetLogKilledEnemy(int count, int total)
+    public void SetLogKilledBoss()
     {
-        txtLogKilledEnemy.text = "Number of enemies that have been killed: " + count + "/" + total;
+        txtLogKilledBoss.text = "Number of bosses was killed: " + SystemData.instance.flagBoss;
     }
 
-    public void SetLogKilledBoss(int count, int total)
+    public void OnShow()
     {
-        txtLogKilledBoss.text = "Number of bosses that have been killed: " + count + "/" + total;
-    }
-
-    public void OnShow(bool isWin)
-    {
-        if (isWin)
+        if (SystemData.instance.flagEnemy == SystemData.instance.totalEnemy && SystemData.instance.flagBoss == 1)
         {
             txtStateOver.text = "VICTORY";
         }
@@ -58,5 +58,15 @@ public class GameOver : MonoBehaviour
         {
             txtStateOver.text = "DEFEAT";
         }
+    }
+
+    private void OnEnable()
+    {
+        Time.timeScale = 0f;
+    }
+
+    private void OnDisable()
+    {
+        Time.timeScale = 1.0f;
     }
 }

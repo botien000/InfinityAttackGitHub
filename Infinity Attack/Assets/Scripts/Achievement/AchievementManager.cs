@@ -10,8 +10,7 @@ using UnityEngine.SceneManagement;
 public class AchievementManager : MonoBehaviour
 {
     private Api instanceIP;
-    [SerializeField] private Achievement[] achievementOwnList;
-    [SerializeField] private Character[] charList;
+    private Achievement[] achievementOwnList;
     [SerializeField] private GameObject loadingPanel;
     [SerializeField] private TextMeshProUGUI goldHome;
     [SerializeField] private TextMeshProUGUI gemHome;
@@ -25,27 +24,13 @@ public class AchievementManager : MonoBehaviour
     {
         instanceIP = Api.Instance;
         LoadSprite();
-        LoadChallengeAchievedKillEnemy();
-        LoadChallengeAchievedKillBoss();
-        LoadChallengeAchievedSinglePlay();
-        LoadChallengeAchievedMultiPlay();
-        LoadChallengeAchievedAddFriend();
         if (PlayerPrefs.HasKey("UID"))
         {
             string userID = removeQuotes(PlayerPrefs.GetString("UID"));
-            StartCoroutine(GetCharacterOwnData(instanceIP.api + instanceIP.routerPostCharactersOwn, userID));
-
+            StartCoroutine(GetAchievementOwnData(instanceIP.api + instanceIP.routerPostAchievementsOwn, userID));
         }
     }
 
-    private void Update()
-    {
-        //LoadChallengeAchievedKillEnemy();
-        //LoadChallengeAchievedKillBoss();
-        //LoadChallengeAchievedSinglePlay();
-        //LoadChallengeAchievedMultiPlay();
-        //LoadChallengeAchievedAddFriend();
-    }
     private void LoadSprite()
     {
         goldSprite = Resources.Load<Sprite>("GiftQuest/Gold");
@@ -53,83 +38,6 @@ public class AchievementManager : MonoBehaviour
         chest_closeSprite = Resources.Load<Sprite>("GiftQuest/chest_close");
         successSprite = Resources.Load<Sprite>("Quest/process");
         processSprite = Resources.Load<Sprite>("Quest/success");
-    }
-    IEnumerator GetCharacterOwnData(string address, string userID)
-    {
-        WWWForm form = new WWWForm();
-        form.AddField("userID", userID);
-        UnityWebRequest www = UnityWebRequest.Post(address, form);
-        loadingPanel.SetActive(true);
-        yield return www.SendWebRequest();
-        loadingPanel.SetActive(false);
-        if (www.result != UnityWebRequest.Result.Success)
-        {
-            Debug.LogError("Something went wrong: " + www.error);
-        }
-        else
-        {
-            string res = www.downloadHandler.text;
-            AchievementCharacterOwn(res, userID);
-            www.Dispose();
-        }
-    }
-
-    void AchievementCharacterOwn(string rawResponse, string userID)
-    {
-        var _char = JsonConvert.DeserializeObject<Character[]>(rawResponse);
-        charList = _char;
-        characterown = charList.Length;
-        StartCoroutine(UpdateAllChallengeAchievedAchievement(instanceIP.api + instanceIP.routerUpdateAllChallengeAchievedAchievementByName, characterown, userID));
-    }
-
-    IEnumerator UpdateAllChallengeAchievedAchievement(string address, int characterown, string userID)
-    {
-        LoadChallengeAchievedKillEnemy();
-        LoadChallengeAchievedKillBoss();
-        LoadChallengeAchievedSinglePlay();
-        LoadChallengeAchievedMultiPlay();
-        LoadChallengeAchievedAddFriend();
-        string characterownName = "characterown";
-        string killenemyName = "killenemy";
-        string killbossName = "killboss";
-        string singleplayName = "singleplay";
-        string multiplayName = "multiplay";
-        string addfriendName = "addfriend";
-        WWWForm form = new WWWForm();
-        form.AddField("characterown", characterownName);
-        form.AddField("killenemy", killenemyName);
-        form.AddField("killboss", killbossName);
-        form.AddField("singleplay", singleplayName);
-        form.AddField("multiplay", multiplayName);
-        form.AddField("addfriend", addfriendName);
-
-        form.AddField("challengeAchievedCharacterOwn", characterown);
-        form.AddField("challengeAchievedKillEnemy", killenemy);
-        form.AddField("challengeAchievedKillBoss", killboss);
-        form.AddField("challengeAchievedSinglePlay", singleplay);
-        form.AddField("challengeAchievedMultiPlay", multiplay);
-        form.AddField("challengeAchievedAddFriend", addfriend);
-        form.AddField("userID", userID);
-        UnityWebRequest www = UnityWebRequest.Post(address, form);
-        loadingPanel.SetActive(true);
-        yield return www.SendWebRequest();
-        loadingPanel.SetActive(false);
-        if (www.result != UnityWebRequest.Result.Success)
-        {
-            Debug.LogError("Something went wrong: " + www.error);
-        }
-        else
-        {
-            GameObject[] aclone = GameObject.FindGameObjectsWithTag("Achievement");
-            foreach (GameObject ao in aclone)
-            {
-                if (ao.name.Equals("Achievement(Clone)"))
-                {
-                    Destroy(ao);
-                }
-            }
-            StartCoroutine(GetAchievementOwnData(instanceIP.api + instanceIP.routerPostAchievementsOwn, userID));
-        }
     }
 
     void ProcessServerResponse(string rawResponse)
@@ -300,9 +208,9 @@ public class AchievementManager : MonoBehaviour
             www.Dispose();
         }
     }
-    public void BackToHomeSceen(int screenNumber)
+    public void BackToHomeSceen()
     {
-        SceneManager.LoadScene(screenNumber);
+        SceneManager.LoadScene("Home");
     }
     private void LoadChallengeAchievedKillEnemy()
     {

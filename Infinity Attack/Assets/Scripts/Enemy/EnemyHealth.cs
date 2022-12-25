@@ -11,7 +11,7 @@ public class EnemyHealth : MonoBehaviour
     public float time, timeLoop, timeDead;
     public bool isInvulnerable = false;
     private Rigidbody2D rb;
-    private BoxCollider2D bc;
+    private CapsuleCollider2D bc;
     public EnemyHealthBar healthBar;
     public static EnemyHealth instance;
     private void Start()
@@ -21,7 +21,7 @@ public class EnemyHealth : MonoBehaviour
             instance = this;
         }
         rb = GetComponent<Rigidbody2D>();
-        bc = GetComponent<BoxCollider2D>();
+        bc = GetComponent<CapsuleCollider2D>();
         health = maxHealth;
         healthBar.SetHealth(health, maxHealth);
     }
@@ -69,6 +69,7 @@ public class EnemyHealth : MonoBehaviour
             GetComponent<Animator>().SetBool("Dead", true);
             rb.bodyType = RigidbodyType2D.Static;
             bc.isTrigger = true;
+            GetComponentInChildren<BoxCollider2D>().isTrigger = true;
             Destroy(gameObject, timeDead);
             SystemData.instance.FlagDataEnemy();           
         }
@@ -84,10 +85,21 @@ public class EnemyHealth : MonoBehaviour
         {
             if (PlayerAttack.instance.box != null)
             {
-                Vector2 difference = (transform.position - collision.transform.position).normalized;
-                Vector2 force = difference * knockback;
-                rb.AddForce(difference * force, ForceMode2D.Impulse);
-                TakeDamage(InGameCharLoading.instance.damage);
+                if (!CharacterObject.instance.isUltimate)
+                {
+                    Vector2 difference = (transform.position - collision.transform.position).normalized;
+                    Vector2 force = difference * knockback;
+                    rb.AddForce(difference * force, ForceMode2D.Impulse);
+                    TakeDamage(InGameCharLoading.instance.damage);
+                }
+                else
+                {
+                    Vector2 difference = (transform.position - collision.transform.position).normalized;
+                    Vector2 force = difference * knockback * 2;
+                    rb.AddForce(difference * force, ForceMode2D.Impulse);
+                    TakeDamage(InGameCharLoading.instance.damage * 4);
+                }
+                
             }
         }
     }

@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class SystemData : MonoBehaviour
 {
+    [SerializeField] private int goldPerEnemy;
+    [SerializeField] private int gemKillBoss;
 
+    public int curTotalGold, curTotalGem;
+    public int totalEnemy;
     private int challengeAchievedSingle3Time = 0,
       challengeAchievedKill50Enemy = 0, challengeAchievedKill5Boss = 0, challengeAchievedUse3Spell = 0;
 
     private int killenemy = 0, killboss = 0, singleplay = 0;
 
-    private int flagEnemy, flagBoss, flagSpell;
+    public int flagEnemy, flagBoss, flagSpell;
 
     public static SystemData instance;
 
@@ -40,12 +44,14 @@ public class SystemData : MonoBehaviour
     {
         flagEnemy++;
         Debug.Log("Flag enemy+ : " + flagEnemy);
+        curTotalGold += goldPerEnemy; 
     }
 
     public void FlagDataBoss()
     {
         flagBoss++;
         Debug.Log("Flag boss+ : " + flagBoss);
+        curTotalGem += gemKillBoss;
     }
 
     public void FlagDataSpell()

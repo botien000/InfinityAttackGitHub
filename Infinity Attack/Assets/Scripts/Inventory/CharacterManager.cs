@@ -31,6 +31,8 @@ public class CharacterManager : MonoBehaviour
     private Sprite metal_bladekeepersprite;
     private Sprite wind_hashashinsprite;
     [SerializeField] private GameObject loadingPanel;
+    [SerializeField] private GameObject notiPanel;
+    [SerializeField] private GameObject flagPanel;
     private void Awake()
     {
 
@@ -226,6 +228,8 @@ public class CharacterManager : MonoBehaviour
         }
         else
         {
+            notiPanel.SetActive(true);
+            flagPanel.SetActive(true);
             StartCoroutine(GetCharacterOwnData(instanceIP.api + instanceIP.routerPostCharactersOwn, userID));                    
         }
     }
@@ -286,12 +290,12 @@ public class CharacterManager : MonoBehaviour
             }
         }
     }
-    public void BackToHomeSceen(int screenNumber)
+    public void BackToHomeSceen()
     {
-        StartCoroutine(updateStatusCharacter(instanceIP.api + instanceIP.routerUpdateStatusCharacterOwn, selectedOption,screenNumber));
+        StartCoroutine(updateStatusCharacter(instanceIP.api + instanceIP.routerUpdateStatusCharacterOwn, selectedOption));
     }
 
-    IEnumerator updateStatusCharacter(string address, int selectedOption,int screenNumber)
+    IEnumerator updateStatusCharacter(string address, int selectedOption)
     {
         Character character = charList[selectedOption];
         string characterOwnIDOld = null;
@@ -320,7 +324,7 @@ public class CharacterManager : MonoBehaviour
         }
         else
         {
-            SceneManager.LoadScene(screenNumber);
+            SceneManager.LoadScene("Home");
         }
         www.Dispose();
     }

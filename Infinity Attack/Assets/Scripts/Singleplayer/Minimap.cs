@@ -15,6 +15,7 @@ public class Minimap : MonoBehaviour
             Vector3 newPos = player.position;
             newPos.z = transform.position.z;
             transform.position = newPos;
+
         }
         else
         {
@@ -23,7 +24,7 @@ public class Minimap : MonoBehaviour
 
     }
 
-    public void SetTransform (Transform transform)
+    public void setTransform (Transform transform)
     {
         this.player = transform;
         haveTransform = true;

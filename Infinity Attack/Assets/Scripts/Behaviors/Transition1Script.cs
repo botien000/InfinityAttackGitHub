@@ -15,16 +15,14 @@ public class Transition1Script : StateMachineBehaviour
     {
 
         CharacterObject.instance.movePlayer = Vector2.zero;
+        CharacterObject.instance.attacking = true;
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         Debug.Log("NextAttack trong exit: " + CharacterObject.instance.nextAttack);
-        if (!CharacterObject.instance.nextAttack)
-        {
-            CharacterObject.instance.attacking = false;
-        } else if (CharacterObject.instance.nextAttack)
+        if (CharacterObject.instance.nextAttack)
         {
             CharacterObject.instance.animator.Play("Attack_2");
         }

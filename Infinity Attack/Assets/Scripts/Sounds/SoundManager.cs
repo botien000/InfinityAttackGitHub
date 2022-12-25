@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
 public class SoundManager : MonoBehaviour
 {
@@ -12,9 +13,11 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private AudioClip clickClip;
 
     public static SoundManager instance;
+
+    private string setOffline = Api.Instance.api + Api.Instance.routerSetOffline;
     private void Awake()
     {
-        if(instance == null)
+        if (instance == null)
         {
             instance = this;
         }
@@ -25,7 +28,7 @@ public class SoundManager : MonoBehaviour
         }
         DontDestroyOnLoad(gameObject);
     }
-   
+
     public void SetSoundClick()
     {
         soundSource.PlayOneShot(clickClip);

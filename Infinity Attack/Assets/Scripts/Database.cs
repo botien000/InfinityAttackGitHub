@@ -149,3 +149,11 @@ public class CharacterOwn
     public int status;
 }
 
+public class FriendID
+{
+    public string _id { get; set; }
+    public string userReq { get; set; }
+    public string userRes { get; set; }
+    public int status { get; set; }
+}
+

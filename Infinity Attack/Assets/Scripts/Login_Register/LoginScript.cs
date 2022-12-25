@@ -27,7 +27,7 @@ public class LoginScript : MonoBehaviour
     private int challengeAchievedLogIn = 0, challengeAchievedSingle3Time = 0, challengeAchievedMulti1Time = 0,
       challengeAchievedKill50Enemy = 0, challengeAchievedKill5Boss = 0, challengeAchievedUse3Spell = 0;
 
-    private int characterown = 0, killenemy = 0, killboss = 0, singleplay = 0, multiplay = 0, addfriend = 0;
+    private int killenemy = 0, killboss = 0, singleplay = 0, multiplay = 0, addfriend = 0;
 
 
     private void Start()
@@ -57,7 +57,8 @@ public class LoginScript : MonoBehaviour
         SaveChallengeAchievedKillBoss(0);
         SaveChallengeAchievedSinglePlay(0);
         SaveChallengeAchievedMultiPlay(0);
-        SaveChallengeAchievedAddFriend(0);
+
+        SavePlay(1);
     }
     private IEnumerator TryLogin()
     {
@@ -223,11 +224,6 @@ public class LoginScript : MonoBehaviour
                 multiplay = challengeAchieved;
                 SaveChallengeAchievedMultiPlay(multiplay);
             }
-            else if (name == "addfriend")
-            {
-                addfriend = challengeAchieved;
-                SaveChallengeAchievedAddFriend(addfriend);
-            }
         }
         CheckSavePref();
         ResetSpellChosen();
@@ -275,45 +271,25 @@ public class LoginScript : MonoBehaviour
         return b;
     }
 
-    private void LoadChallengeAchievedLogIn()
-    {
-        challengeAchievedLogIn = PlayerPrefs.GetInt("challengeAchievedLogIn");
-    }
 
     private void SaveChallengeAchievedLogIn(int challengeAchievedLogIn)
     {
         PlayerPrefs.SetInt("challengeAchievedLogIn", challengeAchievedLogIn);
-    }
-    private void LoadChallengeAchievedSingle3Time()
-    {
-        challengeAchievedSingle3Time = PlayerPrefs.GetInt("challengeAchievedSingle3Time");
     }
 
     private void SaveChallengeAchievedSingle3Time(int challengeAchievedSingle3Time)
     {
         PlayerPrefs.SetInt("challengeAchievedSingle3Time", challengeAchievedSingle3Time);
     }
-    private void LoadChallengeAchievedMulti1Time()
-    {
-        challengeAchievedMulti1Time = PlayerPrefs.GetInt("challengeAchievedMulti1Time");
-    }
 
     private void SaveChallengeAchievedMulti1Time(int challengeAchievedMulti1Time)
     {
         PlayerPrefs.SetInt("challengeAchievedMulti1Time", challengeAchievedMulti1Time);
     }
-    private void LoadChallengeAchievedKill50Enemy()
-    {
-        challengeAchievedKill50Enemy = PlayerPrefs.GetInt("challengeAchievedKill50Enemy");
-    }
 
     private void SaveChallengeAchievedKill50Enemy(int challengeAchievedKill50Enemy)
     {
         PlayerPrefs.SetInt("challengeAchievedKill50Enemy", challengeAchievedKill50Enemy);
-    }
-    private void LoadChallengeAchievedKill5Boss()
-    {
-        challengeAchievedKill5Boss = PlayerPrefs.GetInt("challengeAchievedKill5Boss");
     }
 
     private void SaveChallengeAchievedKill5Boss(int challengeAchievedKill5Boss)
@@ -321,10 +297,6 @@ public class LoginScript : MonoBehaviour
         PlayerPrefs.SetInt("challengeAchievedKill5Boss", challengeAchievedKill5Boss);
     }
 
-    private void LoadChallengeAchievedUse3Spell()
-    {
-        challengeAchievedUse3Spell = PlayerPrefs.GetInt("challengeAchievedUse3Spell");
-    }
 
     private void SaveChallengeAchievedUse3Spell(int challengeAchievedUse3Spell)
     {
@@ -332,50 +304,28 @@ public class LoginScript : MonoBehaviour
     }
 
 
-    private void LoadChallengeAchievedKillEnemy()
-    {
-        killenemy = PlayerPrefs.GetInt("killenemy");
-    }
-
     private void SaveChallengeAchievedKillEnemy(int killenemy)
     {
         PlayerPrefs.SetInt("killenemy", killenemy);
-    }
-    private void LoadChallengeAchievedKillBoss()
-    {
-        killboss = PlayerPrefs.GetInt("killboss");
     }
 
     private void SaveChallengeAchievedKillBoss(int killboss)
     {
         PlayerPrefs.SetInt("killboss", killboss);
     }
-    private void LoadChallengeAchievedSinglePlay()
-    {
-        singleplay = PlayerPrefs.GetInt("singleplay");
-    }
 
     private void SaveChallengeAchievedSinglePlay(int singleplay)
     {
         PlayerPrefs.SetInt("singleplay", singleplay);
-    }
-    private void LoadChallengeAchievedMultiPlay()
-    {
-        multiplay = PlayerPrefs.GetInt("multiplay");
     }
 
     private void SaveChallengeAchievedMultiPlay(int multiplay)
     {
         PlayerPrefs.SetInt("multiplay", multiplay);
     }
-    private void LoadChallengeAchievedAddFriend()
-    {
-        addfriend = PlayerPrefs.GetInt("addfriend");
-    }
 
-    private void SaveChallengeAchievedAddFriend(int addfriend)
+    private void SavePlay(int play)
     {
-        PlayerPrefs.SetInt("addfriend", addfriend);
+        PlayerPrefs.SetInt("Play", play);
     }
-
 }

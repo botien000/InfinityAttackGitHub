@@ -18,86 +18,19 @@ public class QuestManager : MonoBehaviour
     private Sprite successSprite;
     private Sprite processSprite;
 
-    [SerializeField] private Quest[] questOwnList;
+    private Quest[] questOwnList;
 
     void Start()
     {
         instanceIP = Api.Instance;
         LoadAvatars();
-        LoadChallengeAchievedLogIn();
-        LoadChallengeAchievedSingle3Time();
-        LoadChallengeAchievedMulti1Time();
-        LoadChallengeAchievedKill50Enemy();
-        LoadChallengeAchievedKill5Boss();
-        LoadChallengeAchievedUse3Spell();
         if (PlayerPrefs.HasKey("UID"))
         {
             string userID = removeQuotes(PlayerPrefs.GetString("UID"));
-            if (challengeAchievedLogIn == 0)
-            {
-                challengeAchievedLogIn = 1;
-                SaveChallengeAchievedLogIn(challengeAchievedLogIn);
-                StartCoroutine(UpdateAllChallengeAchievedQuest(instanceIP.api + instanceIP.routerUpdateAllChallengeAchievedQuestByName, userID));
-            }
-            else
-            {
-                StartCoroutine(UpdateAllChallengeAchievedQuest(instanceIP.api + instanceIP.routerUpdateAllChallengeAchievedQuestByName, userID));
-            }
+            StartCoroutine(GetQuestOwnData(instanceIP.api + instanceIP.routerPostQuestsOwn, userID));            
         }
     }
 
-    IEnumerator UpdateAllChallengeAchievedQuest(string address, string userID)
-    {
-
-        LoadChallengeAchievedLogIn();
-        LoadChallengeAchievedSingle3Time();
-        LoadChallengeAchievedMulti1Time();
-        LoadChallengeAchievedKill50Enemy();
-        LoadChallengeAchievedKill5Boss();
-        LoadChallengeAchievedUse3Spell();
-        string loginName = "login";
-        string single3timeName = "single3time";
-        string multi1timeName = "multi1time";
-        string kill50enemyName = "kill50enemy";
-        string kill5bossName = "kill5boss";
-        string use3spellName = "use3spell";
-        WWWForm form = new WWWForm();
-        form.AddField("login", loginName);
-        form.AddField("single3time", single3timeName);
-        form.AddField("multi1time", multi1timeName);
-        form.AddField("kill50enemy", kill50enemyName);
-        form.AddField("kill5boss", kill5bossName);
-        form.AddField("use3spell", use3spellName);
-
-        form.AddField("challengeAchievedLogIn", challengeAchievedLogIn);
-        form.AddField("challengeAchievedSingle3Time", challengeAchievedSingle3Time);
-        form.AddField("challengeAchievedMulti1Time", challengeAchievedMulti1Time);
-        form.AddField("challengeAchievedKill50Enemy", challengeAchievedKill50Enemy);
-        form.AddField("challengeAchievedKill5Boss", challengeAchievedKill5Boss);
-        form.AddField("challengeAchievedUse3Spell", challengeAchievedUse3Spell);
-        form.AddField("userID", userID);
-        UnityWebRequest www = UnityWebRequest.Post(address, form);
-        loadingPanel.SetActive(true);
-        yield return www.SendWebRequest();
-        loadingPanel.SetActive(false);
-        Debug.Log("Update challenge achieved quest own");
-        if (www.result != UnityWebRequest.Result.Success)
-        {
-            Debug.LogError("Something went wrong: " + www.error);
-        }
-        else
-        {
-            GameObject[] gclone = GameObject.FindGameObjectsWithTag("Mission");
-            foreach (GameObject go in gclone)
-            {
-                if (go.name.Equals("Mission(Clone)"))
-                {
-                    Destroy(go);
-                }
-            }
-            StartCoroutine(GetQuestOwnData(instanceIP.api + instanceIP.routerPostQuestsOwn, userID));
-        }
-    }
     private void LoadAvatars()
     {
         successSprite = Resources.Load<Sprite>("Quest/success");
@@ -274,6 +207,7 @@ public class QuestManager : MonoBehaviour
                }
             }
             StartCoroutine(GetQuestOwnData(instanceIP.api + instanceIP.routerPostQuestsOwn, userID));
+            www.Dispose();
         }
     }
     IEnumerator GetQuestOwnData(string address, string userID)
@@ -292,14 +226,14 @@ public class QuestManager : MonoBehaviour
         {
             string res = www.downloadHandler.text;
             ProcessServerResponse(res);
-            Debug.Log("Quest res: " + res);
+            //Debug.Log("Quest res: " + res);
+            www.Dispose();
         }
-        www.Dispose();
     }
 
-    public void BackToHomeSceen(int screenNumber)
+    public void BackToHomeSceen()
     {
-        SceneManager.LoadScene(screenNumber);
+        SceneManager.LoadScene("Home");
     }
     private void LoadChallengeAchievedLogIn()
     {

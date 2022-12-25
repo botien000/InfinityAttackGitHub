@@ -7,6 +7,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class ShopUI : MonoBehaviour
@@ -17,8 +18,8 @@ public class ShopUI : MonoBehaviour
     }
 
     [SerializeField] private ScrollRect scrollView;
-    [SerializeField] private RectTransform goldItemsGO, gemItemsGO, payItemsGO;
-    [SerializeField] private Image imgGold, imgGem, imgPay;
+    [SerializeField] private RectTransform goldItemsGO, gemItemsGO;
+    [SerializeField] private Image imgGold, imgGem;
     [SerializeField] private Color colorNot;
     [SerializeField] private ButtonShopCharacter buttonShopCharacterOrigin;
     [SerializeField] private ButtonShopSpell buttonShopSpellOrigin;
@@ -96,35 +97,21 @@ public class ShopUI : MonoBehaviour
                 scrollView.content = goldItemsGO;
                 imgGold.color = Color.white;
                 imgGem.color = colorNot;
-                imgPay.color = colorNot;
                 goldItemsGO.gameObject.SetActive(true);
                 gemItemsGO.gameObject.SetActive(false);
-                payItemsGO.gameObject.SetActive(false);
                 break;
             case StateShop.Gem:
                 scrollView.content = gemItemsGO;
                 imgGem.color = Color.white;
                 imgGold.color = colorNot;
-                imgPay.color = colorNot;
                 gemItemsGO.gameObject.SetActive(true);
                 goldItemsGO.gameObject.SetActive(false);
-                payItemsGO.gameObject.SetActive(false);
-                break;
-            case StateShop.Pay:
-                scrollView.content = payItemsGO;
-                imgPay.color = Color.white;
-                imgGold.color = colorNot;
-                imgGem.color = colorNot;
-                payItemsGO.gameObject.SetActive(true);
-                goldItemsGO.gameObject.SetActive(false);
-                gemItemsGO.gameObject.SetActive(false);
                 break;
         }
     }
     private void SetCenterParent()
     {
         goldItemsGO.transform.position = transfCenterShop.position;
-        payItemsGO.transform.position = transfCenterShop.position;
         gemItemsGO.transform.position = transfCenterShop.position;
     }
     private IEnumerator IEGetAllCharacter()
@@ -359,5 +346,16 @@ public class ShopUI : MonoBehaviour
             list.Add(spellOwnUtility);
             spellOwns = list.ToArray();
         }
+    }
+
+    public void BackToHomeScene()
+    {
+        SavePlay(1);
+        SceneManager.LoadScene("Home");
+    }
+
+    private void SavePlay(int play)
+    {
+        PlayerPrefs.SetInt("Play", play);
     }
 }

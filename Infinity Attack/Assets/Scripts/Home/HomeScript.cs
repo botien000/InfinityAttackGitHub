@@ -22,6 +22,8 @@ public class HomeScript : MonoBehaviour
     [SerializeField] private Image avatar;
     [SerializeField] private GameObject Character;
     [SerializeField] private GameObject panelLoading;
+    [SerializeField] private TMP_Text txtID;
+
 
     [SerializeField] FindResponeFriend findResponeFriend;
 
@@ -86,6 +88,7 @@ public class HomeScript : MonoBehaviour
                 User.Instance.user.name = user.name;
                 User.Instance.user.gold = user.gold;
                 User.Instance.user.gem = user.gem;
+                txtID.SetText("ID: " + user._id);
                 GoldText.SetText("" + user.gold);
                 GemText.SetText("" + user.gem);
                 NameText.SetText("" + user.name);
@@ -199,9 +202,7 @@ public class HomeScript : MonoBehaviour
 
     public void LogOut()
     {
-        //PlayerPrefs.SetString("UID", "");
-        //PlayerPrefs.SetString("UsernamePP", "");
-        //PlayerPrefs.SetString("PasswordPP", "");
-        SceneManager.LoadScene(0);
+        PlayerPrefs.SetString("token", null);
+        SceneManager.LoadScene("Login_Register");
     }
 }

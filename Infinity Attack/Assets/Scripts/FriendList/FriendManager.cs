@@ -8,6 +8,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.SceneManagement;
 using Debug = UnityEngine.Debug;
 
 public class FriendManager : MonoBehaviour
@@ -199,13 +200,14 @@ public class FriendManager : MonoBehaviour
             checkConnectServer = true;
             string json = unityWebRequest.downloadHandler.text;
             Debug.Log("IECheckFriend:   " + json);
-            if (json != null)
+            if (json != "null")
             {
                 StartCoroutine(IEFriendRequest(id));
             }
             else
             {
-                Debug.Log("Non existing friend");
+                announcement.gameObject.SetActive(true);
+                announcement.Init("Non existing player", 1);
             }
         }
         else
@@ -306,7 +308,25 @@ public class FriendManager : MonoBehaviour
             Debug.LogError("ID have 24 characters");
             return;
         }
+        else if(txtID == User.Instance.user._id)
+        {
+            announcement.gameObject.SetActive(true);
+            announcement.Init("ID ERROR", 1);
+            Debug.LogError("ID ERROR");
+            return;
+        }
         StartCoroutine(IECheckFriend(txtID));
+    }
+
+    public void BackToHomeScene()
+    {
+        SavePlay(1);
+        SceneManager.LoadScene("Home");
+    }
+
+    private void SavePlay(int play)
+    {
+        PlayerPrefs.SetInt("Play", play);
     }
 }
 [System.Serializable]

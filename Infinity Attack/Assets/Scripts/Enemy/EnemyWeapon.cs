@@ -40,7 +40,8 @@ public class EnemyWeapon : MonoBehaviour
             else
             {
                 InGameCharLoading.instance.Damage(attackDamage);
-            }           
+                CharacterObject.instance.Hit("Enemy");
+            }
         }
     }
 
@@ -66,6 +67,27 @@ public class EnemyWeapon : MonoBehaviour
             ball.transform.Rotate(0,0,180);
             ball.GetComponent<FireBall>().setAttackDamage(attackDamage);
             ball.GetComponent<FireBall>().setVelocity(new Vector2(-fireballSpeed, 0));
+        }
+    }
+
+    public void FlyingAttack()
+    {
+        Vector3 pos = transform.position;
+        pos += transform.right * attackOffset.x;
+        pos += transform.up * attackOffset.y;
+
+        Collider2D colInfo = Physics2D.OverlapCircle(pos, attackRangeDamage, attackMask);
+        if (colInfo != null)
+        {
+            if (CharacterObject.instance.isAttacked)
+            {
+                return;
+            }
+            else
+            {
+                InGameCharLoading.instance.Damage(attackDamage);
+                CharacterObject.instance.Hit("FlyingEnemy");
+            }
         }
     }
 }

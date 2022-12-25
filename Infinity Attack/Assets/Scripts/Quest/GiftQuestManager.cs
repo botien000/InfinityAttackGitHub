@@ -8,7 +8,7 @@ using Newtonsoft.Json;
 public class GiftQuestManager : MonoBehaviour
 {
     private Api instanceIP;
-    [SerializeField] private Gift[] giftOwnList;
+    private Gift[] giftOwnList;
     [SerializeField] private Slider missionProcess;
     [SerializeField] private TextMeshProUGUI giftText;
     [SerializeField] private Image avtGift;
@@ -145,7 +145,7 @@ public class GiftQuestManager : MonoBehaviour
                     Destroy(ho);
                 }
             }
-            StartCoroutine(GetGiftsOwnData(instanceIP.api + instanceIP.routerUpdateStatusGiftOwn, userID));
+            StartCoroutine(GetGiftsOwnData(instanceIP.api + instanceIP.routerPostGiftsOwn, userID));
         }
     }
     void GiftOwnDataRespond(string rawResponse)

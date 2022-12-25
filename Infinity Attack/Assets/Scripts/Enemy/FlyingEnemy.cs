@@ -14,7 +14,6 @@ public class FlyingEnemy : MonoBehaviour
 
     public int health;
     public int maxHealth;
-    public int attackDamage;
     public float knockback;
     public bool takeDamage = false;
     public float timeLoop, timeDead;
@@ -116,14 +115,6 @@ public class FlyingEnemy : MonoBehaviour
             {
                 animator.SetTrigger("Attack");
                 time = CDAtk;
-                if (CharacterObject.instance.isAttacked)
-                {
-                    return;
-                }
-                else
-                {
-                    InGameCharLoading.instance.Damage(attackDamage);
-                }
             }          
         }
     }
@@ -196,10 +187,24 @@ public class FlyingEnemy : MonoBehaviour
         {
             if (PlayerAttack.instance.box != null)
             {
-                Vector2 difference = (transform.position - collision.transform.position).normalized;
-                Vector2 force = difference * knockback;
-                rb.AddForce(difference * force, ForceMode2D.Impulse);
-                TakeDamageFlyingEnemy(InGameCharLoading.instance.damage);
+                if (PlayerAttack.instance.box != null)
+                {
+                    if (!CharacterObject.instance.isUltimate)
+                    {
+                        Vector2 difference = (transform.position - collision.transform.position).normalized;
+                        Vector2 force = difference * knockback;
+                        rb.AddForce(difference * force, ForceMode2D.Impulse);
+                        TakeDamageFlyingEnemy(InGameCharLoading.instance.damage);
+                    }
+                    else
+                    {
+                        Vector2 difference = (transform.position - collision.transform.position).normalized;
+                        Vector2 force = difference * knockback * 2;
+                        rb.AddForce(difference * force, ForceMode2D.Impulse);
+                        TakeDamageFlyingEnemy(InGameCharLoading.instance.damage * 4);
+                    }
+
+                }
             }
         }
     }

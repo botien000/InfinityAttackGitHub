@@ -8,9 +8,14 @@ public class Fire : MonoBehaviour
     [SerializeField] Animator animator;
     [SerializeField] float speedMove;
 
+    int dir;
+    private void Start()
+    {
+        Destroy(gameObject, 20f);
+    }
     private void FixedUpdate()
     {
-        rb.velocity = Vector2.right * speedMove * Time.fixedDeltaTime;
+        rb.velocity = Vector2.right * dir * speedMove * Time.fixedDeltaTime;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -19,6 +24,11 @@ public class Fire : MonoBehaviour
         {
             animator.SetBool("Hit", true);
         }
+    }
+
+    public void Init(int direction)
+    {
+        dir = direction;
     }
     
     public void HandleEventDestroy()

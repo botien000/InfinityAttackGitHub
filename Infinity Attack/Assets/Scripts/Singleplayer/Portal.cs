@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 public class Portal : MonoBehaviour
 {
     [SerializeField] private float speedRotate;
-
     void Update()
     {
         transform.Rotate(Vector3.forward * speedRotate * Time.deltaTime);

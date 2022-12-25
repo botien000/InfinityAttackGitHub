@@ -15,6 +15,7 @@ public class Transition3Script : StateMachineBehaviour
     {
 
         CharacterObject.instance.movePlayer = Vector2.zero;
+        CharacterObject.instance.attacking = true;
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state

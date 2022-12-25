@@ -9,7 +9,7 @@ using Debug = UnityEngine.Debug;
 
 public class ConfirmUI : MonoBehaviour
 {
-    [SerializeField] TextMeshProUGUI txtLogCharacter, txtNameCharacter, txtPrice, txtEquip, txtLog;
+    [SerializeField] TextMeshProUGUI txtLogCharacter, txtNameCharacter, txtPrice, txtLog;
     [SerializeField] TextMeshProUGUI txtNameSpell, txtPriceSpell, txtAmountSpell;
     [SerializeField] Image imgCharacter, imgSpell;
     [SerializeField] GameObject gemGO;
@@ -52,7 +52,6 @@ public class ConfirmUI : MonoBehaviour
         imgCharacter.sprite = avatarChar;
         txtPrice.gameObject.SetActive(true);
         gemGO.gameObject.SetActive(true);
-        txtEquip.gameObject.SetActive(false);
     }
     public void BtnBuyCharacter()
     {
@@ -87,7 +86,6 @@ public class ConfirmUI : MonoBehaviour
         {
             txtPrice.gameObject.SetActive(false);
             gemGO.gameObject.SetActive(false);
-            txtEquip.gameObject.SetActive(true);
         }
     }
 

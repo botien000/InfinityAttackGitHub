@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
 
     private List<Camera> listCamera;
     private Camera oldCamera;
+    public Camera oldMinimap;
+    public GameObject EventSystem;
     private CharacterObject oldPlayer;
 
     private void Awake()
@@ -37,13 +39,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameOver gameOver;
 
     public int typeMap;
-    [SerializeField] private int numberOfEnemy;
-    [SerializeField] private int goldPerEnemy;
-    [SerializeField] private int gemKillBoss;
-
-    private int curTotalGold, curTotalGem;
-    private int amountKilledEnemy;
-    private int amountKilledBoss;
 
     private void Start()
     {
@@ -55,7 +50,6 @@ public class GameManager : MonoBehaviour
         switch (state)
         {
             case StateGame.GamePlay:
-
                 gameSetting.gameObject.SetActive(false);
                 break;
             case StateGame.GameSetting:
@@ -98,72 +92,20 @@ public class GameManager : MonoBehaviour
                 }
             }
         }
+
         oldPlayer = player;
         oldCamera = Camera.main;
         DontDestroyOnLoad(Camera.main);
+        DontDestroyOnLoad(oldMinimap);
+        DontDestroyOnLoad(EventSystem);
     }
 
     public void RemoveAllDontDestroyInGame()
     {
         Destroy(oldPlayer.gameObject);
         Destroy(oldCamera.gameObject);
+        Destroy(oldMinimap.gameObject);
+        Destroy(EventSystem.gameObject);
         Destroy(gameObject);
     }
-
-    /// <summary>
-    /// Count enemy is killed
-    /// </summary>
-    /// <param name="count"></param>
-    public void CountKilledEnemy(int count)
-    {
-        amountKilledEnemy += count;
-        curTotalGold = amountKilledEnemy * goldPerEnemy;
-    }
-
-    /// <summary>
-    /// Count boss is killed
-    /// </summary>
-    /// <param name="count"></param>
-    public void CountKilledBoss(int count)
-    {
-        amountKilledBoss += count;
-        curTotalGem = amountKilledBoss * gemKillBoss;
-    }
-
-    /// <summary>
-    /// Get total gem
-    /// </summary>
-    /// <returns></returns>
-    public int GetTotalGem()
-    {
-        return curTotalGem;
-    }
-
-    /// <summary>
-    /// Get total gold
-    /// </summary>
-    /// <returns></returns>
-    public int GetTotalGold()
-    {
-        return curTotalGold;
-    }
-
-    /// <summary>
-    /// Get amount enemy is killed
-    /// </summary>
-    /// <returns></returns>
-    public int GetKilledEnemy()
-    {
-        return amountKilledEnemy;
-    }
-
-    /// <summary>
-    /// Get amount boss is killed
-    /// </summary>
-    /// <returns></returns>
-    public int GetKilledBoss()
-    {
-        return amountKilledBoss;
-    }
-
 }

@@ -10,7 +10,7 @@ using TMPro;
 
 public class InGameCharLoading : MonoBehaviour
 {
-    [SerializeField] private GameObject CharacterSpawnPosition;
+    
     [SerializeField] private Image HealthBar;
     [SerializeField] private Image Avatar;
     [SerializeField] private TMP_Text HealthText;
@@ -23,6 +23,8 @@ public class InGameCharLoading : MonoBehaviour
     private int hp;
     public int curHp;
 
+    private Vector3 CharacterSpawnPosition;
+
     private Sprite fire_knightsprite;
     private Sprite ground_monksprite;
     private Sprite leaf_rangersprite;
@@ -32,12 +34,15 @@ public class InGameCharLoading : MonoBehaviour
 
     [SerializeField] private Button btnCooldown;
 
-    [SerializeField] private CinemachineVirtualCamera camera;
+    private CinemachineVirtualCamera camera;
     public static InGameCharLoading instance;
 
+    public Vector3 spawnPosition;
     // Start is called before the first frame update
     void Start()
     {
+        camera = Camera.main.GetComponent<CinemachineVirtualCamera>();
+        CharacterSpawnPosition = spawnPosition;
         StartCoroutine(GetData());
     }
     private void Awake()
@@ -55,6 +60,10 @@ public class InGameCharLoading : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(camera == null)
+        {
+            camera = Camera.main.GetComponent<CinemachineVirtualCamera>();
+        }
     }
 
     public IEnumerator GetData()
@@ -86,7 +95,7 @@ public class InGameCharLoading : MonoBehaviour
                 if (name == "Fire Knight")
                 {
                     Avatar.GetComponent<Image>().sprite = fire_knightsprite;
-                    GameObject fire_knight = (GameObject)Instantiate(Resources.Load("Prefabs/Character/Fire_Knight"), CharacterSpawnPosition.transform.position, Quaternion.identity);
+                    GameObject fire_knight = (GameObject)Instantiate(Resources.Load("Prefabs/Character/Fire_Knight"), CharacterSpawnPosition, Quaternion.identity);
                     camera.Follow = fire_knight.transform;
                     fire_knight.GetComponent<CharacterObject>().insertBtnCooldown(btnCooldown);
                 }
@@ -94,7 +103,7 @@ public class InGameCharLoading : MonoBehaviour
                 {
                     Debug.Log("Alo") ;
                     Avatar.GetComponent<Image>().sprite = ground_monksprite;
-                    GameObject ground_monk = (GameObject)Instantiate(Resources.Load("Prefabs/Character/Ground_Monk"), CharacterSpawnPosition.transform.position, Quaternion.identity);
+                    GameObject ground_monk = (GameObject)Instantiate(Resources.Load("Prefabs/Character/Ground_Monk"), CharacterSpawnPosition, Quaternion.identity);
                     camera.Follow = ground_monk.transform;
                     ground_monk.GetComponent<CharacterObject>().insertBtnCooldown(btnCooldown);
                     //b? d�ng n�y sau khi thi?t k? xong 2 nh�n v?t cu?i
@@ -103,7 +112,7 @@ public class InGameCharLoading : MonoBehaviour
                 else if (name == "Leaf Ranger")
                 {
                     Avatar.GetComponent<Image>().sprite = fire_knightsprite;
-                    GameObject fire_knight = (GameObject)Instantiate(Resources.Load("Prefabs/Character/Fire_Knight"), CharacterSpawnPosition.transform.position, Quaternion.identity);
+                    GameObject fire_knight = (GameObject)Instantiate(Resources.Load("Prefabs/Character/Fire_Knight"), CharacterSpawnPosition, Quaternion.identity);
                     camera.Follow = fire_knight.transform;
                     fire_knight.GetComponent<CharacterObject>().insertBtnCooldown(btnCooldown);
                     //b? d�ng n�y sau khi thi?t k? xong 2 nh�n v?t cu?i
@@ -112,21 +121,21 @@ public class InGameCharLoading : MonoBehaviour
                 else if (name == "Metal Bladekeeper")
                 {
                     Avatar.GetComponent<Image>().sprite = metal_bladekeepersprite;
-                    GameObject metal_bladekeeper = (GameObject)Instantiate(Resources.Load("Prefabs/Character/Metal_Bladekeeper"), CharacterSpawnPosition.transform.position, Quaternion.identity);
+                    GameObject metal_bladekeeper = (GameObject)Instantiate(Resources.Load("Prefabs/Character/Metal_Bladekeeper"), CharacterSpawnPosition, Quaternion.identity);
                     camera.Follow = metal_bladekeeper.transform;
                     metal_bladekeeper.GetComponent<CharacterObject>().insertBtnCooldown(btnCooldown);
                 }
                 else if (name == "Water Priestess")
                 {
                     Avatar.GetComponent<Image>().sprite = water_priestesssprite;
-                    GameObject water_priestess = (GameObject)Instantiate(Resources.Load("Prefabs/Character/Water_Priestess"), CharacterSpawnPosition.transform.position, Quaternion.identity);
+                    GameObject water_priestess = (GameObject)Instantiate(Resources.Load("Prefabs/Character/Water_Priestess"), CharacterSpawnPosition, Quaternion.identity);
                     camera.Follow = water_priestess.transform;
                     water_priestess.GetComponent<CharacterObject>().insertBtnCooldown(btnCooldown);
                 }
                 else if (name == "Wind Hashashin")
                 {
                     Avatar.GetComponent<Image>().sprite = wind_hashashinsprite;
-                    GameObject wind_hashashin = (GameObject)Instantiate(Resources.Load("Prefabs/Character/Wind_Hashashin"), CharacterSpawnPosition.transform.position, Quaternion.identity);
+                    GameObject wind_hashashin = (GameObject)Instantiate(Resources.Load("Prefabs/Character/Wind_Hashashin"), CharacterSpawnPosition, Quaternion.identity);
                     camera.Follow = wind_hashashin.transform;
                     wind_hashashin.GetComponent<CharacterObject>().insertBtnCooldown(btnCooldown);
                 }
@@ -182,18 +191,16 @@ public class InGameCharLoading : MonoBehaviour
     {
         if(CharacterObject.instance.isUltimate == false && curHp>0)
         {
-            if (curHp > 0)
-            {
-                curHp -= damage;
-                Debug.Log("hp: " + curHp);
-                HealthBar.fillAmount = (float)curHp / hp;
-                Debug.Log("hp1: " + curHp / hp);
-                HealthText.text = "" + curHp + "/" + hp;
-            } else if(curHp <= 0)
+            Debug.Log("damage: " + damage);
+            curHp -= damage;
+            if (curHp <= 0)
             {
                 curHp = 0;
-                HealthText.text = "0" + "/" + hp;
             }
+            Debug.Log("hp: " + curHp);
+            HealthBar.fillAmount = (float)curHp / hp;
+            Debug.Log("hp1: " + curHp / hp);
+            HealthText.text = "" + curHp + "/" + hp;
         }
     }
 

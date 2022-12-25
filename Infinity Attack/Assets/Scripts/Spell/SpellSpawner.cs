@@ -19,7 +19,6 @@ public class SpellSpawner : MonoBehaviour
     [SerializeField] Image[] imgCooldown;
     [SerializeField] GameObject healingFXPrefab, chaosPrefab, speedUpPrefab, firePrefab;
 
-
     CharacterObject player;
     SpellType type;
     SpellSingleton.SpellValuable[] spellValuables;
@@ -107,7 +106,16 @@ public class SpellSpawner : MonoBehaviour
             {
                 if (type == SpellType.Fire)
                 {
-                    go = Instantiate(prefab,position.position + new Vector3(1.5f,-1.5f,0),Quaternion.identity).transform;
+                    if(position.eulerAngles.y > 0)
+                    {
+                        Fire fire = Instantiate(prefab, position.position + new Vector3(-1.5f, -1.5f, 0), Quaternion.identity).GetComponent<Fire>();
+                        fire.Init(-1);
+                    }
+                    else
+                    {
+                        Fire fire = Instantiate(prefab, position.position + new Vector3(1.5f, -1.5f, 0), Quaternion.identity).GetComponent<Fire>();
+                        fire.Init(1);
+                    }
                 }
                 else
                 {

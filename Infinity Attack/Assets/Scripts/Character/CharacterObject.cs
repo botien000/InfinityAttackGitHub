@@ -19,6 +19,8 @@ public class CharacterObject : MonoBehaviour
     [SerializeField] private float forceJump;
     [SerializeField] private float ultimateCooldown;
     [SerializeField] private Button abilityCooldownButton;
+    [SerializeField] private float knockbackForceUp;
+    [SerializeField] private float knockbackForce;
 
     public static CharacterObject instance;
 
@@ -44,6 +46,7 @@ public class CharacterObject : MonoBehaviour
     public bool isAttacked = false;
     public bool dead = false;
 
+    private Vector3 spawnPosition;
     private void Awake()
     {
         instance = this;
@@ -53,51 +56,65 @@ public class CharacterObject : MonoBehaviour
     }
     private void Start()
     {
+        spawnPosition = InGameCharLoading.instance.spawnPosition;
+        FindObjects();
         box = GetComponent<BoxCollider2D>();
         SpellSpawner spellSpawner = FindObjectOfType<SpellSpawner>();
         spellSpawner.Init(this);
         GameManager.instance.SetPlayerDontDestroy(this);
-        FindObjects();
     }
 
     private void Update()
     {
         if (!dead)
         {
-            if (!isAttacked || !dead || !attacking)
+            if (isUltimate)
             {
-                SetDirection();
+
+            }
+            if (!isAttacked || !dead )
+            {
+                if (!attacking)
+                {
+                    SetDirection();
+                }
             }
             if (!attacking || !isUltimate || !isAttacked || !dead)
             {
                 if (!isJump)
                 {
-                    if (movingPressing)
+                    if (!attacking)
                     {
-                        SetAnimation(State.Run);
-                        movePlayer = preMovePlayer;
-                    }
-                    else if (!movingPressing)
-                    {
-                        movePlayer = Vector2.zero;
-                        preMovePlayer = Vector2.zero;
-                        SetAnimation(State.Idle);
+                        if (movingPressing)
+                        {
+                            SetAnimation(State.Run);
+                            movePlayer = preMovePlayer;
+                        }
+                        else if (!movingPressing)
+                        {
+                            movePlayer = Vector2.zero;
+                            preMovePlayer = Vector2.zero;
+                            SetAnimation(State.Idle);
+                        }
                     }
                 }
-                else if (isJump)
+                else if (isJump && !dead)
                 {
                     if (!jumpAttacking || !isAttacked)
                     {
-                        curY = transform.position.y;
-                        if (curY < preY)
+                        if (!dead)
                         {
-                            SetAnimation(State.JumpDown);
-                            preY = curY;
-                        }
-                        else if (curY > preY)
-                        {
-                            SetAnimation(State.JumpUp);
-                            preY = curY;
+                            curY = transform.position.y;
+                            if (curY < preY)
+                            {
+                                SetAnimation(State.JumpDown);
+                                preY = curY;
+                            }
+                            else if (curY > preY)
+                            {
+                                SetAnimation(State.JumpUp);
+                                preY = curY;
+                            }
                         }
                     }
                 }
@@ -117,6 +134,12 @@ public class CharacterObject : MonoBehaviour
         }
 
         Debug.Log("curstate" + curState);
+
+        if (Enemy.instance.player == null && !dead)
+        {
+            FindObjects();
+            //transform.position = spawnPosition;
+        }
     }
 
     private void OnEnable()
@@ -153,20 +176,25 @@ public class CharacterObject : MonoBehaviour
             rgbody.velocity = new Vector2(movePlayer.x * speedRun, rgbody.velocity.y);
         if (InGameCharLoading.instance.curHp <= 0)
         {
-            Die();
-            movePlayer = Vector2.zero;
-            dead = true;
+            StartCoroutine(Die());
+        }
+        if (isUltimate && !dead)
+        {
             rgbody.bodyType = RigidbodyType2D.Static;
+        } else if (!isUltimate && !dead)
+        {
+            rgbody.bodyType = RigidbodyType2D.Dynamic;
         }
     }
     private void SetDirection()
     {
         if (!dead)
         {
-            if (!attacking)
+            if (!attacking && !isUltimate)
             {
                 if (movePlayer.x < 0)
                 {
+                    Debug.Log("setdirection");
                     transform.rotation = Quaternion.AngleAxis(180, Vector3.up);
                 }
                 else if (movePlayer.x > 0)
@@ -220,31 +248,67 @@ public class CharacterObject : MonoBehaviour
         {
             if (obj.started)
             {
-                if (!attacking || !isUltimate || !isAttacked)
+                if (!attacking)
                 {
-                    movePlayer = obj.ReadValue<Vector2>();
+                    if (!attacking || !isUltimate || !isAttacked)
+                    {
+                        Debug.Log("on movement if" + attacking);
+                        movePlayer = obj.ReadValue<Vector2>();
+                    }
                 }
+                Debug.Log("on movement");
                 movingPressing = true;
                 preMovePlayer = obj.ReadValue<Vector2>();
             }
             if (obj.canceled)
             {
                 movingPressing = false;
-                movePlayer = Vector2.zero;
-                preMovePlayer = Vector2.zero;
+                if (!attacking || !isUltimate || !isAttacked)
+                {
+                    if (!attacking)
+                    {
+                        movePlayer = Vector2.zero;
+                        preMovePlayer = Vector2.zero;
+                    }
+                }
             }
         }
     }
 
-    public void Hit()
+    public void Hit(string tag)
     {
         if (dead == false && !isAttacked)
         {
-
+            Knockback(tag);
             isAttacked = true;
             animator.Play("Hit");
             StartCoroutine(TakeHit());
         }
+    }
+    public void Knockback(string tag)
+    {
+        Transform attacker = getClosestDamageSource(tag);
+        Vector2 knockbackDirection = new Vector2(transform.position.x - attacker.transform.position.x, 0);
+        rgbody.velocity = new Vector2(knockbackDirection.x, knockbackForceUp) * knockbackForce;
+    }
+    public Transform getClosestDamageSource(string tag)
+    {
+        GameObject[] DamageSources = GameObject.FindGameObjectsWithTag(tag);
+        float closestDistance = Mathf.Infinity;
+        Transform currentClosestDamageSource = null;
+
+        foreach (GameObject go in DamageSources)
+        {
+            float currentDistance;
+            currentDistance = Vector3.Distance(transform.position, go.transform.position);
+            if(currentDistance < closestDistance)
+            {
+                closestDistance = currentDistance;
+                currentClosestDamageSource = go.transform;
+            }
+        }
+
+        return currentClosestDamageSource;
     }
     public void Ultimate(InputAction.CallbackContext obj)
     {
@@ -264,12 +328,18 @@ public class CharacterObject : MonoBehaviour
             }
         }
     }
-    private void Die()
+    private IEnumerator Die()
     {
         if (dead == false)
         {
-
+            setNull();
+            rgbody.bodyType = RigidbodyType2D.Static;
             animator.Play("Die");
+            movePlayer = Vector2.zero;
+            dead = true;
+            yield return new WaitForSeconds(1.5f);
+            GameManager.instance.SetStateGame(GameManager.StateGame.GameOver);
+
         }
     }
     /// <summary>
@@ -312,48 +382,136 @@ public class CharacterObject : MonoBehaviour
                 {
                     if (collision.gameObject.tag == "Enemy")
                     {
-                        if (EnemyHealth.instance.health > 0 && !EnemyHealth.instance.takeDamage)
+                        if (collision.gameObject.GetComponent<EnemyHealth>().health > 0
+                            && !collision.gameObject.GetComponent<EnemyHealth>().takeDamage)
                         {
-                            Hit();
+                            Hit("Enemy");
                             StartCoroutine(TakeHit());
-                            Vector2 difference = (transform.position - collision.transform.position).normalized;
-
-                            Vector2 force = difference * 3f;
-
-                            Debug.Log("Force: " + force);
-                            rgbody.AddForce(difference * force, ForceMode2D.Impulse);
-                            InGameCharLoading.instance.Damage(EnemyWeapon.instance.attackDamage);
-                        }
+                            if (collision.transform.position.x >= transform.position.x)
+                            {
+                                transform.rotation = Quaternion.AngleAxis(0, Vector3.up);
+                            }
+                            else if (collision.transform.position.x < transform.position.x)
+                            {
+                                transform.rotation = Quaternion.AngleAxis(180, Vector3.up);
+                            }
+                            InGameCharLoading.instance.Damage(collision.gameObject.GetComponent<EnemyWeapon>().attackDamage / 2);
+                        }              
                     }
 
                     if (collision.gameObject.tag == "FlyingEnemy")
                     {
-                        if (FlyingEnemy.instance.health > 0 && !FlyingEnemy.instance.takeDamage)
+                        if (collision.gameObject.GetComponent<FlyingEnemy>().health > 0
+                            && !collision.gameObject.GetComponent<FlyingEnemy>().takeDamage)
                         {
-                            Hit();
+                            Hit("FlyingEnemy");
                             StartCoroutine(TakeHit());
-                            Vector2 difference = (transform.position - collision.transform.position).normalized;
-                            Vector2 force = difference * 3f;
-                            Debug.Log("Force: " + force);
-                            rgbody.AddForce(difference * force, ForceMode2D.Impulse);
-                            InGameCharLoading.instance.Damage(EnemyWeapon.instance.attackDamage);
+                            if (collision.transform.position.x >= transform.position.x)
+                            {
+                                transform.rotation = Quaternion.AngleAxis(0, Vector3.up);
+                            }
+                            else if (collision.transform.position.x < transform.position.x)
+                            {
+                                transform.rotation = Quaternion.AngleAxis(180, Vector3.up);
+                            }
+                            InGameCharLoading.instance.Damage(collision.gameObject.GetComponent<EnemyWeapon>().attackDamage / 2);
                         }
                     }
 
                     if (collision.gameObject.tag == "FireBall")
                     {
                         Debug.Log("trigger fireball");
-                        Hit();
-                        Vector2 difference = (transform.position - collision.transform.position).normalized;
-                        Vector2 force = difference * 3f;
-                        Debug.Log("Force: " + force);
-                        rgbody.AddForce(difference * force, ForceMode2D.Impulse);
+                        Hit("FireBall");
+                        if (collision.transform.position.x >= transform.position.x)
+                        {
+                            transform.rotation = Quaternion.AngleAxis(0, Vector3.up);
+                        }
+                        else if (collision.transform.position.x < transform.position.x)
+                        {
+                            transform.rotation = Quaternion.AngleAxis(180, Vector3.up);
+                        }
+                        StartCoroutine(TakeHit());
+                    }
+
+                    if (collision.gameObject.tag == "Boss2" && !isUltimate)
+                    {
+                        if (isAttacked == false)
+                        {
+                            InGameCharLoading.instance.Damage(Boss2.instance.attackDamage);
+                        }
+                        Hit("Boss2");
+                        if (collision.transform.position.x > transform.position.x)
+                        {
+                            transform.rotation = Quaternion.AngleAxis(0, Vector3.up);
+                        }
+                        else if (collision.transform.position.x < transform.position.x)
+                        {
+                            transform.rotation = Quaternion.AngleAxis(180, Vector3.up);
+                        }
+                        StartCoroutine(TakeHit());
+                    }
+
+                    if (collision.gameObject.tag == "Boss3" && !isUltimate)
+                    {
+                        if (isAttacked == false)
+                        {
+                            InGameCharLoading.instance.Damage(Boss3.instance.attackDamage);
+                        }
+                        Hit("Boss3");
+                        if (collision.transform.position.x > transform.position.x)
+                        {
+                            transform.rotation = Quaternion.AngleAxis(0, Vector3.up);
+                        }
+                        else if (collision.transform.position.x < transform.position.x)
+                        {
+                            transform.rotation = Quaternion.AngleAxis(180, Vector3.up);
+                        }
                         StartCoroutine(TakeHit());
                     }
                 }             
             }
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Boss2_Attack" && !isUltimate)
+        {
+            if (isAttacked == false)
+            {
+                InGameCharLoading.instance.Damage(Boss2.instance.attackDamage);
+            }
+            Hit("Boss2_Attack");
+            if (collision.transform.position.x > transform.position.x)
+            {
+                transform.rotation = Quaternion.AngleAxis(0, Vector3.up);
+            }
+            else if (collision.transform.position.x < transform.position.x)
+            {
+                transform.rotation = Quaternion.AngleAxis(180, Vector3.up);
+            }
+            StartCoroutine(TakeHit());
+        }
+
+        if (collision.gameObject.tag == "Boss3_Attack" && !isUltimate)
+        {
+            if (isAttacked == false)
+            {
+                InGameCharLoading.instance.Damage(Boss3.instance.attackDamage);
+            }
+            Hit("Boss3_Attack");
+            if (collision.transform.position.x > transform.position.x)
+            {
+                transform.rotation = Quaternion.AngleAxis(0, Vector3.up);
+            }
+            else if (collision.transform.position.x < transform.position.x)
+            {
+                transform.rotation = Quaternion.AngleAxis(180, Vector3.up);
+            }
+            StartCoroutine(TakeHit());
+        }
+    }
+
     private void OnCollisionExit2D(Collision2D collision)
     {
         if (!dead)
@@ -380,11 +538,38 @@ public class CharacterObject : MonoBehaviour
         }
 
         Minimap minimap = FindObjectOfType<Minimap>();
-        minimap.SetTransform(transform);
+        minimap.setTransform(transform);
+
+        Boss2[] boss2Arr = FindObjectsOfType<Boss2>();
+        foreach (var boss2 in boss2Arr)
+        {
+            boss2.setTransform(transform);
+        }
+
+        Boss3[] boss3Arr = FindObjectsOfType<Boss3>();
+        foreach (var boss3 in boss3Arr)
+        {
+            boss3.setTransform(transform);
+        }
+    }
+
+    private void setNull()
+    {
+        Enemy[] enemies = FindObjectsOfType<Enemy>();
+        foreach (var enemy in enemies)
+        {
+            enemy.setTransform(null);
+        }
+
+        FlyingEnemy[] flyingEs = FindObjectsOfType<FlyingEnemy>();
+        foreach (var flyingEnemy in flyingEs)
+        {
+            flyingEnemy.setTransform(null);
+        }
     }
     private IEnumerator TakeHit()
     {
-        yield return new WaitForSeconds(0.4f);
+        yield return new WaitForSeconds(0.6f);
         isAttacked = false;
         movePlayer = Vector2.zero;
     }

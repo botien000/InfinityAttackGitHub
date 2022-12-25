@@ -18,6 +18,9 @@ public class Api
     public readonly string routerAddEmail = "addEmail";
     public readonly string routerSendCodeChangeEmail = "sendCodeChangeEmail";
     public readonly string routerChangeEmail = "changeEmail";
+    public readonly string routerGenerateRememberToken = "generateRememberToken";
+    public readonly string routerCheckRememberToken = "checkRememberToken";
+    public readonly string routerSetOffline = "SetOffline";
 
     public readonly string routerGetCharacters = "get-characters";
     public readonly string routerGetUserByName = "getUserByName";

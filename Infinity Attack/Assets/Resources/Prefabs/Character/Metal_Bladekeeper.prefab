@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8921422355430261584}
   m_Layer: 3
   m_Name: Attack
-  m_TagString: Untagged
+  m_TagString: PlayerAttack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -82,7 +82,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1676938266}
   - component: {fileID: 1676938267}
-  m_Layer: 7
+  m_Layer: 3
   m_Name: Foot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -141,12 +141,12 @@ GameObject:
   - component: {fileID: 5352701255093165599}
   - component: {fileID: 1781760286}
   - component: {fileID: 1781760287}
-  - component: {fileID: 1781760285}
   - component: {fileID: 1781760284}
   - component: {fileID: 1781760283}
-  m_Layer: 7
+  - component: {fileID: 1854814708180569408}
+  m_Layer: 3
   m_Name: Metal_Bladekeeper
-  m_TagString: PlayerAttack
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -233,9 +233,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speedRun: 5
-  forceJump: 450
+  forceJump: 550
   ultimateCooldown: 15
   abilityCooldownButton: {fileID: 0}
+  knockbackForceUp: 2.5
+  knockbackForce: 1.5
   rgbody: {fileID: 0}
   animator: {fileID: 0}
   movePlayer: {x: 0, y: 0}
@@ -249,32 +251,6 @@ MonoBehaviour:
   isCooldown: 0
   isAttacked: 0
   dead: 0
---- !u!61 &1781760285
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7456179480679395568}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.015200213, y: -0.4020112}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.88, y: 1.28}
-    newSize: {x: 2.88, y: 1.28}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.22596917, y: 0.43470293}
-  m_EdgeRadius: 0
 --- !u!50 &1781760284
 Rigidbody2D:
   serializedVersion: 4
@@ -290,7 +266,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 1.5
   m_Material: {fileID: 6200000, guid: 56ddd603f41c922499635aa0127ec47c, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -316,3 +292,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!70 &1854814708180569408
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7456179480679395568}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.37}
+  m_Size: {x: 0.42, y: 0.47}
+  m_Direction: 0

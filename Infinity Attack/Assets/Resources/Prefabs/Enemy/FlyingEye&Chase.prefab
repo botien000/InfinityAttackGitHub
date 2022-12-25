@@ -298,7 +298,7 @@ GameObject:
   - component: {fileID: 2463213033878489705}
   m_Layer: 0
   m_Name: Flying Eye
-  m_TagString: Undefined
+  m_TagString: FlyingEnemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -359,7 +359,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: -2134449819, guid: ba154f1117e3f0642afe90881d109faf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -452,11 +452,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 4.5
   chase: 0
-  CDAtk: 1
+  CDAtk: 1.5
   health: 0
   maxHealth: 50
-  attackDamage: 20
-  knockback: 1.5
+  knockback: 2
   takeDamage: 0
   timeLoop: 1
   timeDead: 0.5

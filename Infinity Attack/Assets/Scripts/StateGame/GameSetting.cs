@@ -35,6 +35,7 @@ public class GameSetting : MonoBehaviour
 
     private void PressBtnHome()
     {
+        GameManager.instance.RemoveAllDontDestroyInGame();
         SceneManager.LoadScene("Home");
     }
 
