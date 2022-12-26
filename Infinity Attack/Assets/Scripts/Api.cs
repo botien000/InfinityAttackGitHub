@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Api
 {
-    public readonly string api = "http://localhost:3000/api/";
+    public readonly string api = "https://infinityattack.herokuapp.com/api/";
 
     //login and register
     public readonly string routerRegister = "register";
@@ -54,6 +54,7 @@ public class Api
 
     public readonly string routerUpdateAmount = "updateAmountSpell";
     public readonly string routerAddSpellOwn = "addNewSpellOwn";
+    public readonly string routerremoveSpellOwn = "removeSpellOwn";
 
     public readonly string routerFindRespone = "findRespone";
     public readonly string routerDeleteAFriend = "deleteAFriend";

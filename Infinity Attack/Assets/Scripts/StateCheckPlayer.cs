@@ -7,6 +7,7 @@ public class StateCheckPlayer : MonoBehaviour
     [SerializeField] private Transform transTile_1, transTile_2;
     [SerializeField] private Transform transTileMove_1, transTileMove_2;
     [SerializeField] private float speedRotate, speedMove;
+    [SerializeField] private Dark_Samurai dark_Samurai;
 
     private bool firstCollide = false;
 
@@ -18,6 +19,8 @@ public class StateCheckPlayer : MonoBehaviour
         {
             firstCollide = true;
             StartCoroutine(IEMoveTiles());
+            if(dark_Samurai != null)
+            dark_Samurai.Active(collision.transform);
         }
     }
 
@@ -25,7 +28,7 @@ public class StateCheckPlayer : MonoBehaviour
     {
         while (true)
         {
-            if (transTile_1.eulerAngles.z >= 90f && transTile_2.eulerAngles.z >= 90f)
+            if (transTile_1.eulerAngles.z >= 90f && transTile_2.eulerAngles.z >= 90f) 
                 break;
             if (transTile_1.position == transTileMove_1.position)
             {

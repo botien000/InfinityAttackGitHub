@@ -209,11 +209,8 @@ public class LeaderBoard : MonoBehaviour
             }
             LeaderboardDetail detail = Instantiate(leaderBoardDetailPrefab, parent);
             detail.Init(top, users[i].name, users[i].gem, true ? users[i]._id == User.Instance.user._id : false);
-            if (users[i]._id == User.Instance.user._id)
-                Debug.Log("dd");
             lbDetailGOList.Add(detail);
             BtnGlobal();
-            Debug.Log("Top: " + top + "     Name: " + users[i].name + "    Gem: " + users[i].gem);
         }
     }
     public void BtnGlobal()

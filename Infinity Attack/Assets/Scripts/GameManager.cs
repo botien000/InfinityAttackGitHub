@@ -56,7 +56,17 @@ public class GameManager : MonoBehaviour
                 gameSetting.gameObject.SetActive(true);
                 break;
             case StateGame.GameOver:
-                gameOver.gameObject.SetActive(true);
+                if (SystemData.instance.map == 3)
+                {
+                    if (SystemData.instance.amountBossMap_3 == 0)
+                    {
+                        gameOver.gameObject.SetActive(true);
+                    }
+                }
+                else
+                {
+                    gameOver.gameObject.SetActive(true);
+                }
                 break;
         }
     }

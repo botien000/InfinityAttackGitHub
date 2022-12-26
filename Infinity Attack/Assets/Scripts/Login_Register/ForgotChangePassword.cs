@@ -98,8 +98,8 @@ public class ForgotChangePassword : MonoBehaviour
     private void ResetField()
     {
         tokenField.text = "";
-        tokenField.text = "";
-        tokenField.text = "";
+        newPassField.text = "";
+        confirmField.text = "";
     }
 
     private string removeQuotes(string a)

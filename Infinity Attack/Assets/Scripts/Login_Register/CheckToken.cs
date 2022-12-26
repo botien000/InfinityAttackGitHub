@@ -215,7 +215,7 @@ public class CheckToken : MonoBehaviour
     {
         for (int i = 0; i < 3; i++)
         {
-            SpellSingleton.Instance.SetSpell(i, null, null, 0, 0, 0);
+            SpellSingleton.Instance.SetSpell(i, null, null, 0, 0, 0,null);
         }
     }
     IEnumerator IELoadingScreen(int buildIndex)

@@ -16,6 +16,7 @@ public class Portal : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             SceneManager.LoadScene($"Map{GameManager.instance.typeMap}_2");
+            SoundManager.instance.SetMapBossMusic();
         }
     }
 }

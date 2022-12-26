@@ -7,15 +7,21 @@ using UnityEngine.UI;
 
 public class GameSetting : MonoBehaviour
 {
-    [SerializeField] Button btnHome, btnResume, btnRestart,btnExit;
-    [SerializeField] Slider sldMusic, sldAudio;
+    [SerializeField] Button btnHome, btnResume, btnRestart,btnExit,btnMusic,btnSound;
+    [SerializeField] private Image imgMusicOn_Off, imgSoundOn_Off;
 
     private void Start()
     {
         btnHome.onClick.AddListener(() => PressBtnHome());
         btnResume.onClick.AddListener(() => PressBtnResume());
         btnRestart.onClick.AddListener(() => PressBtnRestart());
+        btnMusic.onClick.AddListener(() => PressBtnMusic());
+        btnSound.onClick.AddListener(() => PressBtnSound());
         btnExit.onClick.AddListener(() => PressBtnExit());
+
+        imgMusicOn_Off.gameObject.SetActive(PlayerPrefs.GetFloat("MusicKey", 1) == 1 ? false : true);
+        imgSoundOn_Off.gameObject.SetActive(PlayerPrefs.GetFloat("SoundKey", 1) == 1 ? false : true);
+
     }
 
     private void PressBtnExit()
@@ -37,6 +43,17 @@ public class GameSetting : MonoBehaviour
     {
         GameManager.instance.RemoveAllDontDestroyInGame();
         SceneManager.LoadScene("Home");
+    }
+    public void PressBtnMusic()
+    {
+        imgMusicOn_Off.gameObject.SetActive(!imgMusicOn_Off.gameObject.activeInHierarchy);
+        SoundManager.instance.SetMusicData(imgMusicOn_Off.gameObject.activeInHierarchy);
+    }
+
+    public void PressBtnSound()
+    {
+        imgSoundOn_Off.gameObject.SetActive(!imgSoundOn_Off.gameObject.activeInHierarchy);
+        SoundManager.instance.SetSoundData(imgSoundOn_Off.gameObject.activeInHierarchy);
     }
 
     private void OnEnable()

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using UnityEngine;
 
 public class SpellSingleton
@@ -30,8 +31,9 @@ public class SpellSingleton
         return spellArray[index];
     }
 
-    public void SetSpell(int index, string name, string spellPath, int amount, int spellType, int cooldown)
+    public void SetSpell(int index, string name, string spellPath, int amount, int spellType, int cooldown,string id)
     {
+        this.spellArray[index].id = id;
         this.spellArray[index].name = name;
         this.spellArray[index].spellPath = spellPath;
         this.spellArray[index].amount = amount;
@@ -46,6 +48,7 @@ public class SpellSingleton
         public int amount;
         public int spellType;
         public int cooldown;
+        public string id;
     }
 
 }

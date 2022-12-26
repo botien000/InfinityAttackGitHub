@@ -28,7 +28,11 @@ public class SoundManager : MonoBehaviour
         }
         DontDestroyOnLoad(gameObject);
     }
-
+    private void Start()
+    {
+        SetMusicData(PlayerPrefs.GetFloat("MusicKey",1) == 1 ? true : false);
+        SetSoundData(PlayerPrefs.GetFloat("SoundKey",1) == 1 ? true : false);
+    }
     public void SetSoundClick()
     {
         soundSource.PlayOneShot(clickClip);
@@ -36,6 +40,8 @@ public class SoundManager : MonoBehaviour
 
     public void SetLg_ResMusic()
     {
+        if (musicSource.clip == lg_resScreenClip)
+            return;
         musicSource.clip = lg_resScreenClip;
         musicSource.Play();
     }
@@ -50,5 +56,34 @@ public class SoundManager : MonoBehaviour
     {
         musicSource.clip = normalMapClip;
         musicSource.Play();
+    }
+
+    public void SetMusicData(bool isOn)
+    {
+        if (isOn)
+        {
+            PlayerPrefs.SetFloat("MusicKey", 1);
+            Debug.Log("dd");
+            musicSource.Play();
+        }
+        else
+        {
+            PlayerPrefs.SetFloat("MusicKey", 0);
+            musicSource.Pause();
+        }
+    }
+
+    public void SetSoundData(bool isOn)
+    {
+        if (isOn)
+        {
+            PlayerPrefs.SetFloat("SoundKey", 1);
+            soundSource.mute = true;
+        }
+        else
+        {
+            PlayerPrefs.SetFloat("SoundKey", 0);
+            soundSource.mute = false;
+        }
     }
 }

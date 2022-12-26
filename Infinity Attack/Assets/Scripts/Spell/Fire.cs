@@ -7,6 +7,8 @@ public class Fire : MonoBehaviour
     [SerializeField] Rigidbody2D rb;
     [SerializeField] Animator animator;
     [SerializeField] float speedMove;
+    [SerializeField] float damage;
+
 
     int dir;
     private void Start()
@@ -24,11 +26,21 @@ public class Fire : MonoBehaviour
         {
             animator.SetBool("Hit", true);
         }
+        else if (collision.CompareTag("Boss2"))
+        {
+            animator.SetBool("Hit", true);
+
+        }
+        else if (collision.CompareTag("Boss3"))
+        {
+            animator.SetBool("Hit", true);
+        }
     }
 
     public void Init(int direction)
     {
         dir = direction;
+        transform.localScale = new Vector2(transform.localScale.x * dir, transform.localScale.y);
     }
     
     public void HandleEventDestroy()

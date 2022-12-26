@@ -328,11 +328,12 @@ public class ShopUI : MonoBehaviour
     internal void UpdateSpellOwnIfNotExisting(SpellOwnUtility spellOwnUtility)
     {
         bool check = false;
-        foreach (var spellOwn in spellOwns)
+        for (int i = 0; i < spellOwns.Length; i++)
         {
-            if (spellOwn._id == spellOwnUtility._id)
+            if (spellOwns[i]._id == spellOwnUtility._id)
             {
                 check = true;
+                spellOwns[i] = spellOwnUtility;
                 break;
             }
         }

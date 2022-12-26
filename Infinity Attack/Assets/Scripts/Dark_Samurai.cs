@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using System.Security.Cryptography;
 using UnityEngine;
 
 public class Dark_Samurai : MonoBehaviour
@@ -12,8 +13,7 @@ public class Dark_Samurai : MonoBehaviour
 
     private int energy;
     private int countAttack;
-    private bool isHit;
-
+    private bool finishIdle;
 
     private Transform transPlayer;
     enum State
@@ -24,69 +24,95 @@ public class Dark_Samurai : MonoBehaviour
     private State curState;
     private State preState;
 
+    private void Start()
+    {
+        StartCoroutine(IEAction());
+        preState = State.Die;
+    }
     private void Update()
     {
-        if (transPlayer == null)
+        if (transPlayer == null || curState == State.Hit || curState == State.Die)
             return;
 
-        float x = transPlayer.position.x - transform.position.x;
-        if (curState == State.Run && (x <= 2 && x >= -2)) // samurai attack
+        if (finishIdle) // situlation action
         {
-            energy++;
-            if (countAttack == 3) // samurai attack 3 times then double attack
+            float x = transPlayer.position.x - transform.position.x;
+            Direction(x);
+            if (curState == State.Idle && energy == 8) //samurai active ultimate
             {
-                PlayAni(State.DoubleAttack);
-                countAttack = 0;
+                PlayAni(State.Ultimate);
+            }
+            else if (x <= 2 && x >= -2) // samurai attack
+            {
+                rgbody.velocity = Vector2.zero;
+                energy++;
+                if (countAttack == 3) // samurai attack 3 times then double attack
+                {
+                    PlayAni(State.DoubleAttack);
+                    countAttack = 0;
 
+                }
+                else // samurai attack +1
+                {
+                    PlayAni(State.Attack);
+                    countAttack++;
+                }
             }
-            else // samurai attack +1
+            else if (x > 2 || x < -2) // samurai run
             {
-                PlayAni(State.Attack);
-                countAttack++;
+                rgbody.velocity = Vector2.right * velocityRun * x;
+                PlayAni(State.Run);
             }
-        }
-        else if (x > 2 || x < -2) // samurai run
-        {
-            PlayAni(State.Run);
-        }
-        else if (curState == State.Idle && energy == 8) //samurai active ultimate
-        {
-            PlayAni(State.Ultimate);
+
         }
     }
     private IEnumerator IEAction()
     {
         while (true)
         {
+            yield return new WaitUntil(() => transPlayer != null);
+            Debug.Log(curState);
             if (curState != preState)
             {
                 preState = curState;
                 switch (curState)
                 {
                     case State.Idle:
+                        finishIdle = false;
+                        yield return new WaitForSeconds(2f);
+                        finishIdle = true;
                         break;
                     case State.Run:
                         break;
                     case State.Attack:
                         yield return new WaitForSeconds(2f);
-                        TelePort(transPositions[Random.Range(0, transPositions.Length)]);
                         PlayAni(State.Idle);
                         break;
                     case State.DoubleAttack:
                         yield return new WaitForSeconds(2f);
-                        TelePort(transPositions[Random.Range(0, transPositions.Length)]);
                         PlayAni(State.Idle);
                         break;
                     case State.Hit:
-                        Hit();
                         yield return new WaitForSeconds(2f);
-                        TelePort(transPositions[Random.Range(0, transPositions.Length)]);
                         PlayAni(State.Idle);
                         break;
                     case State.Ultimate:
                         break;
                 }
             }
+            yield return null;
+        }
+    }
+
+    private void Direction(float direction)
+    {
+        if(direction > 0) // right
+        {
+            transform.eulerAngles = Vector3.zero;
+        }
+        else
+        {
+            transform.eulerAngles = Vector3.up * 180;
         }
     }
     private void Attack()
@@ -135,11 +161,11 @@ public class Dark_Samurai : MonoBehaviour
         animator.SetInteger("State", (int)state);
         animator.SetTrigger("Change");
         curState = state;
-        preState = curState;
+        Debug.Log("Cur State: " + curState);
     }
 
-    public void Active(CharacterObject player)
+    public void Active(Transform player)
     {
-        transPlayer = player.transform;
+        transPlayer = player;
     }
 }

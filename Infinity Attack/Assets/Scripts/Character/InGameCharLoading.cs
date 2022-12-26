@@ -11,16 +11,16 @@ using TMPro;
 public class InGameCharLoading : MonoBehaviour
 {
     
-    [SerializeField] private Image HealthBar;
+    [SerializeField] public Image HealthBar;
     [SerializeField] private Image Avatar;
-    [SerializeField] private TMP_Text HealthText;
+    [SerializeField] public TMP_Text HealthText;
 
     private string addressGetUsingCharName = Api.Instance.api + Api.Instance.routerGetUsingCharNameById;
     private string addressGetLevelByCharNameAndUid = Api.Instance.api + Api.Instance.routerGetLevelByCharNameAndUid;
 
     private string charUsingName;
     public int damage;
-    private int hp;
+    public int hp;
     public int curHp;
 
     private Vector3 CharacterSpawnPosition;

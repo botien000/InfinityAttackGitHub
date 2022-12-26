@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 755127397892924022}
   m_Layer: 0
   m_Name: Fire
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -123,6 +123,7 @@ MonoBehaviour:
   rb: {fileID: 755127397892924025}
   animator: {fileID: 755127397892924021}
   speedMove: 500
+  damage: 0
 --- !u!50 &755127397892924025
 Rigidbody2D:
   serializedVersion: 4

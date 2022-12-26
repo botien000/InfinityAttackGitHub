@@ -3581,7 +3581,7 @@ MonoBehaviour:
   soundSource: {fileID: 1990266429}
   lg_resScreenClip: {fileID: 8300000, guid: e6184fc358e6f4142b9c9641167da765, type: 3}
   mapBossClip: {fileID: 8300000, guid: 17e45c53c2a2d294abf44e21b3a6b7c9, type: 3}
-  normalMapClip: {fileID: 0}
+  normalMapClip: {fileID: 8300000, guid: 97ca436c0524c814bb75767a9cefdcb6, type: 3}
   clickClip: {fileID: 8300000, guid: 70e4a225a03cc8440875d3089c3c86f0, type: 3}
 --- !u!4 &713680310
 Transform:

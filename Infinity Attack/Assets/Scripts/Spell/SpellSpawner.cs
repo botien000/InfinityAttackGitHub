@@ -1,7 +1,9 @@
+using Newtonsoft.Json;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 using UnityEngine.UI;
 
 public enum SpellType
@@ -40,6 +42,7 @@ public class SpellSpawner : MonoBehaviour
                 btnSpells[i].gameObject.SetActive(false);
             }
         }
+        //StartCoroutine(IEUpdateAmount());
     }
     void SetSpellType(SpellType type, bool active, int btnIndex)
     {
@@ -49,29 +52,29 @@ public class SpellSpawner : MonoBehaviour
                 if (active)
                 {
                     HandleSpell("HealingFx(Clone", healingFXPrefab, player.transform, 2, btnIndex, type);
-                    player.Healing(1);
+                    player.Healing(25); // 25%
                 }
                 break;
             case SpellType.Chaos:
                 if (active)
                 {
                     HandleSpell("Chaos(Clone)", chaosPrefab, player.transform, 2, btnIndex, type);
-                    player.IncreateDamage(1);
+                    player.IncreateDamage(2,0);
                 }
                 else
                 {
-                    player.IncreateDamage(-1);
+                    player.IncreateDamage(2,1);
                 }
                 break;
             case SpellType.Speedup:
                 if (active)
                 {
                     HandleSpell("SpeedUpFX(Clone)", null, player.transform, 2, btnIndex, type);
-                    player.SpeedUp(1);
+                    player.SpeedUp(0.8f);  
                 }
                 else
                 {
-                    player.SpeedUp(-1);
+                    player.SpeedUp(-0.8f); 
                 }
                 break;
             case SpellType.Fire:
@@ -85,6 +88,7 @@ public class SpellSpawner : MonoBehaviour
             case SpellType.UtilmateRemake:
                 if (active)
                 {
+                    player.ResetingUtilmate();
                     HandleSpell("", null, player.transform, 0, btnIndex, type);
                     Debug.Log("Active UtilmateRemake");
                 }
@@ -127,7 +131,14 @@ public class SpellSpawner : MonoBehaviour
                 go.gameObject.SetActive(true);
             }
             StartCoroutine(IEHandleCoolDown(btnIndex));
-            StartCoroutine(IEHandleTimeRemaining(timeRemaining, type, btnIndex, go.gameObject));
+            if(go == null)
+            {
+                StartCoroutine(IEHandleTimeRemaining(timeRemaining, type, btnIndex, null));
+            }
+            else
+            {
+                StartCoroutine(IEHandleTimeRemaining(timeRemaining, type, btnIndex, go.gameObject));
+            }
         }
     }
     IEnumerator IEHandleCoolDown(int btnIndex)
@@ -176,4 +187,6 @@ public class SpellSpawner : MonoBehaviour
     {
         player = characterObject;
     }
+
+  
 }

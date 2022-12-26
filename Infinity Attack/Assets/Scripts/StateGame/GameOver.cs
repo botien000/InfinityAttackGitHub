@@ -10,7 +10,7 @@ using UnityEngine.UI;
 public class GameOver : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI txtLogKilledEnemy, txtLogKilledBoss;
-    [SerializeField] TextMeshProUGUI txtPlusGem,txtPlusGold;
+    [SerializeField] TextMeshProUGUI txtPlusGem, txtPlusGold;
     [SerializeField] TextMeshProUGUI txtStateOver;
     [SerializeField] Button btnHome;
 
@@ -20,9 +20,8 @@ public class GameOver : MonoBehaviour
         SetLogKilledEnemy();
         SetLogKilledBoss();
         OnShow();
-        btnHome.onClick.AddListener(() => PressBtnHome());     
+        btnHome.onClick.AddListener(() => PressBtnHome());
     }
-
 
     private void PressBtnHome()
     {
@@ -34,8 +33,8 @@ public class GameOver : MonoBehaviour
 
     public void SetPlus()
     {
-        txtPlusGold.text = SystemData.instance.curTotalGold+"";
-        txtPlusGem.text = SystemData.instance.curTotalGem+"";
+        txtPlusGold.text = SystemData.instance.curTotalGold + "";
+        txtPlusGem.text = SystemData.instance.curTotalGem + "";
     }
 
     public void SetLogKilledEnemy()
@@ -50,7 +49,20 @@ public class GameOver : MonoBehaviour
 
     public void OnShow()
     {
-        if (SystemData.instance.flagEnemy == SystemData.instance.totalEnemy && SystemData.instance.flagBoss == 1)
+        if (SystemData.instance.map == 3)
+        {
+            if (SystemData.instance.amountBossMap_3 == 2)
+            {
+                txtStateOver.text = "VICTORY";
+
+            }
+            else
+            {
+                txtStateOver.text = "DEFEAT";
+            }
+            return;
+        }
+        if (SystemData.instance.flagBoss == 1)
         {
             txtStateOver.text = "VICTORY";
         }

@@ -52,21 +52,13 @@ public class Boss3 : MonoBehaviour
     public GameObject heart;
 
     public static Boss3 instance;
-    private void Awake()
-    {
 
-    }
     private void Start()
     {
-        curhp = hp;
-
-        //CinemachineBrain cinemachineBrain = FindObjectOfType<CinemachineBrain>();
-        //Slider[] sliders = cinemachineBrain.GetComponentsInChildren<Slider>();
-
-
-        //slider = sliders[0];
-        //heart_Slider = sliders[1];
-
+        CinemachineBrain cinemachineBrain = FindObjectOfType<CinemachineBrain>();
+        Slider[] sliders = cinemachineBrain.GetComponentsInChildren<Slider>(true);
+        slider = sliders[0];
+        heart_Slider = sliders[1];
 
         rgbody = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
@@ -82,7 +74,7 @@ public class Boss3 : MonoBehaviour
         Skill1_isCD = false;
         Skill1_ing = false;
         Skill2_ing = false;
-
+        curhp = hp;
         curhp_heart = hp_heart;
     }
     private void Update()
@@ -99,8 +91,17 @@ public class Boss3 : MonoBehaviour
             if (curhp <= 0)
             {
                 dead = true;
+                // ==============================================WIN==================================================
                 anim.Play("Death");
                 rgbody.bodyType = RigidbodyType2D.Static;
+
+                if (SystemData.instance.map == 3)
+                {
+                    SystemData.instance.amountBossMap_3--;
+             
+                }
+                SystemData.instance.flagBoss += 1;
+                GameManager.instance.SetStateGame(GameManager.StateGame.GameOver);
             }
             if (Time.time > nextAttackSkill1 && activeskill1 == true && !Skill2_ing)
             {
@@ -204,6 +205,10 @@ public class Boss3 : MonoBehaviour
             slider.value = curhp;
         }
     }
+    /// <summary>
+    /// ////////////////////////////////////////////
+    /// </summary>
+    /// <param name="collision"></param>
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "PlayerAttack")

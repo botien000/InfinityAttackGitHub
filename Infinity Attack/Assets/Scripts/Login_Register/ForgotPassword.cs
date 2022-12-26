@@ -12,6 +12,7 @@ public class ForgotPassword : MonoBehaviour
     [SerializeField] private TMP_InputField emailField;
     [SerializeField] private GameObject AlertPannel;
     [SerializeField] private GameObject FlagPannel;
+    [SerializeField] private GameObject ForgotPanel;
     [SerializeField] private GameObject LoadingPanel;
     [SerializeField] private GameObject ForgotChangePassPannel;
     [SerializeField] private TMP_Text AlertText;
@@ -90,6 +91,7 @@ public class ForgotPassword : MonoBehaviour
                     else if (respone == "Change password code was sent to your email address")
                     {
                         ForgotChangePassPannel.gameObject.SetActive(true);
+                        ForgotPanel.SetActive(false);
                     }
                 }
             }

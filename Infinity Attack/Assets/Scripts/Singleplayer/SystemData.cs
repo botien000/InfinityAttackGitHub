@@ -7,6 +7,8 @@ public class SystemData : MonoBehaviour
     [SerializeField] private int goldPerEnemy;
     [SerializeField] private int gemKillBoss;
 
+    public int map = 3;
+    public int amountBossMap_3 = 2;
     public int curTotalGold, curTotalGem;
     public int totalEnemy;
     private int challengeAchievedSingle3Time = 0,

@@ -18,17 +18,17 @@ public class CheckEmail : MonoBehaviour
 
     [SerializeField] private GameObject AddEmailPanel;
     [SerializeField] private GameObject ChangeEmailPanel;
+    [SerializeField] private Image imgMusicOn_Off, imgSoundOn_Off;
 
     private string addressGetUser = Api.Instance.api + Api.Instance.routerGetUserById;
-    //private string addressGetTop10Users = "http://localhost:3000/api/getTop5Users";
-
-
-    
 
     // Start is called before the first frame update
     void Start()
     {
         StartCoroutine(GetData());
+
+        imgMusicOn_Off.gameObject.SetActive(PlayerPrefs.GetFloat("MusicKey", 1) == 1 ? false : true);
+        imgSoundOn_Off.gameObject.SetActive(PlayerPrefs.GetFloat("SoundKey", 1) == 1 ? false : true);
     }
 
     // Update is called once per frame
@@ -94,5 +94,17 @@ public class CheckEmail : MonoBehaviour
     {
         string b = a.Substring(1, a.Length - 2);
         return b;
+    }
+
+    public void PressBtnMusic()
+    {
+        imgMusicOn_Off.gameObject.SetActive(!imgMusicOn_Off.gameObject.activeInHierarchy);
+        SoundManager.instance.SetMusicData(!imgMusicOn_Off.gameObject.activeInHierarchy);
+    }
+
+    public void PressBtnSound()
+    {
+        imgSoundOn_Off.gameObject.SetActive(!imgSoundOn_Off.gameObject.activeInHierarchy);
+        SoundManager.instance.SetSoundData(!imgSoundOn_Off.gameObject.activeInHierarchy) ;
     }
 }

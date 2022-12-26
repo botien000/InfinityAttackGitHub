@@ -23,22 +23,16 @@ public class LoginScript : MonoBehaviour
     [SerializeField] private Achievement[] achievementOwnList;
     private Api instanceIP;
     private string loginApi = Api.Instance.api + Api.Instance.routerLogin;
-
+    private string generateTokenApi = Api.Instance.api + Api.Instance.routerGenerateRememberToken;
     private int challengeAchievedLogIn = 0, challengeAchievedSingle3Time = 0, challengeAchievedMulti1Time = 0,
       challengeAchievedKill50Enemy = 0, challengeAchievedKill5Boss = 0, challengeAchievedUse3Spell = 0;
 
     private int killenemy = 0, killboss = 0, singleplay = 0, multiplay = 0, addfriend = 0;
 
 
-    private void Start()
-    {
-        SoundManager.instance.SetLg_ResMusic();
-        usernameField.text = PlayerPrefs.GetString("UsernamePP", "");
-        passwordField.text = PlayerPrefs.GetString("PasswordPP", "");
-    }
+
     public void OnLoginClick()
     {
-        SoundManager.instance.SetSoundClick();
         createPlayerPref();
         instanceIP = Api.Instance;
         StartCoroutine(TryLogin());
@@ -57,8 +51,7 @@ public class LoginScript : MonoBehaviour
         SaveChallengeAchievedKillBoss(0);
         SaveChallengeAchievedSinglePlay(0);
         SaveChallengeAchievedMultiPlay(0);
-
-        SavePlay(1);
+        SaveChallengeAchievedAddFriend(0);
     }
     private IEnumerator TryLogin()
     {
@@ -98,9 +91,10 @@ public class LoginScript : MonoBehaviour
                     }
                     else
                     {
-                        Debug.Log("Player ID: " + respone);                    
+                        Debug.Log("Player ID: " + respone);
                         PlayerPrefs.SetString("UID", www.downloadHandler.text);
                         string userID = removeQuotes(PlayerPrefs.GetString("UID"));
+                        CheckSavePref(userID);
                         StartCoroutine(GetQuestOwnData(instanceIP.api + instanceIP.routerPostQuestsOwn, userID));
                     }
                 }
@@ -198,9 +192,9 @@ public class LoginScript : MonoBehaviour
     {
         var _achievement = JsonConvert.DeserializeObject<Achievement[]>(rawResponse);
         achievementOwnList = _achievement;
-       
+
         for (int i = 0; i < achievementOwnList.Length; i++)
-        {   
+        {
             string name = achievementOwnList[i].achievementID.name;
             int challengeAchieved = achievementOwnList[i].challengeAchieved;
 
@@ -224,8 +218,12 @@ public class LoginScript : MonoBehaviour
                 multiplay = challengeAchieved;
                 SaveChallengeAchievedMultiPlay(multiplay);
             }
+            else if (name == "addfriend")
+            {
+                addfriend = challengeAchieved;
+                SaveChallengeAchievedAddFriend(addfriend);
+            }
         }
-        CheckSavePref();
         ResetSpellChosen();
         StartCoroutine(IELoadingScreen(1));
     }
@@ -233,20 +231,45 @@ public class LoginScript : MonoBehaviour
     {
         for (int i = 0; i < 3; i++)
         {
-            SpellSingleton.Instance.SetSpell(i, null, null, 0, 0, 0);
+            SpellSingleton.Instance.SetSpell(i, null, null, 0, 0, 0,null);
         }
     }
-    private void CheckSavePref()
+    private void CheckSavePref(string uid)
     {
         if (tglLogin.isOn)
         {
-            PlayerPrefs.SetString("UsernamePP", usernameField.text);
-            PlayerPrefs.SetString("PasswordPP", passwordField.text);
+            StartCoroutine(GenerateToken(uid));
         }
         else
-        {   
-            PlayerPrefs.SetString("UsernamePP", "");
-            PlayerPrefs.SetString("PasswordPP", "");
+        {
+            PlayerPrefs.SetString("token", "");
+        }
+    }
+    IEnumerator GenerateToken(string uid)
+    {
+        WWWForm form = new WWWForm();
+        form.AddField("uid", uid);
+        UnityWebRequest www = UnityWebRequest.Post(generateTokenApi, form);
+        loadingPanel.SetActive(true);
+        yield return www.SendWebRequest();
+        loadingPanel.SetActive(false);
+        if (www.result != UnityWebRequest.Result.Success)
+        {
+            Debug.LogError("Something went wrong: " + www.error);
+        }
+        else
+        {
+            if (removeQuotes(www.downloadHandler.text) == null)
+            {
+
+            }
+            else
+            {
+                string token = removeQuotes(www.downloadHandler.text);
+                PlayerPrefs.SetString("token", token);
+                Debug.Log(token);
+                www.Dispose();
+            }
         }
     }
     IEnumerator IELoadingScreen(int buildIndex)
@@ -260,7 +283,6 @@ public class LoginScript : MonoBehaviour
     }
     public void resetInputField()
     {
-        SoundManager.instance.SetSoundClick();
         usernameField.text = "";
         passwordField.text = "";
     }
@@ -271,25 +293,45 @@ public class LoginScript : MonoBehaviour
         return b;
     }
 
+    private void LoadChallengeAchievedLogIn()
+    {
+        challengeAchievedLogIn = PlayerPrefs.GetInt("challengeAchievedLogIn");
+    }
 
     private void SaveChallengeAchievedLogIn(int challengeAchievedLogIn)
     {
         PlayerPrefs.SetInt("challengeAchievedLogIn", challengeAchievedLogIn);
+    }
+    private void LoadChallengeAchievedSingle3Time()
+    {
+        challengeAchievedSingle3Time = PlayerPrefs.GetInt("challengeAchievedSingle3Time");
     }
 
     private void SaveChallengeAchievedSingle3Time(int challengeAchievedSingle3Time)
     {
         PlayerPrefs.SetInt("challengeAchievedSingle3Time", challengeAchievedSingle3Time);
     }
+    private void LoadChallengeAchievedMulti1Time()
+    {
+        challengeAchievedMulti1Time = PlayerPrefs.GetInt("challengeAchievedMulti1Time");
+    }
 
     private void SaveChallengeAchievedMulti1Time(int challengeAchievedMulti1Time)
     {
         PlayerPrefs.SetInt("challengeAchievedMulti1Time", challengeAchievedMulti1Time);
     }
+    private void LoadChallengeAchievedKill50Enemy()
+    {
+        challengeAchievedKill50Enemy = PlayerPrefs.GetInt("challengeAchievedKill50Enemy");
+    }
 
     private void SaveChallengeAchievedKill50Enemy(int challengeAchievedKill50Enemy)
     {
         PlayerPrefs.SetInt("challengeAchievedKill50Enemy", challengeAchievedKill50Enemy);
+    }
+    private void LoadChallengeAchievedKill5Boss()
+    {
+        challengeAchievedKill5Boss = PlayerPrefs.GetInt("challengeAchievedKill5Boss");
     }
 
     private void SaveChallengeAchievedKill5Boss(int challengeAchievedKill5Boss)
@@ -297,6 +339,10 @@ public class LoginScript : MonoBehaviour
         PlayerPrefs.SetInt("challengeAchievedKill5Boss", challengeAchievedKill5Boss);
     }
 
+    private void LoadChallengeAchievedUse3Spell()
+    {
+        challengeAchievedUse3Spell = PlayerPrefs.GetInt("challengeAchievedUse3Spell");
+    }
 
     private void SaveChallengeAchievedUse3Spell(int challengeAchievedUse3Spell)
     {
@@ -304,28 +350,49 @@ public class LoginScript : MonoBehaviour
     }
 
 
+    private void LoadChallengeAchievedKillEnemy()
+    {
+        killenemy = PlayerPrefs.GetInt("killenemy");
+    }
+
     private void SaveChallengeAchievedKillEnemy(int killenemy)
     {
         PlayerPrefs.SetInt("killenemy", killenemy);
+    }
+    private void LoadChallengeAchievedKillBoss()
+    {
+        killboss = PlayerPrefs.GetInt("killboss");
     }
 
     private void SaveChallengeAchievedKillBoss(int killboss)
     {
         PlayerPrefs.SetInt("killboss", killboss);
     }
+    private void LoadChallengeAchievedSinglePlay()
+    {
+        singleplay = PlayerPrefs.GetInt("singleplay");
+    }
 
     private void SaveChallengeAchievedSinglePlay(int singleplay)
     {
         PlayerPrefs.SetInt("singleplay", singleplay);
+    }
+    private void LoadChallengeAchievedMultiPlay()
+    {
+        multiplay = PlayerPrefs.GetInt("multiplay");
     }
 
     private void SaveChallengeAchievedMultiPlay(int multiplay)
     {
         PlayerPrefs.SetInt("multiplay", multiplay);
     }
-
-    private void SavePlay(int play)
+    private void LoadChallengeAchievedAddFriend()
     {
-        PlayerPrefs.SetInt("Play", play);
+        addfriend = PlayerPrefs.GetInt("addfriend");
+    }
+
+    private void SaveChallengeAchievedAddFriend(int addfriend)
+    {
+        PlayerPrefs.SetInt("addfriend", addfriend);
     }
 }

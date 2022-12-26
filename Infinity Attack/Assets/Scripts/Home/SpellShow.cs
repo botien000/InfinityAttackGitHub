@@ -7,6 +7,7 @@ using TMPro;
 using UnityEngine.SceneManagement;
 using UnityEngine.Networking;
 using Newtonsoft.Json;
+using static SpellSingleton;
 
 public class SpellShow : MonoBehaviour
 {
@@ -60,13 +61,13 @@ public class SpellShow : MonoBehaviour
         var _spellOwn = JsonConvert.DeserializeObject<Spell[]>(rawResponse);
         spellOwnList = _spellOwn;
 
-        for(int i = 0; i < 3; i++)
+        for (int i = 0; i < 3; i++)
         {
-            if(spellSingleton.GetSpell(i).name == "Fire")
+            if (spellSingleton.GetSpell(i).name == "Fire")
             {
                 choosenFire = true;
             }
-            else if(spellSingleton.GetSpell(i).name == "Chaos")
+            else if (spellSingleton.GetSpell(i).name == "Chaos")
             {
                 choosenChaos = true;
             }
@@ -90,7 +91,7 @@ public class SpellShow : MonoBehaviour
             g = Instantiate(item, transform);
             string name = spellOwnList[i].spellID.name;
             int amount = spellOwnList[i].amount;
-            if(amount <= 0)
+            if (amount <= 0)
             {
                 g.SetActive(false);
             }
@@ -138,7 +139,7 @@ public class SpellShow : MonoBehaviour
                     g.SetActive(false);
                 }
                 g.GetComponent<Button>().AddEventListener(i, ItemClicked);
-            }  
+            }
         }
         Destroy(item);
     }
@@ -148,6 +149,7 @@ public class SpellShow : MonoBehaviour
         string name = spellOwnList[itemIndex].spellID.name;
         int amount = spellOwnList[itemIndex].amount;
         int cooldown = spellOwnList[itemIndex].spellID.cooldown;
+        string idSpell = spellOwnList[itemIndex]._id;
         SpellType spellType = 0;
         if (name == "Chaos")
         {
@@ -175,10 +177,74 @@ public class SpellShow : MonoBehaviour
             path = "Spells/utilmateRemake";
             spellType = SpellType.UtilmateRemake;
         }
-        spellSingleton.SetSpell(indexArr, name, path, amount,(int) spellType, 2);
-        SceneManager.LoadScene(sceneNumber);
+        spellSingleton.SetSpell(indexArr, name, path, amount, (int)spellType, 2, idSpell);
+        if (spellSingleton.GetSpell(indexArr).amount == 1) // remove spell own
+        {
+            StartCoroutine(IERemoveSpellOwn());
+        }
+        else
+        {
+            StartCoroutine(IEUpdateAmount());
+        }
+
     }
 
+    IEnumerator IEUpdateAmount()
+    {
+        WWWForm form = new WWWForm();
+        UnityWebRequest unityWebRequest = null;
+        form.AddField("_id", spellSingleton.GetSpell(indexArr).id);
+        form.AddField("amount", spellSingleton.GetSpell(indexArr).amount - 1);
+        unityWebRequest = UnityWebRequest.Post(Api.Instance.api + Api.Instance.routerUpdateAmount, form);
+        var handler = unityWebRequest.SendWebRequest();
+        while (!handler.isDone)
+        {
+            yield return null;
+        }
+        if (unityWebRequest.result == UnityWebRequest.Result.Success)
+        {
+            string json = unityWebRequest.downloadHandler.text;
+            Debug.Log(json);
+            if (json != "[]")
+            {
+                Debug.Log("Update Amount Sucessfully");
+                SpellOwnUtility spellOwnUtility = JsonConvert.DeserializeObject<SpellOwnUtility>(json);
+            }
+            else
+            {
+                Debug.Log("Failed Update");
+            }
+        }
+        else
+        {
+            Debug.Log("Failed to connecting server");
+        }
+        SceneManager.LoadScene(sceneNumber);
+        unityWebRequest.Dispose();
+    }
+
+    IEnumerator IERemoveSpellOwn()
+    {
+        WWWForm form = new WWWForm();
+        UnityWebRequest unityWebRequest = null;
+        form.AddField("_id", spellSingleton.GetSpell(indexArr).id);
+        unityWebRequest = UnityWebRequest.Post(Api.Instance.api + Api.Instance.routerremoveSpellOwn, form);
+        var handler = unityWebRequest.SendWebRequest();
+        while (!handler.isDone)
+        {
+            yield return null;
+        }
+        if (unityWebRequest.result == UnityWebRequest.Result.Success)
+        {
+            Debug.Log(unityWebRequest.downloadHandler.text);
+        }
+        else
+        {
+            Debug.Log("Failed to connecting server");
+        }
+        SceneManager.LoadScene(sceneNumber);
+        unityWebRequest.Dispose();
+    }
     public void BackToHomeSceen(int scene)
     {
         SceneManager.LoadScene(scene);

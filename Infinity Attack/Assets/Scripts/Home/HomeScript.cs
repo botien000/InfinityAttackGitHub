@@ -49,6 +49,7 @@ public class HomeScript : MonoBehaviour
     void Start()
     {
         StartCoroutine(GetData());
+        SoundManager.instance.SetLg_ResMusic();
     }
 
     // Update is called once per frame

@@ -1,8 +1,10 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using Slider = UnityEngine.UI.Slider;
 
 public class Boss2 : MonoBehaviour
 {
@@ -55,6 +57,10 @@ public class Boss2 : MonoBehaviour
     }
     private void Start()
     {
+        CinemachineBrain cinemachineBrain = FindObjectOfType<CinemachineBrain>();
+        Slider[] sliders = cinemachineBrain.GetComponentsInChildren<Slider>(true);
+        slider = sliders[0];
+        heart_Slider = sliders[1];
         rgbody = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         canBeAttacked = true;
@@ -89,6 +95,12 @@ public class Boss2 : MonoBehaviour
                 anim.SetBool("Death", true);
                 anim.Play("Death");
                 rgbody.bodyType = RigidbodyType2D.Static;
+                if (SystemData.instance.map == 3)
+                {
+                    SystemData.instance.amountBossMap_3--;
+                }
+                SystemData.instance.flagBoss += 1;
+                GameManager.instance.SetStateGame(GameManager.StateGame.GameOver);
             }
             if (Time.time > nextAttackSkill1 && activeskill1 == true && !Skill2_ing)
             {

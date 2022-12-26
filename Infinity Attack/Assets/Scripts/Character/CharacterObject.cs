@@ -62,6 +62,7 @@ public class CharacterObject : MonoBehaviour
         SpellSpawner spellSpawner = FindObjectOfType<SpellSpawner>();
         spellSpawner.Init(this);
         GameManager.instance.SetPlayerDontDestroy(this);
+        abilityCooldownButton.GetComponent<Image>().raycastTarget = false;
     }
 
     private void Update()
@@ -72,7 +73,7 @@ public class CharacterObject : MonoBehaviour
             {
 
             }
-            if (!isAttacked || !dead )
+            if (!isAttacked || !dead)
             {
                 if (!attacking)
                 {
@@ -120,20 +121,20 @@ public class CharacterObject : MonoBehaviour
                 }
             }
         }
-        
+
 
         if (isCooldown)
         {
+            abilityCooldownButton.GetComponent<Image>().raycastTarget = true;
             abilityCooldownButton.GetComponent<Image>().fillAmount -= 1 / ultimateCooldown * Time.deltaTime;
 
             if (abilityCooldownButton.GetComponent<Image>().fillAmount <= 0)
             {
+                abilityCooldownButton.GetComponent<Image>().raycastTarget = false;
                 abilityCooldownButton.GetComponent<Image>().fillAmount = 0;
                 isCooldown = false;
             }
         }
-
-        Debug.Log("curstate" + curState);
 
         if (Enemy.instance.player == null && !dead)
         {
@@ -172,7 +173,7 @@ public class CharacterObject : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if (!isAttacked &&!dead)
+        if (!isAttacked && !dead)
             rgbody.velocity = new Vector2(movePlayer.x * speedRun, rgbody.velocity.y);
         if (InGameCharLoading.instance.curHp <= 0)
         {
@@ -181,7 +182,8 @@ public class CharacterObject : MonoBehaviour
         if (isUltimate && !dead)
         {
             rgbody.bodyType = RigidbodyType2D.Static;
-        } else if (!isUltimate && !dead)
+        }
+        else if (!isUltimate && !dead)
         {
             rgbody.bodyType = RigidbodyType2D.Dynamic;
         }
@@ -211,7 +213,7 @@ public class CharacterObject : MonoBehaviour
 
             if (obj.started)
             {
-                if (!isJump && !isUltimate && !isAttacked )
+                if (!isJump && !isUltimate && !isAttacked)
                 {
                     if (!attacking)
                     {
@@ -301,7 +303,7 @@ public class CharacterObject : MonoBehaviour
         {
             float currentDistance;
             currentDistance = Vector3.Distance(transform.position, go.transform.position);
-            if(currentDistance < closestDistance)
+            if (currentDistance < closestDistance)
             {
                 closestDistance = currentDistance;
                 currentClosestDamageSource = go.transform;
@@ -322,7 +324,6 @@ public class CharacterObject : MonoBehaviour
                     abilityCooldownButton.GetComponent<Image>().fillAmount = 1;
                     movePlayer = Vector2.zero;
                     isUltimate = true;
-                    Debug.Log("dang loi ne");
                     animator.Play("Utilmate");
                 }
             }
@@ -332,12 +333,14 @@ public class CharacterObject : MonoBehaviour
     {
         if (dead == false)
         {
+            //========================================LOSE=================================================
             setNull();
             rgbody.bodyType = RigidbodyType2D.Static;
             animator.Play("Die");
             movePlayer = Vector2.zero;
             dead = true;
             yield return new WaitForSeconds(1.5f);
+            Debug.Log("AAAAAAAAAAAAAAAAAAAAA");
             GameManager.instance.SetStateGame(GameManager.StateGame.GameOver);
 
         }
@@ -396,7 +399,7 @@ public class CharacterObject : MonoBehaviour
                                 transform.rotation = Quaternion.AngleAxis(180, Vector3.up);
                             }
                             InGameCharLoading.instance.Damage(collision.gameObject.GetComponent<EnemyWeapon>().attackDamage / 2);
-                        }              
+                        }
                     }
 
                     if (collision.gameObject.tag == "FlyingEnemy")
@@ -468,7 +471,7 @@ public class CharacterObject : MonoBehaviour
                         }
                         StartCoroutine(TakeHit());
                     }
-                }             
+                }
             }
         }
     }
@@ -492,7 +495,7 @@ public class CharacterObject : MonoBehaviour
             }
             StartCoroutine(TakeHit());
         }
-
+        ////////////////////////////////////////
         if (collision.gameObject.tag == "Boss3_Attack" && !isUltimate)
         {
             if (isAttacked == false)
@@ -581,18 +584,37 @@ public class CharacterObject : MonoBehaviour
 
     public void SpeedUp(float speed)
     {
+        Debug.Log(speed);
         speedRun += speed;
     }
-    public void Healing(float hp)
+    public void Healing(float percent)
     {
-
+        int hp = (int)(InGameCharLoading.instance.curHp * (percent / 100f));
+        Debug.Log("hp plus: " + hp);
+        InGameCharLoading.instance.curHp += (int)hp;
+        if (InGameCharLoading.instance.curHp >= InGameCharLoading.instance.hp)
+        {
+            InGameCharLoading.instance.curHp = InGameCharLoading.instance.hp;
+        }
+        Debug.Log("curhp : " + InGameCharLoading.instance.curHp + "hp : " + InGameCharLoading.instance.hp);
+        InGameCharLoading.instance.HealthBar.fillAmount = (float)InGameCharLoading.instance.curHp / InGameCharLoading.instance.hp;
+        InGameCharLoading.instance.HealthText.text = "" + InGameCharLoading.instance.curHp + "/" + InGameCharLoading.instance.hp;
     }
-    public void IncreateDamage(int damage)
+    public void IncreateDamage(int attack, int type)
     {
-
+        if (type == 0)
+        {
+            InGameCharLoading.instance.damage *= attack;
+        }
+        else
+        {
+            InGameCharLoading.instance.damage /= attack;
+        }
     }
     public void ResetingUtilmate()
     {
-
+        abilityCooldownButton.GetComponent<Image>().fillAmount = 0;
+        abilityCooldownButton.GetComponent<Image>().raycastTarget = false;
+        isCooldown = false;
     }
 }
