@@ -1,6 +1,7 @@
 using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -53,6 +54,11 @@ public class Boss3 : MonoBehaviour
 
     public static Boss3 instance;
 
+    private void Awake()
+    {
+        rgbody = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
+    }
     private void Start()
     {
         CinemachineBrain cinemachineBrain = FindObjectOfType<CinemachineBrain>();
@@ -60,8 +66,6 @@ public class Boss3 : MonoBehaviour
         slider = sliders[0];
         heart_Slider = sliders[1];
 
-        rgbody = GetComponent<Rigidbody2D>();
-        anim = GetComponent<Animator>();
         canBeAttacked = true;
         activeskill1 = false;
         activeskill2 = false;
@@ -83,7 +87,6 @@ public class Boss3 : MonoBehaviour
         {
             if (!dead && !Skill1_ing && !Skill2_ing)
             {
-                Debug.Log("x: " + player.position.x + " y: " + player.position.y);
                 LookAtPlayer();
                 RunToPlayer();
             }
@@ -92,16 +95,14 @@ public class Boss3 : MonoBehaviour
             {
                 dead = true;
                 // ==============================================WIN==================================================
-                anim.Play("Death");
+                anim.SetBool("Death", true);
+                anim.SetTrigger("TriggerDeath");
                 rgbody.bodyType = RigidbodyType2D.Static;
-
+                GameManager.instance.CheckBossDie();
                 if (SystemData.instance.map == 3)
                 {
                     SystemData.instance.amountBossMap_3--;
-             
                 }
-                SystemData.instance.flagBoss += 1;
-                GameManager.instance.SetStateGame(GameManager.StateGame.GameOver);
             }
             if (Time.time > nextAttackSkill1 && activeskill1 == true && !Skill2_ing)
             {
@@ -133,14 +134,13 @@ public class Boss3 : MonoBehaviour
 
     public void setTransform(Transform transform)
     {
-
         player = transform;
     }
+
     public void LookAtPlayer()
     {
         Vector3 flipped = transform.localScale;
         flipped.z *= -1f;
-
 
         if (player.position.x > LeftBound && player.position.x < RightBound && player.position.y < TopBound && player.position.y > BotBound && !attacking && !Skill1_ing && !Skill2_ing)
         {
@@ -190,7 +190,6 @@ public class Boss3 : MonoBehaviour
     {
         if (player.position.x > LeftBound && player.position.x < RightBound && player.position.y < TopBound && player.position.y > BotBound)
         {
-
             slider.gameObject.SetActive(true);
             slider.minValue = 0;
             slider.maxValue = hp;
@@ -275,26 +274,21 @@ public class Boss3 : MonoBehaviour
     }
     public void TakeDameHeart(int dame)
     {
-        if (curhp_heart > 0)
-        {
-
-            curhp_heart -= dame;
-            heart_Slider.value = curhp_heart;
-        }
+        curhp_heart -= dame;
+        heart_Slider.value = curhp_heart;
     }
     public void HealingSystem()
     {
         if (Time.time > nextAttackSkill2)
         {
-
             if (canHeal)
             {
                 Heal(healAmount);
             }
             nextAttackSkill2 = Time.time + cdHealing;
         }
-
     }
+
     public void Heal(int healAmount)
     {
         if (curhp > 0 && curhp < hp)

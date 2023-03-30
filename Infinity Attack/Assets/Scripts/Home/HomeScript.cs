@@ -77,12 +77,10 @@ public class HomeScript : MonoBehaviour
             panelLoading.SetActive(false);
             if (www.result != UnityWebRequest.Result.Success)
             {
-                Debug.Log(www.error);
                 panelLoading.SetActive(true);
             }
             else
             {
-                Debug.Log("Form upload complete!");
                 user = UserJson(www.downloadHandler.text);
                 User.Instance.user = new User();
                 User.Instance.user._id = user._id.ToString();
@@ -116,16 +114,13 @@ public class HomeScript : MonoBehaviour
             {
                 avatar.gameObject.SetActive(false);
                 Character.SetActive(false);
-                Debug.Log(www.error);
                 panelLoading.SetActive(true);
             }
             else
             {
-                Debug.Log("Form upload complete!");
                 LoadAvatars();
                 LoadChar();
                 var name = removeQuotes(www.downloadHandler.text);
-                Debug.Log("Name: " + www.downloadHandler.text);
                 charUsingName = name;
                 if (name == "Fire Knight")
                 {
@@ -146,7 +141,7 @@ public class HomeScript : MonoBehaviour
                     CharInt = 2;
                 }
                 else if (name == "Metal Bladekeeper")
-                {
+                { 
                     avatar.sprite = metal_bladekeepersprite;
                     Character.GetComponent<Image>().sprite = c_metal_bladekeeper;
                     CharInt = 3;

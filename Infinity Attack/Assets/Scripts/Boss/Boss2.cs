@@ -53,7 +53,8 @@ public class Boss2 : MonoBehaviour
     public static Boss2 instance;
     private void Awake()
     {
-      
+        rgbody = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
     }
     private void Start()
     {
@@ -61,8 +62,6 @@ public class Boss2 : MonoBehaviour
         Slider[] sliders = cinemachineBrain.GetComponentsInChildren<Slider>(true);
         slider = sliders[0];
         heart_Slider = sliders[1];
-        rgbody = GetComponent<Rigidbody2D>();
-        anim = GetComponent<Animator>();
         canBeAttacked = true;
         activeskill1 = false;
         activeskill2 = false;
@@ -81,7 +80,7 @@ public class Boss2 : MonoBehaviour
     }
     private void Update()
     {
-        if(dead == false)
+        if (dead == false)
         {
             if (!dead && !Skill1_ing && !Skill2_ing)
             {
@@ -93,14 +92,13 @@ public class Boss2 : MonoBehaviour
             {
                 dead = true;
                 anim.SetBool("Death", true);
-                anim.Play("Death");
+                anim.SetTrigger("TriggerDeath");
                 rgbody.bodyType = RigidbodyType2D.Static;
+                GameManager.instance.CheckBossDie();
                 if (SystemData.instance.map == 3)
                 {
                     SystemData.instance.amountBossMap_3--;
                 }
-                SystemData.instance.flagBoss += 1;
-                GameManager.instance.SetStateGame(GameManager.StateGame.GameOver);
             }
             if (Time.time > nextAttackSkill1 && activeskill1 == true && !Skill2_ing)
             {
@@ -130,7 +128,7 @@ public class Boss2 : MonoBehaviour
         }
     }
 
-    public void setTransform(Transform transform)
+    public void SetTransform(Transform transform)
     {
         player = transform;
     }
@@ -138,7 +136,7 @@ public class Boss2 : MonoBehaviour
     {
         Vector3 flipped = transform.localScale;
         flipped.z *= -1f;
-        if(player.position.x > LeftBound && player.position.x < RightBound && player.position.y < TopBound && player.position.y > BotBound && !attacking && !Skill1_ing && !Skill2_ing)
+        if (player.position.x > LeftBound && player.position.x < RightBound && player.position.y < TopBound && player.position.y > BotBound && !attacking && !Skill1_ing && !Skill2_ing)
         {
             // xoay boss
             if (transform.position.x > player.position.x && !isFlipped)
@@ -184,9 +182,8 @@ public class Boss2 : MonoBehaviour
 
     public void ShowSlider()
     {
-        if (player.position.x > LeftBound && player.position.x < RightBound && player.position.y < TopBound && player.position.y > BotBound )
+        if (player.position.x > LeftBound && player.position.x < RightBound && player.position.y < TopBound && player.position.y > BotBound)
         {
-
             slider.gameObject.SetActive(true);
             slider.minValue = 0;
             slider.maxValue = hp;
@@ -205,10 +202,11 @@ public class Boss2 : MonoBehaviour
     {
         if (collision.gameObject.tag == "PlayerAttack")
         {
-            if(CharacterObject.instance.isUltimate == true)
+            if (CharacterObject.instance.isUltimate == true)
             {
                 TakeDame(InGameCharLoading.instance.damage * 3);
-            } else if(CharacterObject.instance.isUltimate == false)
+            }
+            else if (CharacterObject.instance.isUltimate == false)
             {
                 TakeDame(InGameCharLoading.instance.damage);
             }
@@ -230,7 +228,7 @@ public class Boss2 : MonoBehaviour
 
     public void Skill2()
     {
-        if(activeskill2 == true && canSkill2)
+        if (activeskill2 && canSkill2)
         {
             canHeal = true;
             canBeAttacked = false;
@@ -251,7 +249,7 @@ public class Boss2 : MonoBehaviour
             canHeal = false;
             Destroy(heart);
         }
-        if(curhp >= hp && Skill2_ing)
+        if (curhp >= hp && Skill2_ing)
         {
             curhp = hp;
             anim.Play("Run");
@@ -265,29 +263,23 @@ public class Boss2 : MonoBehaviour
     }
     public void TakeDameHeart(int dame)
     {
-        if(curhp_heart>0)
-        {
-
-            curhp_heart -= dame;
-            heart_Slider.value = curhp_heart;
-        }
+        curhp_heart -= dame;
+        heart_Slider.value = curhp_heart;
     }
     public void HealingSystem()
     {
-            if (Time.time > nextAttackSkill2 )
-            {
-
+        if (Time.time > nextAttackSkill2)
+        {
             if (canHeal)
             {
                 Heal(healAmount);
             }
-                nextAttackSkill2 = Time.time + cdHealing;
-            }
-        
+            nextAttackSkill2 = Time.time + cdHealing;
+        }
     }
     public void Heal(int healAmount)
     {
-        if(curhp>0 && curhp < hp)
+        if (curhp > 0 && curhp < hp)
         {
             curhp += healAmount;
             slider.value = curhp;

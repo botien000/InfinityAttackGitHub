@@ -265,7 +265,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3428784165109483345, guid: af3b974ffcd46374e9d65f4e82ddd70f, type: 3}
       propertyPath: hp
-      value: 1000
+      value: 1300
       objectReference: {fileID: 0}
     - target: {fileID: 3428784165109483345, guid: af3b974ffcd46374e9d65f4e82ddd70f, type: 3}
       propertyPath: BotBound
@@ -282,6 +282,10 @@ PrefabInstance:
     - target: {fileID: 3428784165109483345, guid: af3b974ffcd46374e9d65f4e82ddd70f, type: 3}
       propertyPath: LeftBound
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3428784165109483345, guid: af3b974ffcd46374e9d65f4e82ddd70f, type: 3}
+      propertyPath: cdHealing
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 3428784165109483345, guid: af3b974ffcd46374e9d65f4e82ddd70f, type: 3}
       propertyPath: HeartSpawn
@@ -358,7 +362,7 @@ GameObject:
   - component: {fileID: 508755266}
   m_Layer: 0
   m_Name: Tile_2
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -38370,7 +38374,7 @@ GameObject:
   - component: {fileID: 948276275}
   m_Layer: 0
   m_Name: Tile_1
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -78982,7 +78986,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2463213034137016908, guid: 8219dfcbe556e7f428fd6d9a07bbf3af, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2463213034137016908, guid: 8219dfcbe556e7f428fd6d9a07bbf3af, type: 3}
       propertyPath: m_LocalPosition.x
@@ -79173,7 +79177,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8736365664783833351, guid: 315c762e02fc16e4190e505626bcc10b, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8736365664783833351, guid: 315c762e02fc16e4190e505626bcc10b, type: 3}
       propertyPath: m_LocalPosition.x

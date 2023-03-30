@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -40,10 +41,14 @@ public class GameManager : MonoBehaviour
 
     public int typeMap;
 
+    private float amountBossInMap;
+
     private void Start()
     {
-        if(SoundManager.instance != null)
-        SoundManager.instance.SetNormalMapMusic();
+        if (SoundManager.instance != null)
+            SoundManager.instance.SetNormalMapMusic();
+
+        amountBossInMap = 1;
     }
     public void SetStateGame(StateGame state)
     {
@@ -90,11 +95,11 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(player);
         DontDestroyOnLoad(this);
         listCamera = FindObjectsOfType<Camera>().ToList();
-        if(listCamera.Count > 2)
+        if (listCamera.Count > 2)
         {
             foreach (var camera in listCamera)
             {
-                if(camera.gameObject.name == "Main Camera")
+                if (camera.gameObject.name == "Main Camera")
                 {
                     DestroyImmediate(camera.gameObject);
                     listCamera.Remove(camera);
@@ -117,5 +122,16 @@ public class GameManager : MonoBehaviour
         Destroy(oldMinimap.gameObject);
         Destroy(EventSystem.gameObject);
         Destroy(gameObject);
+    }
+
+    public void CheckBossDie()
+    {
+        amountBossInMap--;
+        if (amountBossInMap == 0)
+        {
+            // Game over
+            SystemData.instance.flagBoss += 1;
+            SetStateGame(StateGame.GameOver);
+        }
     }
 }

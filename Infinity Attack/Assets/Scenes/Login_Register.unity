@@ -7859,7 +7859,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -10176,7 +10176,7 @@ RectTransform:
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &2014602001
 Animator:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -10193,7 +10193,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!114 &2014602002
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10715,6 +10715,7 @@ MonoBehaviour:
   emailField: {fileID: 1037572485}
   AlertPannel: {fileID: 601885223}
   FlagPannel: {fileID: 2083345774}
+  ForgotPanel: {fileID: 0}
   LoadingPanel: {fileID: 2037439557}
   ForgotChangePassPannel: {fileID: 1619520460}
   AlertText: {fileID: 1884213998}

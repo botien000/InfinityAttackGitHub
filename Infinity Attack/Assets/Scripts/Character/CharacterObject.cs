@@ -546,7 +546,7 @@ public class CharacterObject : MonoBehaviour
         Boss2[] boss2Arr = FindObjectsOfType<Boss2>();
         foreach (var boss2 in boss2Arr)
         {
-            boss2.setTransform(transform);
+            boss2.SetTransform(transform);
         }
 
         Boss3[] boss3Arr = FindObjectsOfType<Boss3>();
