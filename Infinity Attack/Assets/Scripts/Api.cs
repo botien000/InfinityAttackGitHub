@@ -7,7 +7,7 @@ public class Api
 {
     // http://localhost:3000/api/
     // https://infinityattackservice.onrender.com/api/
-    public readonly string api = "http://localhost:3000/api/";
+    public readonly string api = "https://infinityattackservice.onrender.com/api/";
 
     //login and register
     public readonly string routerRegister = "register";
