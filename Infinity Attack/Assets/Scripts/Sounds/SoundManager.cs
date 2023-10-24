@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.Networking;
 
@@ -10,10 +12,12 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private AudioClip lg_resScreenClip;
     [SerializeField] private AudioClip mapBossClip;
     [SerializeField] private AudioClip normalMapClip;
-    [SerializeField] private AudioClip clickClip;
+    [SerializeField] private AudioClip clickClip_1;
+    [SerializeField] private AudioClip clickClip_2;
 
     public static SoundManager instance;
 
+    private AudioClip curClip;
     private string setOffline = Api.Instance.api + Api.Instance.routerSetOffline;
     private void Awake()
     {
@@ -23,19 +27,33 @@ public class SoundManager : MonoBehaviour
         }
         else
         {
-            DestroyImmediate(instance.gameObject);
+            Destroy(instance.gameObject);
             instance = this;
         }
         DontDestroyOnLoad(gameObject);
     }
     private void Start()
     {
-        SetMusicData(PlayerPrefs.GetFloat("MusicKey",1) == 1 ? true : false);
-        SetSoundData(PlayerPrefs.GetFloat("SoundKey",1) == 1 ? true : false);
+        SetMusicData(PlayerPrefs.GetFloat("MusicKey", 1) == 1 ? true : false);
+        SetSoundData(PlayerPrefs.GetFloat("SoundKey", 1) == 1 ? true : false);
+    }
+
+    private void Update()
+    {
+        //PlayerPrefs.SetFloat("MusicKey", 1);
+        //PlayerPrefs.SetFloat("SoundKey", 1);
     }
     public void SetSoundClick()
     {
-        soundSource.PlayOneShot(clickClip);
+        //if(curClip == null)
+        //{
+        //    curClip = clickClip_1;
+        //}
+        //else
+        //{
+        //    curClip = curClip == clickClip_1 ? clickClip_2 : clickClip_1;
+        //}
+        soundSource.PlayOneShot(clickClip_1);
     }
 
     public void SetLg_ResMusic()
@@ -43,19 +61,28 @@ public class SoundManager : MonoBehaviour
         if (musicSource.clip == lg_resScreenClip)
             return;
         musicSource.clip = lg_resScreenClip;
-        musicSource.Play();
+        if (PlayerPrefs.GetFloat("MusicKey", 1) == 1)
+        {
+            musicSource.Play();
+        }
     }
 
     public void SetMapBossMusic()
     {
         musicSource.clip = mapBossClip;
-        musicSource.Play();
+        if (PlayerPrefs.GetFloat("MusicKey", 1) == 1)
+        {
+            musicSource.Play();
+        }
     }
 
     public void SetNormalMapMusic()
     {
         musicSource.clip = normalMapClip;
-        musicSource.Play();
+        if (PlayerPrefs.GetFloat("MusicKey", 1) == 1)
+        {
+            musicSource.Play();
+        }
     }
 
     public void SetMusicData(bool isOn)
@@ -63,7 +90,6 @@ public class SoundManager : MonoBehaviour
         if (isOn)
         {
             PlayerPrefs.SetFloat("MusicKey", 1);
-            Debug.Log("dd");
             musicSource.Play();
         }
         else
@@ -78,12 +104,12 @@ public class SoundManager : MonoBehaviour
         if (isOn)
         {
             PlayerPrefs.SetFloat("SoundKey", 1);
-            soundSource.mute = true;
+            soundSource.mute = false;
         }
         else
         {
             PlayerPrefs.SetFloat("SoundKey", 0);
-            soundSource.mute = false;
+            soundSource.mute = true;
         }
     }
 }

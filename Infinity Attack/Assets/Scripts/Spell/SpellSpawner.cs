@@ -36,13 +36,14 @@ public class SpellSpawner : MonoBehaviour
                 btnSpells[i].onClick.AddListener(() => SpawnSpellBtn(index));
                 imgBtnSpells[i].sprite = Resources.Load<Sprite>(spellValuables[i].spellPath);
                 imgCooldown[i].gameObject.SetActive(false);
+                SystemData.instance.FlagDataSpell();
+                SystemData.instance.UpdateSpellUsed();
             }
             else
             {
                 btnSpells[i].gameObject.SetActive(false);
             }
         }
-        //StartCoroutine(IEUpdateAmount());
     }
     void SetSpellType(SpellType type, bool active, int btnIndex)
     {
@@ -51,38 +52,37 @@ public class SpellSpawner : MonoBehaviour
             case SpellType.Healing:
                 if (active)
                 {
-                    HandleSpell("HealingFx(Clone", healingFXPrefab, player.transform, 2, btnIndex, type);
+                    HandleSpell("HealingFx(Clone)", healingFXPrefab, player.transform, 2, btnIndex, type);
                     player.Healing(25); // 25%
                 }
                 break;
             case SpellType.Chaos:
                 if (active)
                 {
-                    HandleSpell("Chaos(Clone)", chaosPrefab, player.transform, 2, btnIndex, type);
-                    player.IncreateDamage(2,0);
+                    HandleSpell("Chaos(Clone)", chaosPrefab, player.transform, 15, btnIndex, type);
+                    player.IncreateDamage(0);
                 }
                 else
                 {
-                    player.IncreateDamage(2,1);
+                    player.IncreateDamage(1);
                 }
                 break;
             case SpellType.Speedup:
                 if (active)
                 {
-                    HandleSpell("SpeedUpFX(Clone)", null, player.transform, 2, btnIndex, type);
-                    player.SpeedUp(0.8f);  
+                    HandleSpell("SpeedUpFX(Clone)", speedUpPrefab, player.transform, 15, btnIndex, type);
+                    player.SpeedUp(0.8f);
                 }
                 else
                 {
-                    player.SpeedUp(-0.8f); 
+                    player.SpeedUp(-0.8f);
                 }
                 break;
             case SpellType.Fire:
                 if (active)
                 {
-                    HandleSpell("Fire", firePrefab, player.transform, 0, btnIndex, type);                   
+                    HandleSpell("Fire", firePrefab, player.transform, 0, btnIndex, type);
                     Debug.Log("Active Fire");
-                    SystemData.instance.FlagDataSpell();
                 }
                 break;
             case SpellType.UtilmateRemake:
@@ -110,7 +110,7 @@ public class SpellSpawner : MonoBehaviour
             {
                 if (type == SpellType.Fire)
                 {
-                    if(position.eulerAngles.y > 0)
+                    if (position.eulerAngles.y > 0)
                     {
                         Fire fire = Instantiate(prefab, position.position + new Vector3(-1.5f, -1.5f, 0), Quaternion.identity).GetComponent<Fire>();
                         fire.Init(-1);
@@ -124,14 +124,22 @@ public class SpellSpawner : MonoBehaviour
                 else
                 {
                     go = Instantiate(prefab, position).transform;
+                    if (prefab == speedUpPrefab)
+                    {
+                        player.SetSpeedUpGO(go.GetComponent<ParticleSystem>());
+                    }
+
                 }
             }
             else
             {
-                go.gameObject.SetActive(true);
+                if (prefab == speedUpPrefab)
+                    player.SetSpeedUpGO(player.GetComponentInChildren<ParticleSystem>());
+                else
+                    go.gameObject.SetActive(true);
             }
             StartCoroutine(IEHandleCoolDown(btnIndex));
-            if(go == null)
+            if (go == null)
             {
                 StartCoroutine(IEHandleTimeRemaining(timeRemaining, type, btnIndex, null));
             }
@@ -169,8 +177,14 @@ public class SpellSpawner : MonoBehaviour
             timeRemainning -= Time.deltaTime;
             if (timeRemainning <= 0)
             {
-                if (go != null)
+                if (go != null && type == SpellType.Speedup)
+                {
+                    player.SetSpeedUpGO(null);
+                }
+                else if (go != null && type != SpellType.Speedup)
+                {
                     go.SetActive(false);
+                }
                 SetSpellType(type, false, btnIndex);
                 break;
             }
@@ -188,5 +202,5 @@ public class SpellSpawner : MonoBehaviour
         player = characterObject;
     }
 
-  
+
 }

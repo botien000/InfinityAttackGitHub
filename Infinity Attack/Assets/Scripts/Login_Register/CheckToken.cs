@@ -27,7 +27,6 @@ public class CheckToken : MonoBehaviour
     {
         instanceIP = Api.Instance;
         string token = PlayerPrefs.GetString("token");
-        Debug.Log(token);
         if(token.Trim() == "")
         {
 

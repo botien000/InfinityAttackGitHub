@@ -33,13 +33,10 @@ public class CharacterManager : MonoBehaviour
     [SerializeField] private GameObject loadingPanel;
     [SerializeField] private GameObject notiPanel;
     [SerializeField] private GameObject flagPanel;
-    private void Awake()
-    {
-
-    }
     void Start()
     {
         instanceIP = Api.Instance;
+        avatar.gameObject.SetActive(false);
         LoadAvatars();
         if (PlayerPrefs.HasKey("UID"))
         {
@@ -197,6 +194,7 @@ public class CharacterManager : MonoBehaviour
             avatar.sprite = wind_hashashinsprite;
             avatar.GetComponent<RectTransform>().anchoredPosition = new Vector2(530, 0);
         }
+        avatar.gameObject.SetActive(true);
     }
 
     public void UpdateLevelCharacter()

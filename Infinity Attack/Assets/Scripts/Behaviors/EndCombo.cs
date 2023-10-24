@@ -16,11 +16,9 @@ public class EndCombo : StateMachineBehaviour
         
         if (CharacterObject.instance.movingPressing)
         {
-            Debug.Log("chay Run");
             CharacterObject.instance.animator.Play("Run");
         } else if (!CharacterObject.instance.movingPressing)
         {
-            Debug.Log("chay Idle");
             CharacterObject.instance.animator.Play("Idle");
         }
 }

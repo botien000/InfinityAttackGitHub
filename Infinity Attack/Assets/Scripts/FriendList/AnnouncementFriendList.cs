@@ -29,14 +29,14 @@ public class AnnouncementFriendList : MonoBehaviour
         {
             btnLeft.gameObject.SetActive(true);
             btnRight.gameObject.SetActive(false);
-            txtLeft.text = "Xác nhận";
+            txtLeft.text = "Confirm";
         }
         else
         {
             btnLeft.gameObject.SetActive(true);
             btnRight.gameObject.SetActive(true);
-            txtLeft.text = "Từ chối";
-            txtRight.text = "Chấp nhận";
+            txtLeft.text = "Deline";
+            txtRight.text = "Accept";
         }
     }
     public void BtnRight()
@@ -45,7 +45,7 @@ public class AnnouncementFriendList : MonoBehaviour
     }
     public void BtnLeft()
     {
-        if(txtLeft.text == "Từ chối")
+        if(txtLeft.text == "Decline")
         {
             findResponeFriend.Decline();
         }

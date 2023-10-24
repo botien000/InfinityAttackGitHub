@@ -1,11 +1,5 @@
 using Cinemachine;
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.UIElements;
 using Slider = UnityEngine.UI.Slider;
 
 public class Boss3 : MonoBehaviour
@@ -51,7 +45,7 @@ public class Boss3 : MonoBehaviour
 
     public GameObject HeartSpawn;
     public GameObject heart;
-
+    [SerializeField] private StateCheckPlayer stateCheckPlayer;
     public static Boss3 instance;
 
     private void Awake()
@@ -59,6 +53,7 @@ public class Boss3 : MonoBehaviour
         rgbody = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
     }
+
     private void Start()
     {
         CinemachineBrain cinemachineBrain = FindObjectOfType<CinemachineBrain>();
@@ -81,6 +76,7 @@ public class Boss3 : MonoBehaviour
         curhp = hp;
         curhp_heart = hp_heart;
     }
+
     private void Update()
     {
         if (dead == false)
@@ -98,11 +94,6 @@ public class Boss3 : MonoBehaviour
                 anim.SetBool("Death", true);
                 anim.SetTrigger("TriggerDeath");
                 rgbody.bodyType = RigidbodyType2D.Static;
-                GameManager.instance.CheckBossDie();
-                if (SystemData.instance.map == 3)
-                {
-                    SystemData.instance.amountBossMap_3--;
-                }
             }
             if (Time.time > nextAttackSkill1 && activeskill1 == true && !Skill2_ing)
             {
@@ -132,10 +123,7 @@ public class Boss3 : MonoBehaviour
         }
     }
 
-    public void setTransform(Transform transform)
-    {
-        player = transform;
-    }
+    public void SetPlayerTransform(Transform transform) => player = transform;
 
     public void LookAtPlayer()
     {
@@ -204,10 +192,7 @@ public class Boss3 : MonoBehaviour
             slider.value = curhp;
         }
     }
-    /// <summary>
-    /// ////////////////////////////////////////////
-    /// </summary>
-    /// <param name="collision"></param>
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "PlayerAttack")
@@ -277,6 +262,7 @@ public class Boss3 : MonoBehaviour
         curhp_heart -= dame;
         heart_Slider.value = curhp_heart;
     }
+
     public void HealingSystem()
     {
         if (Time.time > nextAttackSkill2)
@@ -295,6 +281,18 @@ public class Boss3 : MonoBehaviour
         {
             curhp += healAmount;
             slider.value = curhp;
+        }
+    }
+
+    public void EventBossDie()
+    {
+        stateCheckPlayer.MoveToOrigin();
+        slider.gameObject.SetActive(false);
+        heart_Slider.gameObject.SetActive(false);
+        GameManager.instance.CheckBossDie();
+        if (SystemData.instance.map == 3)
+        {
+            SystemData.instance.amountBossMap_3--;
         }
     }
 }

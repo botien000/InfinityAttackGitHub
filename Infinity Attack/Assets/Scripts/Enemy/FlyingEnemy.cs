@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -155,7 +156,7 @@ public class FlyingEnemy : MonoBehaviour
         transform.position = Vector2.MoveTowards(transform.position, startingPoint, speed * Time.deltaTime);
     }
 
-    public void setTransform(Transform transform)
+    public void SetPlayerTransform(Transform transform)
     {
         this.player = transform;
     }
@@ -206,6 +207,20 @@ public class FlyingEnemy : MonoBehaviour
 
                 }
             }
+        }
+    }
+
+    internal void TakeDamageFromFire(int damage, Vector3 position)
+    {
+        position.x += 2;
+        position.y += 2;
+        if (health > 0)
+        {
+            Vector2 difference = (transform.position - new Vector3(position.x, position.y, 0)).normalized;
+            Vector2 force = difference * knockback * 100000;
+            Debug.Log($"force: {force}");
+            rb.AddForce(force, ForceMode2D.Impulse);
+            TakeDamageFlyingEnemy(damage);
         }
     }
 }

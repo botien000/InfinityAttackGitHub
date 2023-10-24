@@ -330,6 +330,7 @@ public class ShopUI : MonoBehaviour
         bool check = false;
         for (int i = 0; i < spellOwns.Length; i++)
         {
+            Debug.Log($"{spellOwns[i]._id}   ==    {spellOwnUtility._id}");
             if (spellOwns[i]._id == spellOwnUtility._id)
             {
                 check = true;
@@ -337,13 +338,10 @@ public class ShopUI : MonoBehaviour
                 break;
             }
         }
-        if (!check)
+        if (!check) // not own
         {
             List<SpellOwnUtility> list = new List<SpellOwnUtility>();
-            foreach (var spellOwn in spellOwns)
-            {
-                list.Add(spellOwn);
-            }
+            list = spellOwns.ToList();
             list.Add(spellOwnUtility);
             spellOwns = list.ToArray();
         }

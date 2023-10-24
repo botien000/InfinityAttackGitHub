@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.Networking;
 using Newtonsoft.Json;
 using static SpellSingleton;
+using Unity.VisualScripting;
 
 public class SpellShow : MonoBehaviour
 {
@@ -27,7 +28,7 @@ public class SpellShow : MonoBehaviour
     void Start()
     {
         instanceIP = Api.Instance;
-        spellSingleton = SpellSingleton.Instance;
+        spellSingleton = Instance;
         LoadAvatars();
         if (PlayerPrefs.HasKey("UID"))
         {
@@ -35,7 +36,6 @@ public class SpellShow : MonoBehaviour
             StartCoroutine(GetSpellOwnData(instanceIP.api + instanceIP.routerPostSpellsOwn, userID));
         }
     }
-
     IEnumerator GetSpellOwnData(string address, string userID)
     {
         WWWForm form = new WWWForm();
@@ -101,6 +101,7 @@ public class SpellShow : MonoBehaviour
                 if (name == "Chaos" && !choosenChaos)
                 {
                     g.transform.GetChild(0).GetComponent<Image>().sprite = chaosSprite;
+                    g.SetActive(true);
                 }
                 else if (name == "Chaos" && choosenChaos)
                 {
@@ -109,6 +110,7 @@ public class SpellShow : MonoBehaviour
                 else if (name == "Fire" && !choosenFire)
                 {
                     g.transform.GetChild(0).GetComponent<Image>().sprite = fireSprite;
+                    g.SetActive(true);
                 }
                 else if (name == "Fire" && choosenFire)
                 {
@@ -117,6 +119,7 @@ public class SpellShow : MonoBehaviour
                 else if (name == "Healing" && !choosenHealing)
                 {
                     g.transform.GetChild(0).GetComponent<Image>().sprite = healingSprite;
+                    g.SetActive(true);
                 }
                 else if (name == "Healing" && choosenHealing)
                 {
@@ -125,6 +128,7 @@ public class SpellShow : MonoBehaviour
                 else if (name == "SpeedUp" && !choosenSpeed)
                 {
                     g.transform.GetChild(0).GetComponent<Image>().sprite = speedUpSprite;
+                    g.SetActive(true);
                 }
                 else if (name == "SpeedUp" && choosenSpeed)
                 {
@@ -133,6 +137,7 @@ public class SpellShow : MonoBehaviour
                 else if (name == "UtilmateRemake" && !choosenUlti)
                 {
                     g.transform.GetChild(0).GetComponent<Image>().sprite = utilmateRemakeSprite;
+                    g.SetActive(true);
                 }
                 else if (name == "UtilmateRemake" && choosenUlti)
                 {
@@ -177,74 +182,10 @@ public class SpellShow : MonoBehaviour
             path = "Spells/utilmateRemake";
             spellType = SpellType.UtilmateRemake;
         }
-        spellSingleton.SetSpell(indexArr, name, path, amount, (int)spellType, 2, idSpell);
-        if (spellSingleton.GetSpell(indexArr).amount == 1) // remove spell own
-        {
-            StartCoroutine(IERemoveSpellOwn());
-        }
-        else
-        {
-            StartCoroutine(IEUpdateAmount());
-        }
-
-    }
-
-    IEnumerator IEUpdateAmount()
-    {
-        WWWForm form = new WWWForm();
-        UnityWebRequest unityWebRequest = null;
-        form.AddField("_id", spellSingleton.GetSpell(indexArr).id);
-        form.AddField("amount", spellSingleton.GetSpell(indexArr).amount - 1);
-        unityWebRequest = UnityWebRequest.Post(Api.Instance.api + Api.Instance.routerUpdateAmount, form);
-        var handler = unityWebRequest.SendWebRequest();
-        while (!handler.isDone)
-        {
-            yield return null;
-        }
-        if (unityWebRequest.result == UnityWebRequest.Result.Success)
-        {
-            string json = unityWebRequest.downloadHandler.text;
-            Debug.Log(json);
-            if (json != "[]")
-            {
-                Debug.Log("Update Amount Sucessfully");
-                SpellOwnUtility spellOwnUtility = JsonConvert.DeserializeObject<SpellOwnUtility>(json);
-            }
-            else
-            {
-                Debug.Log("Failed Update");
-            }
-        }
-        else
-        {
-            Debug.Log("Failed to connecting server");
-        }
+        spellSingleton.SetSpell(indexArr, name, path, amount, (int)spellType, cooldown, idSpell);
         SceneManager.LoadScene(sceneNumber);
-        unityWebRequest.Dispose();
     }
 
-    IEnumerator IERemoveSpellOwn()
-    {
-        WWWForm form = new WWWForm();
-        UnityWebRequest unityWebRequest = null;
-        form.AddField("_id", spellSingleton.GetSpell(indexArr).id);
-        unityWebRequest = UnityWebRequest.Post(Api.Instance.api + Api.Instance.routerremoveSpellOwn, form);
-        var handler = unityWebRequest.SendWebRequest();
-        while (!handler.isDone)
-        {
-            yield return null;
-        }
-        if (unityWebRequest.result == UnityWebRequest.Result.Success)
-        {
-            Debug.Log(unityWebRequest.downloadHandler.text);
-        }
-        else
-        {
-            Debug.Log("Failed to connecting server");
-        }
-        SceneManager.LoadScene(sceneNumber);
-        unityWebRequest.Dispose();
-    }
     public void BackToHomeSceen(int scene)
     {
         SceneManager.LoadScene(scene);

@@ -11,12 +11,4 @@ public class Character_Knockback : MonoBehaviour
     {
         box = GetComponentInChildren<BoxCollider2D>();
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    
 }

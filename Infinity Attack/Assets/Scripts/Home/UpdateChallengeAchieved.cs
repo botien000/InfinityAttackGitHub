@@ -56,7 +56,7 @@ public class UpdateChallengeAchieved : MonoBehaviour
                     }
                 }
             }
-            else
+            else // not do yet anything in game 
             {
                 if (PlayerPrefs.HasKey("UID"))
                 {
@@ -89,6 +89,7 @@ public class UpdateChallengeAchieved : MonoBehaviour
         form.AddField("kill5boss", kill5bossName);
         form.AddField("use3spell", use3spellName);
 
+        Debug.Log($"challengeAchievedKill5Boss: {challengeAchievedKill5Boss}   challengeAchievedKill50Enemy: {challengeAchievedKill50Enemy}   challengeAchievedUse3Spell: {challengeAchievedUse3Spell}");
         form.AddField("challengeAchievedLogIn", challengeAchievedLogIn);
         form.AddField("challengeAchievedSingle3Time", challengeAchievedSingle3Time);
         form.AddField("challengeAchievedMulti1Time", challengeAchievedMulti1Time);
@@ -455,7 +456,7 @@ public class UpdateChallengeAchieved : MonoBehaviour
     {
         PlayerPrefs.SetInt("Play", play);
     }
-
+    
     private void LoadChallengeAchievedLogIn()
     {
         challengeAchievedLogIn = PlayerPrefs.GetInt("challengeAchievedLogIn");

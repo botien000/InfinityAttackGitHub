@@ -20,11 +20,12 @@ public class SystemData : MonoBehaviour
 
     public static SystemData instance;
 
+    
     // Start is called before the first frame update
     void Start()
     {
         //chi start lan dau khi vao game, sau do se load sang cac scene khac cung character
-        loadPlayerPref();
+        LoadPlayerPref();
         flagEnemy = 0;
         flagBoss = 0;
         flagSpell = 0;
@@ -35,10 +36,6 @@ public class SystemData : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-        }
-        else
-        {
-
         }
     }
 
@@ -71,7 +68,6 @@ public class SystemData : MonoBehaviour
         killenemy += flagEnemy;
         SaveChallengeAchievedKillEnemy(killenemy);
 
-
         //boss
         challengeAchievedKill5Boss += flagBoss;
         SaveChallengeAchievedKill5Boss(challengeAchievedKill5Boss);
@@ -83,14 +79,15 @@ public class SystemData : MonoBehaviour
         SaveChallengeAchievedSingle3Time(challengeAchievedSingle3Time);
         singleplay++;
         SaveChallengeAchievedSinglePlay(singleplay);
+    }
 
-
+    public void UpdateSpellUsed()
+    {
         //spell
         challengeAchievedUse3Spell += flagSpell;
         SaveChallengeAchievedUse3Spell(challengeAchievedUse3Spell);
-
     }
-    private void loadPlayerPref()
+    private void LoadPlayerPref()
     {
         //quest
         LoadChallengeAchievedSingle3Time();
@@ -104,6 +101,7 @@ public class SystemData : MonoBehaviour
         LoadChallengeAchievedSinglePlay();
     }
 
+    #region Load & Save
     private void LoadChallengeAchievedSingle3Time()
     {
         challengeAchievedSingle3Time = PlayerPrefs.GetInt("challengeAchievedSingle3Time");
@@ -113,6 +111,7 @@ public class SystemData : MonoBehaviour
     {
         PlayerPrefs.SetInt("challengeAchievedSingle3Time", challengeAchievedSingle3Time);
     }
+
     private void LoadChallengeAchievedKill50Enemy()
     {
         challengeAchievedKill50Enemy = PlayerPrefs.GetInt("challengeAchievedKill50Enemy");
@@ -137,11 +136,10 @@ public class SystemData : MonoBehaviour
         challengeAchievedUse3Spell = PlayerPrefs.GetInt("challengeAchievedUse3Spell");
     }
 
-    private void SaveChallengeAchievedUse3Spell(int challengeAchievedUse3Spell)
+    public void SaveChallengeAchievedUse3Spell(int challengeAchievedUse3Spell)
     {
         PlayerPrefs.SetInt("challengeAchievedUse3Spell", challengeAchievedUse3Spell);
     }
-
 
     private void LoadChallengeAchievedKillEnemy()
     {
@@ -161,6 +159,7 @@ public class SystemData : MonoBehaviour
     {
         PlayerPrefs.SetInt("killboss", killboss);
     }
+
     private void LoadChallengeAchievedSinglePlay()
     {
         singleplay = PlayerPrefs.GetInt("singleplay");
@@ -170,5 +169,6 @@ public class SystemData : MonoBehaviour
     {
         PlayerPrefs.SetInt("singleplay", singleplay);
     }
+    #endregion
 
 }

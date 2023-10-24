@@ -29,30 +29,29 @@ public class LoginScript : MonoBehaviour
 
     private int killenemy = 0, killboss = 0, singleplay = 0, multiplay = 0, addfriend = 0;
 
-
-
     public void OnLoginClick()
     {
-        createPlayerPref();
+        SoundManager.instance.SetSoundClick();
+        //createPlayerPref();
         instanceIP = Api.Instance;
         StartCoroutine(TryLogin());
     }
 
-    private void createPlayerPref()
-    {
-        SaveChallengeAchievedLogIn(0);
-        SaveChallengeAchievedSingle3Time(0);
-        SaveChallengeAchievedMulti1Time(0);
-        SaveChallengeAchievedKill50Enemy(0);
-        SaveChallengeAchievedKill5Boss(0);
-        SaveChallengeAchievedUse3Spell(0);
+    //private void createPlayerPref()
+    //{
+    //    SaveChallengeAchievedLogIn(0);
+    //    SaveChallengeAchievedSingle3Time(0);
+    //    SaveChallengeAchievedMulti1Time(0);
+    //    SaveChallengeAchievedKill50Enemy(0);
+    //    SaveChallengeAchievedKill5Boss(0);
+    //    SaveChallengeAchievedUse3Spell(0);
 
-        SaveChallengeAchievedKillEnemy(0);
-        SaveChallengeAchievedKillBoss(0);
-        SaveChallengeAchievedSinglePlay(0);
-        SaveChallengeAchievedMultiPlay(0);
-        SaveChallengeAchievedAddFriend(0);
-    }
+    //    SaveChallengeAchievedKillEnemy(0);
+    //    SaveChallengeAchievedKillBoss(0);
+    //    SaveChallengeAchievedSinglePlay(0);
+    //    SaveChallengeAchievedMultiPlay(0);
+    //    SaveChallengeAchievedAddFriend(0);
+    //}
     private IEnumerator TryLogin()
     {
         string username = usernameField.text;
@@ -91,7 +90,6 @@ public class LoginScript : MonoBehaviour
                     }
                     else
                     {
-                        Debug.Log("Player ID: " + respone);
                         PlayerPrefs.SetString("UID", www.downloadHandler.text);
                         string userID = removeQuotes(PlayerPrefs.GetString("UID"));
                         CheckSavePref(userID);
@@ -283,6 +281,7 @@ public class LoginScript : MonoBehaviour
     }
     public void resetInputField()
     {
+        SoundManager.instance.SetSoundClick();
         usernameField.text = "";
         passwordField.text = "";
     }

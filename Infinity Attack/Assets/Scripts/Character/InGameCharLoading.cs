@@ -34,16 +34,16 @@ public class InGameCharLoading : MonoBehaviour
 
     [SerializeField] private Button btnCooldown;
 
-    private CinemachineVirtualCamera camera;
+    private CinemachineVirtualCamera cameraFollowPlayer;
     public static InGameCharLoading instance;
 
     private CharacterObject characterObject;
-    public Vector3 spawnPosition;
+    public Transform spawnPosition;
     // Start is called before the first frame update
     void Start()
     {
-        camera = Camera.main.GetComponent<CinemachineVirtualCamera>();
-        CharacterSpawnPosition = spawnPosition;
+        cameraFollowPlayer = Camera.main.GetComponent<CinemachineVirtualCamera>();
+        CharacterSpawnPosition = spawnPosition.position;
         StartCoroutine(GetData());
     }
     private void Awake()
@@ -51,29 +51,24 @@ public class InGameCharLoading : MonoBehaviour
         if(instance == null)
         {
             instance = this;
-        } else
-        {
-
-        }
+        } 
         curHp = 1;
     }
 
-    // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
-        if (camera == null)
+        if (cameraFollowPlayer == null)
         {
-            camera = Camera.main.GetComponent<CinemachineVirtualCamera>();
-            if (camera.Follow == null)
+            cameraFollowPlayer = Camera.main.GetComponent<CinemachineVirtualCamera>();
+            if (cameraFollowPlayer.Follow == null)
             {
-                camera.Follow = characterObject.transform;
+                cameraFollowPlayer.Follow = characterObject.transform;
             }
         }
     }
 
     public IEnumerator GetData()
     {
-        // l?y th�ng tin t??ng ?ang s? d?ng
         string uid = removeQuotes(PlayerPrefs.GetString("UID"));
         WWWForm form_getChar = new WWWForm();
         form_getChar.AddField("userID", uid);
@@ -98,7 +93,7 @@ public class InGameCharLoading : MonoBehaviour
                 {
                     Avatar.GetComponent<Image>().sprite = fire_knightsprite;
                     GameObject fire_knight = (GameObject)Instantiate(Resources.Load("Prefabs/Character/Fire_Knight"), CharacterSpawnPosition, Quaternion.identity);
-                    camera.Follow = fire_knight.transform;
+                    cameraFollowPlayer.Follow = fire_knight.transform;
                     characterObject = fire_knight.GetComponent<CharacterObject>();
                     characterObject.insertBtnCooldown(btnCooldown);
                 }
@@ -106,7 +101,7 @@ public class InGameCharLoading : MonoBehaviour
                 {
                     Avatar.GetComponent<Image>().sprite = ground_monksprite;
                     GameObject ground_monk = (GameObject)Instantiate(Resources.Load("Prefabs/Character/Ground_Monk"), CharacterSpawnPosition, Quaternion.identity);
-                    camera.Follow = ground_monk.transform;
+                    cameraFollowPlayer.Follow = ground_monk.transform;
                     characterObject = ground_monk.GetComponent<CharacterObject>();
                     characterObject.insertBtnCooldown(btnCooldown);
                     //b? d�ng n�y sau khi thi?t k? xong 2 nh�n v?t cu?i
@@ -116,7 +111,7 @@ public class InGameCharLoading : MonoBehaviour
                 {
                     Avatar.GetComponent<Image>().sprite = fire_knightsprite;
                     GameObject fire_knight = (GameObject)Instantiate(Resources.Load("Prefabs/Character/Fire_Knight"), CharacterSpawnPosition, Quaternion.identity);
-                    camera.Follow = fire_knight.transform;
+                    cameraFollowPlayer.Follow = fire_knight.transform;
                     characterObject = fire_knight.GetComponent<CharacterObject>();
                     characterObject.insertBtnCooldown(btnCooldown);
                     //b? d�ng n�y sau khi thi?t k? xong 2 nh�n v?t cu?i
@@ -126,7 +121,7 @@ public class InGameCharLoading : MonoBehaviour
                 {
                     Avatar.GetComponent<Image>().sprite = metal_bladekeepersprite;
                     GameObject metal_bladekeeper = (GameObject)Instantiate(Resources.Load("Prefabs/Character/Metal_Bladekeeper"), CharacterSpawnPosition, Quaternion.identity);
-                    camera.Follow = metal_bladekeeper.transform;
+                    cameraFollowPlayer.Follow = metal_bladekeeper.transform;
                     characterObject = metal_bladekeeper.GetComponent<CharacterObject>();
                     characterObject.insertBtnCooldown(btnCooldown);
                 }
@@ -134,7 +129,7 @@ public class InGameCharLoading : MonoBehaviour
                 {
                     Avatar.GetComponent<Image>().sprite = water_priestesssprite;
                     GameObject water_priestess = (GameObject)Instantiate(Resources.Load("Prefabs/Character/Water_Priestess"), CharacterSpawnPosition, Quaternion.identity);
-                    camera.Follow = water_priestess.transform;
+                    cameraFollowPlayer.Follow = water_priestess.transform;
                     characterObject = water_priestess.GetComponent<CharacterObject>();
                     characterObject.insertBtnCooldown(btnCooldown);
                 }
@@ -142,10 +137,11 @@ public class InGameCharLoading : MonoBehaviour
                 {
                     Avatar.GetComponent<Image>().sprite = wind_hashashinsprite;
                     GameObject wind_hashashin = (GameObject)Instantiate(Resources.Load("Prefabs/Character/Wind_Hashashin"), CharacterSpawnPosition, Quaternion.identity);
-                    camera.Follow = wind_hashashin.transform;
+                    cameraFollowPlayer.Follow = wind_hashashin.transform;
                     characterObject = wind_hashashin.GetComponent<CharacterObject>();
                     characterObject.insertBtnCooldown(btnCooldown);
                 }
+                GameManager.instance.SetNameCharacter(charUsingName);
             }
         }
 

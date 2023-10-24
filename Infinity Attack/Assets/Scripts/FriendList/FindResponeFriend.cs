@@ -50,10 +50,10 @@ public class FindResponeFriend : MonoBehaviour
                 Debug.Log("Failed to connecting server");
             }
             unityWebRequest.Dispose();
-            yield return new WaitUntil(() => !isGetUser && !statusAnnouncement);
-            yield return new WaitForSeconds(2);
-        }
+        yield return new WaitUntil(() => !isGetUser && !statusAnnouncement);
+        yield return new WaitForSeconds(2);
     }
+}
     private IEnumerator IEGetUser(string id)
     {
         isGetUser = true;
@@ -107,7 +107,7 @@ public class FindResponeFriend : MonoBehaviour
             if (status.acknowledged && status.deletedCount > 0)
             {
                 confirmPanel.SetActive(true);
-                txtConfirm.text = "Huỷ thành công";
+                txtConfirm.text = "Delete Sucessfully";
                 Debug.Log("Delete Sucessfully");
             }
             else
@@ -141,7 +141,7 @@ public class FindResponeFriend : MonoBehaviour
             if (json != null)
             {
                 confirmPanel.SetActive(true);
-                txtConfirm.text = "Kết bạn thành công";
+                txtConfirm.text = "Make friends successfully";
                 friendEntity = JsonConvert.DeserializeObject<FriendEntity>(json);
 
             }
@@ -162,7 +162,7 @@ public class FindResponeFriend : MonoBehaviour
     {
         statusAnnouncement = true;
         announcementFriendList.gameObject.SetActive(true);
-        announcementFriendList.Init(nameUserReq + " muốn kết bạn với bạn", 2);
+        announcementFriendList.Init(nameUserReq + " wants to make friends with you", 2);
     }
     public void Decline()
     {

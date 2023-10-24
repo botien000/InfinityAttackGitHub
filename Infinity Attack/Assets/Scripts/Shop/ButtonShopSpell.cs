@@ -73,7 +73,6 @@ public class ButtonShopSpell : MonoBehaviour
         if (unityWebRequest.result == UnityWebRequest.Result.Success)
         {
             string json = unityWebRequest.downloadHandler.text;
-            Debug.Log(json);
             if (json != "[]")
             {
                 UpdateGold updateGold = JsonConvert.DeserializeObject<UpdateGold>(json);
@@ -110,6 +109,7 @@ public class ButtonShopSpell : MonoBehaviour
             form.AddField("userID", User.Instance.user._id);
             form.AddField("spellID", id);
             form.AddField("amount", curAmountSpell);
+            Debug.Log("dd" + id);
             unityWebRequest = UnityWebRequest.Post(Api.Instance.api + Api.Instance.routerAddSpellOwn, form);
         }
         else

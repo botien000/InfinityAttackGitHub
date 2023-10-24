@@ -31,7 +31,7 @@ public class Enemy : MonoBehaviour
     {
         
     }
-    public void setTransform(Transform transform)
+    public void SetPlayerTransform(Transform transform)
     {
         player = transform;
     }

@@ -22,6 +22,7 @@ public class RegisterScript : MonoBehaviour
 
     public void OnRegisterClick()
     {
+        SoundManager.instance.SetSoundClick();
         StartCoroutine(TryRegister());
     }
     private IEnumerator TryRegister()

@@ -20,18 +20,6 @@ public class ConfirmUI : MonoBehaviour
     int priceCharacter;
     ButtonShopCharacter btnShopCharacter;
     ButtonShopSpell btnShopSpell;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
     public void InitBoard(string log)
     {
         gameObject.SetActive(true);
@@ -56,11 +44,8 @@ public class ConfirmUI : MonoBehaviour
     public void BtnBuyCharacter()
     {
         if (txtPrice.gameObject.activeSelf)
-            CheckGemUser(User.Instance.user.gem);
-        else
         {
-            Debug.Log("Equip");
-            btnBuy.interactable = false;
+            CheckGemUser(User.Instance.user.gem);
         }
     }
     private void CheckGemUser(int amountUserGem)
@@ -70,7 +55,6 @@ public class ConfirmUI : MonoBehaviour
         {
             Debug.Log("Không đủ Gem để mua");
             SetTextLog("Không đủ Gem để mua");
-            return;
         }
         else
         {
@@ -84,14 +68,13 @@ public class ConfirmUI : MonoBehaviour
         txtLogCharacter.text = log;
         if (log == "Mua thành công")
         {
-            txtPrice.gameObject.SetActive(false);
-            gemGO.gameObject.SetActive(false);
+            btnBuy.interactable = false;
+            txtPrice.text = "Owned";
         }
     }
 
     internal void InitSpellDetail(string nameSpell, Sprite sprite, int price, int current, int total, ButtonShopSpell _btnShopSpell)
     {
-
         btnBuyOneSpell.interactable = current < total;
         btnBuyMaxSpell.interactable = current < total;
         btnShopSpell = _btnShopSpell;

@@ -166,7 +166,7 @@ public class FriendManager : MonoBehaviour
             if (status.acknowledged && status.deletedCount > 0)
             {
                 announcement.gameObject.SetActive(true);
-                announcement.Init("Xoá thành công", 1);
+                announcement.Init("Deleted sucessfully", 1);
                 friends.Remove(friendGO);
                 DestroyImmediate(friendGO.gameObject);
                 Debug.Log("Delete Sucessfully");
@@ -241,20 +241,20 @@ public class FriendManager : MonoBehaviour
                 if (friendEntity.status == 1)
                 {
                     announcement.gameObject.SetActive(true);
-                    announcement.Init("Người đã là bạn của bạn", 1);
+                    announcement.Init("Player was your friend", 1);
                     Debug.Log("Already made friends");
                 }
                 else
                 {
                     announcement.gameObject.SetActive(true);
-                    announcement.Init("Gửi yêu cầu thành công", 1);
+                    announcement.Init("Request sent sucessfully", 1);
                     Debug.Log("Sent request");
                 }
             }
             else
             {
                 announcement.gameObject.SetActive(true);
-                announcement.Init("Đã gửi yêu cầu trước đó.Hãy đợi người chơi phản hồi", 1);
+                announcement.Init("Request has been sent before. Wait for the player to respond", 1);
                 Debug.Log("Request sent before");
             }
         }
@@ -304,7 +304,7 @@ public class FriendManager : MonoBehaviour
         if (txtID.Length != 24)
         {
             announcement.gameObject.SetActive(true);
-            announcement.Init("ID người chơi gồm có 24 kí tự", 1);
+            announcement.Init("Player ID consists of 24 characters", 1);
             Debug.LogError("ID have 24 characters");
             return;
         }

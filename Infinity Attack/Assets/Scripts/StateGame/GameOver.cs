@@ -16,6 +16,8 @@ public class GameOver : MonoBehaviour
 
     private void Start()
     {
+        SystemData.instance.updateAchieved();
+        PlayerPrefs.SetInt("Play", 1);
         SetPlus();
         SetLogKilledEnemy();
         SetLogKilledBoss();
@@ -25,11 +27,9 @@ public class GameOver : MonoBehaviour
 
     private void PressBtnHome()
     {
-        SystemData.instance.updateAchieved();
         GameManager.instance.RemoveAllDontDestroyInGame();
         SceneManager.LoadScene("Home");
     }
-
 
     public void SetPlus()
     {

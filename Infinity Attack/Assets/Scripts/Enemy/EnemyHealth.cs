@@ -16,7 +16,7 @@ public class EnemyHealth : MonoBehaviour
     public static EnemyHealth instance;
     private void Start()
     {
-        if(instance == null)
+        if (instance == null)
         {
             instance = this;
         }
@@ -27,24 +27,24 @@ public class EnemyHealth : MonoBehaviour
     }
     private void Update()
     {
-            if (isInvulnerable)
-            {
-                rb.velocity = Vector2.zero;
-            }
+        if (isInvulnerable)
+        {
+            rb.velocity = Vector2.zero;
+        }
 
-            if (takeDamage)
+        if (takeDamage)
+        {
+            Hurt();
+            isInvulnerable = true;
+            time -= Time.deltaTime;
+            if (time < 0)
             {
-                Hurt();
-                isInvulnerable = true;
-                time -= Time.deltaTime;
-                if (time < 0)
-                {
-                    GetComponent<Animator>().SetBool("Hit", false);
-                    isInvulnerable = false;
-                    takeDamage = false;
-                    time = timeLoop;
-                }
-            }    
+                GetComponent<Animator>().SetBool("Hit", false);
+                isInvulnerable = false;
+                takeDamage = false;
+                time = timeLoop;
+            }
+        }
     }
     public void TakeDamage(int damage)
     {
@@ -58,7 +58,7 @@ public class EnemyHealth : MonoBehaviour
             health -= damage;
             healthBar.SetHealth(health, maxHealth);
         }
-        
+
         if (health <= 0)
         {
             Die();
@@ -71,12 +71,27 @@ public class EnemyHealth : MonoBehaviour
             bc.isTrigger = true;
             GetComponentInChildren<BoxCollider2D>().isTrigger = true;
             Destroy(gameObject, timeDead);
-            SystemData.instance.FlagDataEnemy();           
+            SystemData.instance.FlagDataEnemy();
         }
     }
     public void Hurt()
     {
         GetComponent<Animator>().SetBool("Hit", true);
+    }
+
+
+    public void TakeDamageFromFire(int damage, Vector2 position)
+    {
+        position.x += 2;
+        position.y += 2;
+        if (health > 0)
+        {
+            Vector2 difference = (transform.position - new Vector3(position.x,position.y,0)).normalized;
+            Vector2 force = difference * knockback * 100000;
+            Debug.Log($"force: {force}");
+            rb.AddForce(force, ForceMode2D.Impulse);
+            TakeDamage(damage);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -99,7 +114,7 @@ public class EnemyHealth : MonoBehaviour
                     rb.AddForce(difference * force, ForceMode2D.Impulse);
                     TakeDamage(InGameCharLoading.instance.damage * 4);
                 }
-                
+
             }
         }
     }

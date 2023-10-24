@@ -58,6 +58,7 @@ public class ButtonShopCharacter : MonoBehaviour
     {
         StartCoroutine(IEUpdateGemUser(price));
     }
+
     public IEnumerator IEUpdateGemUser(int price)
     {
         WWWForm form = new WWWForm();
@@ -123,7 +124,6 @@ public class ButtonShopCharacter : MonoBehaviour
             {
                 CharacterOwn characterOwn = JsonConvert.DeserializeObject<CharacterOwn>(json);
                 confirmUI.SetTextLog("Mua thành công");
-                Debug.Log("Add character successfully");
                 btnBuy.interactable = false;
                 txtPrice.text = "Owned";
                 txtPrice.transform.position = btnBuy.transform.position;

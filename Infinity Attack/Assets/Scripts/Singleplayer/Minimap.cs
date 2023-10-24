@@ -24,7 +24,7 @@ public class Minimap : MonoBehaviour
 
     }
 
-    public void setTransform (Transform transform)
+    public void SetPlayerTransform(Transform transform)
     {
         this.player = transform;
         haveTransform = true;

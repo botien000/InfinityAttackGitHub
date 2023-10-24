@@ -30,6 +30,7 @@ public class SpellManager : MonoBehaviour
     void Start()
     {
         instanceIP = Api.Instance;
+        //avatarDetail.gameObject.SetActive(false);
         LoadAvatars();
         if (PlayerPrefs.HasKey("UID"))
         {
@@ -37,8 +38,6 @@ public class SpellManager : MonoBehaviour
             StartCoroutine(GetSpellOwnData(instanceIP.api + instanceIP.routerPostSpellsOwn, 0, 0, 0, 0, 0, 0, 0
            , 0, 0, 0, userID));
         }
-           
-        
     }
     private void LoadAvatars()
     {
@@ -49,24 +48,12 @@ public class SpellManager : MonoBehaviour
         utilmateRemakeSprite = Resources.Load<Sprite>("Spells/utilmateRemake");
     }
 
-    private void Update()
-    {
-
-    }
-
-    void getAllSpells(string rawResponse)
+    void GetAllSpells(string rawResponse)
     {
         var _spell = JsonConvert.DeserializeObject<SpellID[]>(rawResponse);
         spellList = _spell;
         LoadFlag();
         LoadAmount();
-        //Debug.Log("flag fire: " + fire + " amount: " + amountFire);
-        //Debug.Log("flag armor: " + armor + " amount: " + amountArmor);
-        //Debug.Log("flag smite: " + smite + " amount: " + amountSmite);
-        //Debug.Log("flag healing: " + healing + " amount: " + amountHealing);
-        //Debug.Log("flag frozen: " + frozen + " amount: " + amountFrozen);
-        //Debug.Log("flag boom: " + boom + " amount: " + amountBoom);
-        //Debug.Log("flag soloq: " + soloQ + " amount: " + amountSoloQ);
 
         GameObject g;
         GameObject item = transform.GetChild(0).gameObject;
@@ -161,7 +148,7 @@ public class SpellManager : MonoBehaviour
                 g.transform.GetChild(0).GetComponent<Image>().sprite = utilmateRemakeSprite;
             }
             g.GetComponent<Button>().AddEventListener(i, ItemClicked);
-
+            g.SetActive(true);
             //update detail auto hien thi spell dau tien
             avatarDetail.sprite = fireSprite;
             nameSpell.text = spellList[0].name;
@@ -169,7 +156,6 @@ public class SpellManager : MonoBehaviour
             cd.text = "Cooldown: " + spellList[0].cooldown;
         }
         Destroy(item);
-
     }
 
     void ItemClicked(int itemIndex)
@@ -200,12 +186,13 @@ public class SpellManager : MonoBehaviour
         {
             avatarDetail.sprite = utilmateRemakeSprite;
         }
+        avatarDetail.gameObject.SetActive(true);
         nameSpell.text = name;
         description.text = spellList[itemIndex].description;
         cd.text = "Cooldown: " + spellList[itemIndex].cooldown;
     }
 
-    void getSpellOwn(string rawResponse, int chaos, int fire, int healing, int speedUp, int utilmateRemake,
+    void GetSpellOwn(string rawResponse, int chaos, int fire, int healing, int speedUp, int utilmateRemake,
         int amountChaos, int amountFire, int amountHealing, int amountSpeedUp, int amountUtilmateRemake)
     {
         var _spellOwn = JsonConvert.DeserializeObject<Spell[]>(rawResponse);
@@ -281,7 +268,7 @@ public class SpellManager : MonoBehaviour
             else
             {
                 string res = www.downloadHandler.text;
-                getAllSpells(res);
+                GetAllSpells(res);
                 www.Dispose();
             }
 
@@ -348,7 +335,7 @@ public class SpellManager : MonoBehaviour
         else
         {
             string res = www.downloadHandler.text;
-            getSpellOwn(res, chaos, fire, healing, speedUp, utilmateRemake,
+            GetSpellOwn(res, chaos, fire, healing, speedUp, utilmateRemake,
                 amountChaos, amountFire, amountHealing, amountSpeedUp, amountUtilmateRemake);
             www.Dispose();
         }

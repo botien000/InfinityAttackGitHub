@@ -11,7 +11,6 @@ public class CheckEmail : MonoBehaviour
 {
     private UserID user;
     [SerializeField] private GameObject LoadingPanel;
-    [SerializeField] private TMP_Text btn_text;
     [SerializeField] private GameObject AlertPanel;
     [SerializeField] private TMP_Text AlertText;
     [SerializeField] private GameObject FlagConfirmPanel;
@@ -34,23 +33,13 @@ public class CheckEmail : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        //PlayerPrefs.SetFloat("MusicKey", 1);
+        //PlayerPrefs.SetFloat("SoundKey", 1);
     }
 
     public void getDataAgain()
     {
         StartCoroutine(GetData());
-    }
-
-    public void onEmailClick()
-    {
-        if(btn_text.text == "Add Email")
-        {
-            AddEmailPanel.gameObject.SetActive(true);
-        } else if(btn_text.text == "Change Email")
-        {
-            ChangeEmailPanel.gameObject.SetActive(true);
-        }
     }
 
     public UserID UserJson(string a)
@@ -79,13 +68,6 @@ public class CheckEmail : MonoBehaviour
             {
                 Debug.Log("Form upload complete!");
                 user = UserJson(www.downloadHandler.text);
-                if(user.email == null)
-                {
-                    btn_text.text = "Add Email";
-                } else
-                {
-                    btn_text.text = "Change Email";
-                }
             }
         }
     }
@@ -98,13 +80,16 @@ public class CheckEmail : MonoBehaviour
 
     public void PressBtnMusic()
     {
-        imgMusicOn_Off.gameObject.SetActive(!imgMusicOn_Off.gameObject.activeInHierarchy);
-        SoundManager.instance.SetMusicData(!imgMusicOn_Off.gameObject.activeInHierarchy);
+        bool isActive = !imgMusicOn_Off.gameObject.activeInHierarchy;
+        imgMusicOn_Off.gameObject.SetActive(isActive);
+        SoundManager.instance.SetMusicData(!isActive);
     }
 
     public void PressBtnSound()
     {
-        imgSoundOn_Off.gameObject.SetActive(!imgSoundOn_Off.gameObject.activeInHierarchy);
-        SoundManager.instance.SetSoundData(!imgSoundOn_Off.gameObject.activeInHierarchy) ;
+        bool isActive = !imgSoundOn_Off.gameObject.activeInHierarchy;
+
+        imgSoundOn_Off.gameObject.SetActive(isActive);
+        SoundManager.instance.SetSoundData(!isActive);
     }
 }

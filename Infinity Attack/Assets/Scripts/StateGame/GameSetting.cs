@@ -7,31 +7,24 @@ using UnityEngine.UI;
 
 public class GameSetting : MonoBehaviour
 {
-    [SerializeField] Button btnHome, btnResume, btnRestart,btnExit,btnMusic,btnSound;
+    [SerializeField] Button btnHome, btnResume, btnExit, btnMusic, btnSound;
     [SerializeField] private Image imgMusicOn_Off, imgSoundOn_Off;
 
     private void Start()
     {
         btnHome.onClick.AddListener(() => PressBtnHome());
         btnResume.onClick.AddListener(() => PressBtnResume());
-        btnRestart.onClick.AddListener(() => PressBtnRestart());
         btnMusic.onClick.AddListener(() => PressBtnMusic());
         btnSound.onClick.AddListener(() => PressBtnSound());
         btnExit.onClick.AddListener(() => PressBtnExit());
 
         imgMusicOn_Off.gameObject.SetActive(PlayerPrefs.GetFloat("MusicKey", 1) == 1 ? false : true);
         imgSoundOn_Off.gameObject.SetActive(PlayerPrefs.GetFloat("SoundKey", 1) == 1 ? false : true);
-
     }
 
     private void PressBtnExit()
     {
         GameManager.instance.SetStateGame(GameManager.StateGame.GamePlay);
-    }
-
-    private void PressBtnRestart()
-    {
-        GameManager.instance.RestartGame();
     }
 
     private void PressBtnResume()
@@ -44,16 +37,20 @@ public class GameSetting : MonoBehaviour
         GameManager.instance.RemoveAllDontDestroyInGame();
         SceneManager.LoadScene("Home");
     }
+
     public void PressBtnMusic()
     {
-        imgMusicOn_Off.gameObject.SetActive(!imgMusicOn_Off.gameObject.activeInHierarchy);
-        SoundManager.instance.SetMusicData(imgMusicOn_Off.gameObject.activeInHierarchy);
+        bool isActive = !imgMusicOn_Off.gameObject.activeInHierarchy;
+        imgMusicOn_Off.gameObject.SetActive(isActive);
+        SoundManager.instance.SetMusicData(!isActive);
     }
 
     public void PressBtnSound()
     {
-        imgSoundOn_Off.gameObject.SetActive(!imgSoundOn_Off.gameObject.activeInHierarchy);
-        SoundManager.instance.SetSoundData(imgSoundOn_Off.gameObject.activeInHierarchy);
+        bool isActive = !imgSoundOn_Off.gameObject.activeInHierarchy;
+
+        imgSoundOn_Off.gameObject.SetActive(isActive);
+        SoundManager.instance.SetSoundData(!isActive);
     }
 
     private void OnEnable()

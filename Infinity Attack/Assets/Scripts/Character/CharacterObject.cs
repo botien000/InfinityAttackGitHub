@@ -1,4 +1,6 @@
+using System;
 using System.Collections;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -23,17 +25,21 @@ public class CharacterObject : MonoBehaviour
     [SerializeField] private float knockbackForce;
 
     public static CharacterObject instance;
-
     private BoxCollider2D box;
 
+    private Image imgAniOpeningMap;
     private State curState;
+    private ParticleSystem speedUpFX;
     public Rigidbody2D rgbody;
     public Animator animator;
     private InputController playerInput;
     [SerializeField] public Vector2 movePlayer;
     public Vector2 preMovePlayer;
 
+    private bool isFreeze;
     private bool isGround;
+    private float countTimeFX;
+    private float timeSpawnSUFX = 0.15f;
     public bool isJump;
     private float curY;
     private float preY;
@@ -56,7 +62,7 @@ public class CharacterObject : MonoBehaviour
     }
     private void Start()
     {
-        spawnPosition = InGameCharLoading.instance.spawnPosition;
+        spawnPosition = InGameCharLoading.instance.spawnPosition.position;
         FindObjects();
         box = GetComponent<BoxCollider2D>();
         SpellSpawner spellSpawner = FindObjectOfType<SpellSpawner>();
@@ -67,6 +73,8 @@ public class CharacterObject : MonoBehaviour
 
     private void Update()
     {
+        if (dead)
+            return;
         if (!dead)
         {
             if (isUltimate)
@@ -145,7 +153,6 @@ public class CharacterObject : MonoBehaviour
 
     private void OnEnable()
     {
-
         if (playerInput == null)
         {
             playerInput = new InputController();
@@ -173,8 +180,14 @@ public class CharacterObject : MonoBehaviour
     }
     private void FixedUpdate()
     {
+        if (dead)
+            return;
         if (!isAttacked && !dead)
+        {
             rgbody.velocity = new Vector2(movePlayer.x * speedRun, rgbody.velocity.y);
+            if (Mathf.Abs(rgbody.velocity.x) > 0 && !isJump)
+                ExcuteSpeedingUpFx();
+        }
         if (InGameCharLoading.instance.curHp <= 0)
         {
             StartCoroutine(Die());
@@ -188,6 +201,20 @@ public class CharacterObject : MonoBehaviour
             rgbody.bodyType = RigidbodyType2D.Dynamic;
         }
     }
+
+    private void ExcuteSpeedingUpFx()
+    {
+        if (speedUpFX == null)
+            return;
+
+        countTimeFX += Time.deltaTime;
+        if (countTimeFX >= timeSpawnSUFX)
+        {
+            speedUpFX.Play();
+            countTimeFX = 0;
+        }
+    }
+
     private void SetDirection()
     {
         if (!dead)
@@ -196,7 +223,6 @@ public class CharacterObject : MonoBehaviour
             {
                 if (movePlayer.x < 0)
                 {
-                    Debug.Log("setdirection");
                     transform.rotation = Quaternion.AngleAxis(180, Vector3.up);
                 }
                 else if (movePlayer.x > 0)
@@ -208,15 +234,19 @@ public class CharacterObject : MonoBehaviour
     }
     private void OnJump(InputAction.CallbackContext obj)
     {
-        if (!dead)
+        if (GameManager.instance.GetActiveConversation() || isFreeze)
         {
-
+            return;
+        }
+        if (!dead && !isFreeze)
+        {
             if (obj.started)
             {
                 if (!isJump && !isUltimate && !isAttacked)
                 {
                     if (!attacking)
                     {
+
                         rgbody.AddForce(Vector2.up * forceJump, ForceMode2D.Force);
                         preY = transform.position.y;
                     }
@@ -226,7 +256,11 @@ public class CharacterObject : MonoBehaviour
     }
     private void OnAttack(InputAction.CallbackContext obj)
     {
-        if (!dead)
+        if (GameManager.instance.GetActiveConversation() || isFreeze)
+        {
+            return;
+        }
+        if (!dead && !isFreeze)
         {
             if (obj.started)
             {
@@ -246,7 +280,12 @@ public class CharacterObject : MonoBehaviour
 
     private void OnMovement(InputAction.CallbackContext obj)
     {
-        if (!dead)
+
+        if (GameManager.instance.GetActiveConversation() || isFreeze)
+        {
+            return;
+        }
+        if (!dead && !isFreeze)
         {
             if (obj.started)
             {
@@ -254,16 +293,16 @@ public class CharacterObject : MonoBehaviour
                 {
                     if (!attacking || !isUltimate || !isAttacked)
                     {
-                        Debug.Log("on movement if" + attacking);
                         movePlayer = obj.ReadValue<Vector2>();
                     }
                 }
-                Debug.Log("on movement");
                 movingPressing = true;
                 preMovePlayer = obj.ReadValue<Vector2>();
             }
             if (obj.canceled)
             {
+                //if (speedUpGO != null)
+                //    speedUpGO.SetActive(false);
                 movingPressing = false;
                 if (!attacking || !isUltimate || !isAttacked)
                 {
@@ -314,7 +353,11 @@ public class CharacterObject : MonoBehaviour
     }
     public void Ultimate(InputAction.CallbackContext obj)
     {
-        if (!dead)
+        if (GameManager.instance.GetActiveConversation() || isFreeze)
+        {
+            return;
+        }
+        if (!dead && !isFreeze)
         {
             if (obj.started)
             {
@@ -340,7 +383,6 @@ public class CharacterObject : MonoBehaviour
             movePlayer = Vector2.zero;
             dead = true;
             yield return new WaitForSeconds(1.5f);
-            Debug.Log("AAAAAAAAAAAAAAAAAAAAA");
             GameManager.instance.SetStateGame(GameManager.StateGame.GameOver);
 
         }
@@ -423,7 +465,6 @@ public class CharacterObject : MonoBehaviour
 
                     if (collision.gameObject.tag == "FireBall")
                     {
-                        Debug.Log("trigger fireball");
                         Hit("FireBall");
                         if (collision.transform.position.x >= transform.position.x)
                         {
@@ -531,28 +572,28 @@ public class CharacterObject : MonoBehaviour
         Enemy[] enemies = FindObjectsOfType<Enemy>();
         foreach (var enemy in enemies)
         {
-            enemy.setTransform(transform);
+            enemy.SetPlayerTransform(transform);
         }
 
         FlyingEnemy[] flyingEs = FindObjectsOfType<FlyingEnemy>();
         foreach (var flyingEnemy in flyingEs)
         {
-            flyingEnemy.setTransform(transform);
+            flyingEnemy.SetPlayerTransform(transform);
         }
 
         Minimap minimap = FindObjectOfType<Minimap>();
-        minimap.setTransform(transform);
+        minimap.SetPlayerTransform(transform);
 
         Boss2[] boss2Arr = FindObjectsOfType<Boss2>();
         foreach (var boss2 in boss2Arr)
         {
-            boss2.SetTransform(transform);
+            boss2.SetPlayerTransform(transform);
         }
 
         Boss3[] boss3Arr = FindObjectsOfType<Boss3>();
         foreach (var boss3 in boss3Arr)
         {
-            boss3.setTransform(transform);
+            boss3.SetPlayerTransform(transform);
         }
     }
 
@@ -561,13 +602,13 @@ public class CharacterObject : MonoBehaviour
         Enemy[] enemies = FindObjectsOfType<Enemy>();
         foreach (var enemy in enemies)
         {
-            enemy.setTransform(null);
+            enemy.SetPlayerTransform(null);
         }
 
         FlyingEnemy[] flyingEs = FindObjectsOfType<FlyingEnemy>();
         foreach (var flyingEnemy in flyingEs)
         {
-            flyingEnemy.setTransform(null);
+            flyingEnemy.SetPlayerTransform(null);
         }
     }
     private IEnumerator TakeHit()
@@ -584,31 +625,31 @@ public class CharacterObject : MonoBehaviour
 
     public void SpeedUp(float speed)
     {
-        Debug.Log(speed);
         speedRun += speed;
     }
     public void Healing(float percent)
     {
         int hp = (int)(InGameCharLoading.instance.curHp * (percent / 100f));
-        Debug.Log("hp plus: " + hp);
         InGameCharLoading.instance.curHp += (int)hp;
         if (InGameCharLoading.instance.curHp >= InGameCharLoading.instance.hp)
         {
             InGameCharLoading.instance.curHp = InGameCharLoading.instance.hp;
         }
-        Debug.Log("curhp : " + InGameCharLoading.instance.curHp + "hp : " + InGameCharLoading.instance.hp);
         InGameCharLoading.instance.HealthBar.fillAmount = (float)InGameCharLoading.instance.curHp / InGameCharLoading.instance.hp;
         InGameCharLoading.instance.HealthText.text = "" + InGameCharLoading.instance.curHp + "/" + InGameCharLoading.instance.hp;
     }
-    public void IncreateDamage(int attack, int type)
+
+    private int originDamage;
+    public void IncreateDamage(int type)
     {
         if (type == 0)
         {
-            InGameCharLoading.instance.damage *= attack;
+            originDamage = InGameCharLoading.instance.damage;
+            InGameCharLoading.instance.damage += InGameCharLoading.instance.damage / 2;
         }
         else
         {
-            InGameCharLoading.instance.damage /= attack;
+            InGameCharLoading.instance.damage = originDamage;
         }
     }
     public void ResetingUtilmate()
@@ -616,5 +657,31 @@ public class CharacterObject : MonoBehaviour
         abilityCooldownButton.GetComponent<Image>().fillAmount = 0;
         abilityCooldownButton.GetComponent<Image>().raycastTarget = false;
         isCooldown = false;
+    }
+
+    public Image GetImage()
+    {
+        return imgAniOpeningMap;
+    }
+
+    internal void SetImage(Image img)
+    {
+        imgAniOpeningMap = img;
+    }
+
+    internal void SetFreeze(bool isFreeze)
+    {
+        this.isFreeze = isFreeze;
+        if (isFreeze)
+        {
+            movePlayer = Vector2.zero;
+            preMovePlayer = Vector2.zero;
+            movingPressing = false;
+        }
+    }
+
+    internal void SetSpeedUpGO(ParticleSystem fx)
+    {
+        speedUpFX = fx;
     }
 }

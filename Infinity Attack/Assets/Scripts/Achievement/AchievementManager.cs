@@ -212,51 +212,51 @@ public class AchievementManager : MonoBehaviour
     {
         SceneManager.LoadScene("Home");
     }
-    private void LoadChallengeAchievedKillEnemy()
-    {
-        killenemy = PlayerPrefs.GetInt("killenemy");
-    }
+    //private void LoadChallengeAchievedKillEnemy()
+    //{
+    //    killenemy = PlayerPrefs.GetInt("killenemy");
+    //}
 
-    private void SaveChallengeAchievedKillEnemy(int killenemy)
-    {
-        PlayerPrefs.SetInt("killenemy", killenemy);
-    }
-    private void LoadChallengeAchievedKillBoss()
-    {
-        killboss = PlayerPrefs.GetInt("killboss");
-    }
+    //private void SaveChallengeAchievedKillEnemy(int killenemy)
+    //{
+    //    PlayerPrefs.SetInt("killenemy", killenemy);
+    //}
+    //private void LoadChallengeAchievedKillBoss()
+    //{
+    //    killboss = PlayerPrefs.GetInt("killboss");
+    //}
 
-    private void SaveChallengeAchievedKillBoss(int killboss)
-    {
-        PlayerPrefs.SetInt("killboss", killboss);
-    }
-    private void LoadChallengeAchievedSinglePlay()
-    {
-        singleplay = PlayerPrefs.GetInt("singleplay");
-    }
+    //private void SaveChallengeAchievedKillBoss(int killboss)
+    //{
+    //    PlayerPrefs.SetInt("killboss", killboss);
+    //}
+    //private void LoadChallengeAchievedSinglePlay()
+    //{
+    //    singleplay = PlayerPrefs.GetInt("singleplay");
+    //}
 
-    private void SaveChallengeAchievedSinglePlay(int singleplay)
-    {
-        PlayerPrefs.SetInt("singleplay", singleplay);
-    }
-    private void LoadChallengeAchievedMultiPlay()
-    {
-        multiplay = PlayerPrefs.GetInt("multiplay");
-    }
+    //private void SaveChallengeAchievedSinglePlay(int singleplay)
+    //{
+    //    PlayerPrefs.SetInt("singleplay", singleplay);
+    //}
+    //private void LoadChallengeAchievedMultiPlay()
+    //{
+    //    multiplay = PlayerPrefs.GetInt("multiplay");
+    //}
 
-    private void SaveChallengeAchievedMultiPlay(int multiplay)
-    {
-        PlayerPrefs.SetInt("multiplay", multiplay);
-    }
-    private void LoadChallengeAchievedAddFriend()
-    {
-        addfriend = PlayerPrefs.GetInt("addfriend");
-    }
+    //private void SaveChallengeAchievedMultiPlay(int multiplay)
+    //{
+    //    PlayerPrefs.SetInt("multiplay", multiplay);
+    //}
+    //private void LoadChallengeAchievedAddFriend()
+    //{
+    //    addfriend = PlayerPrefs.GetInt("addfriend");
+    //}
 
-    private void SaveChallengeAchievedAddFriend(int addfriend)
-    {
-        PlayerPrefs.SetInt("addfriend", addfriend);
-    }
+    //private void SaveChallengeAchievedAddFriend(int addfriend)
+    //{
+    //    PlayerPrefs.SetInt("addfriend", addfriend);
+    //}
 
     private string removeQuotes(string a)
     {

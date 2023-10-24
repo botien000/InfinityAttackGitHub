@@ -52,12 +52,6 @@ public class HomeScript : MonoBehaviour
         SoundManager.instance.SetLg_ResMusic();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public UserID UserJson(string a)
     {
         var user = JsonConvert.DeserializeObject<UserID>(a);
@@ -200,5 +194,10 @@ public class HomeScript : MonoBehaviour
     {
         PlayerPrefs.SetString("token", null);
         SceneManager.LoadScene("Login_Register");
+    }
+
+    public void PlaySoundWhenClick()
+    {
+        SoundManager.instance.SetSoundClick();
     }
 }

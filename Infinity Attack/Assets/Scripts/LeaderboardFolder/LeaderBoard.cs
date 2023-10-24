@@ -208,7 +208,7 @@ public class LeaderBoard : MonoBehaviour
                 }
             }
             LeaderboardDetail detail = Instantiate(leaderBoardDetailPrefab, parent);
-            detail.Init(top, users[i].name, users[i].gem, true ? users[i]._id == User.Instance.user._id : false);
+            detail.Init(top, users[i].name, users[i]._id, users[i].gem, true ? users[i]._id == User.Instance.user._id : false);
             lbDetailGOList.Add(detail);
             BtnGlobal();
         }

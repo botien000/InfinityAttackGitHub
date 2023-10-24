@@ -1,9 +1,5 @@
 using Cinemachine;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UI;
 using Slider = UnityEngine.UI.Slider;
 
 public class Boss2 : MonoBehaviour
@@ -49,19 +45,23 @@ public class Boss2 : MonoBehaviour
 
     public GameObject HeartSpawn;
     public GameObject heart;
+    [SerializeField] private StateCheckPlayer stateCheckPlayer;
 
     public static Boss2 instance;
+
     private void Awake()
     {
         rgbody = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
     }
+
     private void Start()
     {
         CinemachineBrain cinemachineBrain = FindObjectOfType<CinemachineBrain>();
         Slider[] sliders = cinemachineBrain.GetComponentsInChildren<Slider>(true);
         slider = sliders[0];
         heart_Slider = sliders[1];
+
         canBeAttacked = true;
         activeskill1 = false;
         activeskill2 = false;
@@ -74,10 +74,10 @@ public class Boss2 : MonoBehaviour
         Skill1_isCD = false;
         Skill1_ing = false;
         Skill2_ing = false;
-
         curhp = hp;
         curhp_heart = hp_heart;
     }
+
     private void Update()
     {
         if (dead == false)
@@ -94,11 +94,6 @@ public class Boss2 : MonoBehaviour
                 anim.SetBool("Death", true);
                 anim.SetTrigger("TriggerDeath");
                 rgbody.bodyType = RigidbodyType2D.Static;
-                GameManager.instance.CheckBossDie();
-                if (SystemData.instance.map == 3)
-                {
-                    SystemData.instance.amountBossMap_3--;
-                }
             }
             if (Time.time > nextAttackSkill1 && activeskill1 == true && !Skill2_ing)
             {
@@ -128,10 +123,7 @@ public class Boss2 : MonoBehaviour
         }
     }
 
-    public void SetTransform(Transform transform)
-    {
-        player = transform;
-    }
+    public void SetPlayerTransform(Transform transform) => player = transform;
     public void LookAtPlayer()
     {
         Vector3 flipped = transform.localScale;
@@ -198,6 +190,7 @@ public class Boss2 : MonoBehaviour
             slider.value = curhp;
         }
     }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "PlayerAttack")
@@ -261,6 +254,7 @@ public class Boss2 : MonoBehaviour
             canHeal = false;
         }
     }
+
     public void TakeDameHeart(int dame)
     {
         curhp_heart -= dame;
@@ -285,4 +279,17 @@ public class Boss2 : MonoBehaviour
             slider.value = curhp;
         }
     }
+    
+    public void EventBossDie()
+    {
+        stateCheckPlayer.MoveToOrigin();
+        slider.gameObject.SetActive(false);
+        heart_Slider.gameObject.SetActive(false);
+        GameManager.instance.CheckBossDie();
+        if (SystemData.instance.map == 3)
+        {
+            SystemData.instance.amountBossMap_3--;
+        }
+    }
+
 }

@@ -5,6 +5,7 @@ using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -16,6 +17,8 @@ public class GameManager : MonoBehaviour
     public Camera oldMinimap;
     public GameObject EventSystem;
     private CharacterObject oldPlayer;
+    private string curCharName;
+    private bool isBossMap;
 
     private void Awake()
     {
@@ -35,6 +38,7 @@ public class GameManager : MonoBehaviour
     }
     [SerializeField] private StateGame curState;
 
+    [SerializeField] private ConversationUI conversationUI;
     [SerializeField] private GamePlay gamePlay;
     [SerializeField] private GameSetting gameSetting;
     [SerializeField] private GameOver gameOver;
@@ -43,13 +47,19 @@ public class GameManager : MonoBehaviour
 
     private float amountBossInMap;
 
+    public bool IsBossMap { get => isBossMap; set => isBossMap = value; }
+
     private void Start()
     {
         if (SoundManager.instance != null)
             SoundManager.instance.SetNormalMapMusic();
 
-        amountBossInMap = 1;
+        if (typeMap == 3)
+            amountBossInMap = 2;
+        else
+            amountBossInMap = 1;
     }
+
     public void SetStateGame(StateGame state)
     {
         switch (state)
@@ -81,15 +91,6 @@ public class GameManager : MonoBehaviour
         SetStateGame(StateGame.GameSetting);
     }
 
-    public void RestartGame()
-    {
-        if (oldPlayer != null)
-        {
-            Destroy(oldPlayer.gameObject);
-        }
-        Destroy(gameObject);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    }
     public void SetPlayerDontDestroy(CharacterObject player)
     {
         DontDestroyOnLoad(player);
@@ -101,7 +102,7 @@ public class GameManager : MonoBehaviour
             {
                 if (camera.gameObject.name == "Main Camera")
                 {
-                    DestroyImmediate(camera.gameObject);
+                    Destroy(camera.gameObject);
                     listCamera.Remove(camera);
                     break;
                 }
@@ -117,6 +118,7 @@ public class GameManager : MonoBehaviour
 
     public void RemoveAllDontDestroyInGame()
     {
+        SpellSingleton.Instance.SetAllSpellNull();
         Destroy(oldPlayer.gameObject);
         Destroy(oldCamera.gameObject);
         Destroy(oldMinimap.gameObject);
@@ -127,11 +129,54 @@ public class GameManager : MonoBehaviour
     public void CheckBossDie()
     {
         amountBossInMap--;
+        SystemData.instance.flagBoss += 1;
         if (amountBossInMap == 0)
         {
             // Game over
-            SystemData.instance.flagBoss += 1;
             SetStateGame(StateGame.GameOver);
         }
+    }
+
+    internal void SetImageToPlayer(Image img)
+    {
+        oldPlayer.SetImage(img);
+    }
+
+    internal void SetNameCharacter(string charUsingName)
+    {
+        curCharName = charUsingName;
+        SentInfoToConver();
+    }
+
+    internal void CheckBossMap(bool checkMap)
+    {
+        isBossMap = checkMap;
+    }
+
+    public void SentInfoToConver()
+    {
+        conversationUI.SetSptCharacter(curCharName);
+        conversationUI.SetBossMap(isBossMap);
+        conversationUI.SetActiveConversation(true);
+    }
+
+    public bool GetActiveConversation()
+    {
+        return conversationUI.gameObject.activeSelf;
+    }
+
+    public void SetPlayerFreeze(bool isFreeze)
+    {
+        oldPlayer.SetFreeze(isFreeze);
+    }
+
+    public void SetPlayerActive(bool isActive)
+    {
+        oldPlayer.gameObject.SetActive(isActive);
+    }
+
+    public CharacterObject GetPlayer()
+    {
+        return oldPlayer;
     }
 }
