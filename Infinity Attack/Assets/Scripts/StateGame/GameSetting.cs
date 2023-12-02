@@ -62,6 +62,4 @@ public class GameSetting : MonoBehaviour
     {
         Time.timeScale = 1.0f;
     }
-
-
 }
