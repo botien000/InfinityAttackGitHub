@@ -25,7 +25,6 @@ public class CheckToken : MonoBehaviour
 
     private void Start()
     {
-        Debug.unityLogger.logEnabled = false;
         instanceIP = Api.Instance;
         string token = PlayerPrefs.GetString("token");
         if(token.Trim() == "")
