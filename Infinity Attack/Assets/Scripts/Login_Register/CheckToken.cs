@@ -25,12 +25,14 @@ public class CheckToken : MonoBehaviour
 
     private void Start()
     {
+        Debug.unityLogger.logEnabled = Debug.isDebugBuild;
         instanceIP = Api.Instance;
         string token = PlayerPrefs.GetString("token");
-        if(token.Trim() == "")
+        if (token.Trim() == "")
         {
 
-        } else
+        }
+        else
         {
             StartCoroutine(CheckRememberToken(token));
         }
@@ -214,7 +216,7 @@ public class CheckToken : MonoBehaviour
     {
         for (int i = 0; i < 3; i++)
         {
-            SpellSingleton.Instance.SetSpell(i, null, null, 0, 0, 0,null);
+            SpellSingleton.Instance.SetSpell(i, null, null, 0, 0, 0, null);
         }
     }
     IEnumerator IELoadingScreen(int buildIndex)
